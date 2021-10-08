@@ -1,2 +1,2 @@
-# To Run
-Within the ReactCV directory, yarn install and yarn run start
+# Sign Language Recognition
+This is a game that recognises and translates sign language to English
