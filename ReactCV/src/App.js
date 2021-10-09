@@ -4,11 +4,13 @@ import "./App.css";
 import React, { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 
-import { Modal } from '@material-ui/core';
+import { Grid, Modal } from '@material-ui/core';
 import * as tf from "@tensorflow/tfjs";
 
 import aslImg from "../src/assets/images/ASL_Alphabet.png"
 import studyIcon from "../src/assets/images/study.png";
+import DSButton from "./components/DSButton";
+import TextBubble from "./components/TextBubble";
 // 2. TODO - Import drawing utility here
 // e.g. import { drawRect } from "./utilities";
 import { drawRect } from "./utilities";
@@ -109,18 +111,25 @@ function App() {
             className="asl-modal">
             <img src={aslImg} className="asl-img" />
           </Modal>
-
         </div>
-        <div className="cam-wrapper">
-          <Webcam
-            ref={webcamRef}
-            muted={true}
-            className="webcam"
-          />
-          <canvas
-            ref={canvasRef}
-            className="canvas"
-          />
+        <div className="content-body">
+          <div className="left-panel">
+            <TextBubble>
+              <h2>Ready to start?</h2>
+              <DSButton text="Let's Go!"/>
+            </TextBubble>
+          </div>
+          <div className="cam-wrapper">
+            <Webcam
+              ref={webcamRef}
+              muted={true}
+              className="webcam"
+            />
+            <canvas
+              ref={canvasRef}
+              className="canvas"
+            />
+          </div>
         </div>
       </div>
     </div >

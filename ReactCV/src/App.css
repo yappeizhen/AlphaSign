@@ -34,7 +34,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-left: 120px;
   width: 100%;
 }
 
@@ -47,9 +46,29 @@
   }
 }
 h1 {
-  font-size: 48px;
+  font-size: 52px;
   padding: 0;
   margin: 0;
+}
+h2 {
+  font-size: 44px;
+}
+.content-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+}
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  width: 30%;
 }
 .cam-wrapper {
   position: relative;
@@ -62,10 +81,6 @@ h1 {
 }
 .canvas {
   position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
   text-align: center;
   z-index: 8;
   width: 100%;
@@ -73,10 +88,6 @@ h1 {
   border-radius: 40px;
 }
 .webcam {
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
   text-align: center;
   z-index: 9;
   width: 100%;
@@ -96,7 +107,7 @@ h1 {
   justify-content: center;
 }
 .name-text {
-  text-align: left;
+  text-align: right;
   margin: 4px;
 }
 .study-button {
@@ -113,9 +124,9 @@ h1 {
 .gradient-button {
   background-image: linear-gradient(
     to right,
-    #e8d4f5 0%,
-    rgb(196, 156, 228) 51%,
-    #e2c5f5 100%
+    #dcc2ee 0%,
+    rgb(248, 205, 253) 51%,
+    #e0b8fa 100%
   );
   transition: 0.5s;
   background-size: 200% auto;
@@ -162,15 +173,38 @@ h1 {
   width: 60px;
 }
 @media only screen and (max-width: 680px) {
+  .App-container {
+    justify-content: space-evenly;
+    height: auto;
+  }
   h1 {
     font-size: 24px;
+  }
+  h2 {
+    font-size: 20px;
   }
   p {
     font-size: 12px;
   }
+  .content-body {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+  .left-panel {
+    width: 70%;
+    margin-top: 32px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  }
   .name-text {
     text-align: center;
     padding: 0;
+  }
+  .cam-wrapper {
+    width: 70%;
   }
   .web-cam {
     height: 60%;
