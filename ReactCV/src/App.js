@@ -97,7 +97,7 @@ function App() {
             <h1>Sign Language Game</h1>
             <p className="name-text">by Zhili and Pei Zhen</p>
           </div>
-          <button className="study-button" onClick={handleModalOpen}>
+          <button className="study-button gradient-button" onClick={handleModalOpen}>
             <img src={studyIcon} className="study-icon" alt="Sign language alphabet" />
             <span class="tooltiptext">American sign language alphabet guide</span>
           </button>
