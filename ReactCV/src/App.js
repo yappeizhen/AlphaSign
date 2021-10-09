@@ -111,15 +111,17 @@ function App() {
           </Modal>
 
         </div>
-        <Webcam
-          ref={webcamRef}
-          muted={true}
-          className="webcam"
-        />
-        <canvas
-          ref={canvasRef}
-          className="canvas"
-        />
+        <div className="cam-wrapper">
+          <Webcam
+            ref={webcamRef}
+            muted={true}
+            className="webcam"
+          />
+          <canvas
+            ref={canvasRef}
+            className="canvas"
+          />
+        </div>
       </div>
     </div >
   );

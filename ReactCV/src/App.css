@@ -60,7 +60,7 @@ h1 {
   text-align: center;
   z-index: 8;
   width: 60%;
-  height: 60%;
+  max-height: 20%;
   border-radius: 40px;
 }
 .webcam {
