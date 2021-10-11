@@ -3,12 +3,13 @@ import "./App.css";
 // Import dependencies
 import React, { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
-import { wordBank } from "../src/constants/wordBank";
+
 import { Modal } from '@material-ui/core';
 import * as tf from "@tensorflow/tfjs";
 
 import aslImg from "../src/assets/images/ASL_Alphabet.png"
 import studyIcon from "../src/assets/images/study.png";
+import { wordBank } from "../src/constants/wordBank";
 import DSButton from "./components/DSButton";
 import TextBubble from "./components/TextBubble";
 // 2. TODO - Import drawing utility here
@@ -19,6 +20,7 @@ function App() {
   const [isStarted, setIsStarted] = useState(false);
   const [currentWord, setCurrentWord] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [countdown, setCountdown] = useState(0);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -88,7 +90,6 @@ function App() {
   useEffect(() => {
     handleChooseAlphabet();
   }, []);
-
   // Render Methods
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -96,7 +97,19 @@ function App() {
   const handleModalClose = () => {
     setIsModalOpen(false);
   }
+
+  useEffect(() => {
+    let timer;
+    if (countdown > 0) {
+      timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+    }
+    // Clear timeout if the component is unmounted
+    return () => clearTimeout(timer);
+  }, [countdown]);
   const onStart = () => {
+    setCountdown(3);
     setIsStarted(true);
   }
   const onExit = () => {
@@ -140,7 +153,10 @@ function App() {
                   <DSButton onClick={onStart} text="Let's Go!" />
                 </div>
               </div>
-              <div className={`bubble-wrapper ${isStarted ? "visible" : "hidden"}`}>
+              <div className={`bubble-wrapper ${countdown > 0 ? "visible" : "hidden"}`}>
+                <h2 style={{ fontWeight: 500, fontSize: 60 }}>{countdown}</h2>
+              </div>
+              <div className={`bubble-wrapper ${isStarted && countdown === 0 ? "visible" : "hidden"}`}>
                 <p className="prompt">Sign this alphabet:</p>
                 <p className="target-word">{currentWord}</p>
                 <div className="response-button-group">
