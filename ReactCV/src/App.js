@@ -8,7 +8,9 @@ import { Modal } from '@material-ui/core';
 import * as tf from "@tensorflow/tfjs";
 
 import aslImg from "../src/assets/images/ASL_Alphabet.png"
-import studyIcon from "../src/assets/images/study.png";
+import boyImg from "../src/assets/images/boy-hand.png"
+import studyIcon from "../src/assets/images/notebook.png";
+import fistBump from "../src/assets/images/peace.png"
 import { wordBank } from "../src/constants/wordBank";
 import DSButton from "./components/DSButton";
 import TextBubble from "./components/TextBubble";
@@ -131,18 +133,7 @@ function App() {
             <h1>Sign Language Game</h1>
             <p className="name-text">by Zhili and Pei Zhen</p>
           </div>
-          <button className="study-button gradient-button" onClick={handleModalOpen}>
-            <img src={studyIcon} className="study-icon" alt="Sign language alphabet" />
-            <span className="tooltiptext">American sign language alphabet guide</span>
-          </button>
-          <Modal
-            open={isModalOpen}
-            onClose={handleModalClose}
-            aria-labelledby="ASL Guide"
-            aria-describedby="A short guide to American Sign Language Alphabets"
-            className="asl-modal">
-            <img src={aslImg} alt="American Sign Language Guide" className="asl-img" />
-          </Modal>
+          <img src={fistBump} className="fistbump" alt="Fist Bump" />
         </div>
         <div className="content-body">
           <div className="left-panel">
@@ -165,6 +156,21 @@ function App() {
                 </div>
               </div>
             </TextBubble>
+            <div className="boy-container">
+              <img className="boy-img" alt="Boy raising hand" src={boyImg}></img>
+              <button className="study-button gradient-button" onClick={handleModalOpen}>
+                <img src={studyIcon} className="study-icon" alt="Sign language alphabet" />
+                <span className="tooltiptext">American sign language alphabet guide</span>
+              </button>
+              <Modal
+                open={isModalOpen}
+                onClose={handleModalClose}
+                aria-labelledby="ASL Guide"
+                aria-describedby="A short guide to American Sign Language Alphabets"
+                className="asl-modal">
+                <img src={aslImg} alt="American Sign Language Guide" className="asl-img" />
+              </Modal>
+            </div>
           </div>
           <div className="cam-wrapper">
             <Webcam
