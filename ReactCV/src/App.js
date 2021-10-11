@@ -3,8 +3,8 @@ import "./App.css";
 // Import dependencies
 import React, { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
-
-import { Grid, Modal } from '@material-ui/core';
+import { wordBank } from "../src/constants/wordBank";
+import { Modal } from '@material-ui/core';
 import * as tf from "@tensorflow/tfjs";
 
 import aslImg from "../src/assets/images/ASL_Alphabet.png"
@@ -16,6 +16,8 @@ import TextBubble from "./components/TextBubble";
 import { drawRect } from "./utilities";
 
 function App() {
+  const [isStarted, setIsStarted] = useState(false);
+  const [currentWord, setCurrentWord] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -83,12 +85,29 @@ function App() {
 
   // useEffect(()=>{runCoco()},[]);
 
+  useEffect(() => {
+    handleChooseAlphabet();
+  }, []);
+
   // Render Methods
   const handleModalOpen = () => {
     setIsModalOpen(true);
   }
   const handleModalClose = () => {
     setIsModalOpen(false);
+  }
+  const onStart = () => {
+    setIsStarted(true);
+  }
+  const onExit = () => {
+    setIsStarted(false);
+  }
+  const onNextQuestion = () => {
+    handleChooseAlphabet();
+  }
+  const handleChooseAlphabet = () => {
+    const i = Math.floor(Math.random() * 25);
+    setCurrentWord(wordBank[i]);
   }
 
   return (
@@ -101,7 +120,7 @@ function App() {
           </div>
           <button className="study-button gradient-button" onClick={handleModalOpen}>
             <img src={studyIcon} className="study-icon" alt="Sign language alphabet" />
-            <span class="tooltiptext">American sign language alphabet guide</span>
+            <span className="tooltiptext">American sign language alphabet guide</span>
           </button>
           <Modal
             open={isModalOpen}
@@ -109,14 +128,26 @@ function App() {
             aria-labelledby="ASL Guide"
             aria-describedby="A short guide to American Sign Language Alphabets"
             className="asl-modal">
-            <img src={aslImg} className="asl-img" />
+            <img src={aslImg} alt="American Sign Language Guide" className="asl-img" />
           </Modal>
         </div>
         <div className="content-body">
           <div className="left-panel">
             <TextBubble>
-              <h2>Ready to start?</h2>
-              <DSButton text="Let's Go!"/>
+              <div className={`bubble-wrapper pre-start ${!isStarted ? "visible" : "hidden"}`}>
+                <h2>Ready to start?</h2>
+                <div className="start-button">
+                  <DSButton onClick={onStart} text="Let's Go!" />
+                </div>
+              </div>
+              <div className={`bubble-wrapper ${isStarted ? "visible" : "hidden"}`}>
+                <p className="prompt">Sign this alphabet:</p>
+                <p className="target-word">{currentWord}</p>
+                <div className="response-button-group">
+                  <DSButton onClick={onExit} text="Exit" />
+                  <DSButton onClick={onNextQuestion} text="Next Question!" />
+                </div>
+              </div>
             </TextBubble>
           </div>
           <div className="cam-wrapper">
