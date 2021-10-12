@@ -25,34 +25,27 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [isCorrect,] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
-  const chooseRandomAlphabet = () => {
+  const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 25);
     return wordBank[i];
-  }
-  const [currentWord, setCurrentWord] = useState(chooseRandomAlphabet());
+  }, [])
+  const [currentWord, setCurrentWord] = useState(null);
+
+  // Helper functions
+  const handleChooseAlphabet = useCallback(() => {
+    setCurrentWord(chooseRandomAlphabet());
+  }, [chooseRandomAlphabet]);
+  const onNextQuestion = useCallback(() => {
+    setIsCorrect(false);
+    handleChooseAlphabet();
+  }, [handleChooseAlphabet]);
 
   // Main function
-  const runCoco = useCallback(
-    async () => {
-      // 3. TODO - Load network 
-      console.log('Loading Model')
-      // e.g. const net = await cocossd.load();
-      // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
-      // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
-      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
-      console.log('Loaded Model')
-      setIsLoading(false);
-      //  Loop and detect hands
-      setInterval(() => {
-        detect(net);
-      }, 16.7);
-    }, [])
-
-  const detect = async (net) => {
+  const detect = useCallback(async (net) => {
     // Check data is available
     if (
       typeof webcamRef.current !== "undefined" &&
@@ -93,7 +86,15 @@ function App() {
 
       // 5. TODO - Update drawing utility
       // drawSomething(obj, ctx)  
-      requestAnimationFrame(() => { drawRect(boxes[0], classes[0], scores[0], 0.5, videoWidth, videoHeight, ctx) });
+      requestAnimationFrame(() => {
+        const result = drawRect(boxes[0], classes[0], scores[0], 0.5, videoWidth, videoHeight, ctx, currentWord);
+        if (result) {
+          setIsCorrect(true);
+          setTimeout(() => {
+            onNextQuestion();
+          }, 500);
+        }
+      });
 
       tf.dispose(img)
       tf.dispose(resized)
@@ -102,7 +103,22 @@ function App() {
       tf.dispose(obj)
 
     }
-  };
+  }, [currentWord, onNextQuestion]);
+  const runCoco = useCallback(
+    async () => {
+      // 3. TODO - Load network 
+      console.log('Loading Model')
+      // e.g. const net = await cocossd.load();
+      // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
+      // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
+      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
+      console.log('Loaded Model')
+      setIsLoading(false);
+      //  Loop and detect hands
+      setInterval(() => {
+        detect(net);
+      }, 16.7);
+    }, [detect]);
 
   useEffect(() => { runCoco() }, [runCoco]);
 
@@ -125,17 +141,12 @@ function App() {
     return () => clearTimeout(timer);
   }, [countdown]);
   const onStart = () => {
+    setCurrentWord(chooseRandomAlphabet());
     setCountdown(3);
     setIsStarted(true);
   }
   const onExit = () => {
     setIsStarted(false);
-  }
-  const onNextQuestion = () => {
-    handleChooseAlphabet();
-  }
-  const handleChooseAlphabet = () => {
-    setCurrentWord(chooseRandomAlphabet());
   }
 
   return (
