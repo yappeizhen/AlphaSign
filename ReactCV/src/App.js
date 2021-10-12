@@ -93,7 +93,7 @@ function App() {
     }
   };
 
-  useEffect(()=>{runCoco()},[]);
+  useEffect(()=>{runCoco()});
 
   useEffect(() => {
     handleChooseAlphabet();
