@@ -10,6 +10,7 @@ import * as tf from "@tensorflow/tfjs";
 
 import aslImg from "../src/assets/images/ASL_Alphabet.png"
 import boyImg from "../src/assets/images/boy-hand.png"
+import tick from "../src/assets/images/checked.png"
 import studyIcon from "../src/assets/images/notebook.png";
 import fistBump from "../src/assets/images/peace.png"
 import { wordBank } from "../src/constants/wordBank";
@@ -24,6 +25,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCorrect,] = useState(false);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -185,6 +187,9 @@ function App() {
             </div>
           </div>
           <div className="cam-wrapper">
+            <div className={`success-screen ${isCorrect ? "visible" : "hidden"}`}>
+              <img src={tick} alt="Check mark" className="tick-icon" />
+            </div>
             <Webcam
               ref={webcamRef}
               muted={true}

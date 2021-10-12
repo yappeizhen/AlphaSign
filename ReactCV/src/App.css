@@ -78,13 +78,31 @@ h2 {
   justify-content: center;
   align-items: center;
 }
+.success-screen {
+  position: absolute;
+  text-align: center;
+  z-index: 12;
+  width: 100%;
+  height: calc(100% - 24px);
+  border-radius: 24px;
+  background-color: rgba(166, 247, 220, 0.527);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.success-screen.hidden {
+  display: none;
+}
+.tick-icon {
+  width: 140px;
+}
 .canvas {
   position: absolute;
   text-align: center;
   z-index: 10;
   width: 100%;
-  height: 100%;
-  border-radius: 40px;
+  height: calc(100% - 24px);
+  border-radius: 24px;
 }
 .webcam {
   text-align: center;
