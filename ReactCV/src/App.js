@@ -29,10 +29,12 @@ function App() {
   // Main function
   const runCoco = async () => {
     // 3. TODO - Load network 
+    console.log('Loading Model')
     // e.g. const net = await cocossd.load();
     // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
-    const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
-
+    // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
+    const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
+    console.log('Loaded Model')
     //  Loop and detect hands
     setInterval(() => {
       detect(net);
@@ -67,8 +69,12 @@ function App() {
       const obj = await net.executeAsync(expanded)
       console.log(obj)
 
-      const boxes = await obj[1].array()
-      const classes = await obj[2].array()
+      //const boxes = await obj[1].array()
+      //const classes = await obj[2].array()
+      //const scores = await obj[4].array()
+
+      const boxes = await obj[2].array()
+      const classes = await obj[5].array()
       const scores = await obj[4].array()
 
       // Draw mesh
@@ -76,7 +82,7 @@ function App() {
 
       // 5. TODO - Update drawing utility
       // drawSomething(obj, ctx)  
-      requestAnimationFrame(() => { drawRect(boxes[0], classes[0], scores[0], 0.8, videoWidth, videoHeight, ctx) });
+      requestAnimationFrame(() => { drawRect(boxes[0], classes[0], scores[0], 0.5, videoWidth, videoHeight, ctx) });
 
       tf.dispose(img)
       tf.dispose(resized)
@@ -87,7 +93,7 @@ function App() {
     }
   };
 
-  // useEffect(()=>{runCoco()},[]);
+  useEffect(()=>{runCoco()},[]);
 
   useEffect(() => {
     handleChooseAlphabet();
