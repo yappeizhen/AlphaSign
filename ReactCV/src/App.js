@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 
 import { Modal } from '@material-ui/core';
+import { CircularProgress } from "@mui/material"
 import * as tf from "@tensorflow/tfjs";
 
 import aslImg from "../src/assets/images/ASL_Alphabet.png"
@@ -22,6 +23,7 @@ function App() {
   const [isStarted, setIsStarted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [countdown, setCountdown] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -41,6 +43,7 @@ function App() {
       // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
       const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
       console.log('Loaded Model')
+      setIsLoading(false);
       //  Loop and detect hands
       setInterval(() => {
         detect(net);
@@ -114,7 +117,7 @@ function App() {
     if (countdown > 0) {
       timer = setTimeout(() => {
         setCountdown(countdown - 1);
-      }, 800);
+      }, 500);
     }
     // Clear timeout if the component is unmounted
     return () => clearTimeout(timer);
@@ -148,7 +151,8 @@ function App() {
             <TextBubble>
               <div className={`bubble-wrapper pre-start ${!isStarted ? "visible" : "hidden"}`}>
                 <h2>Ready to start?</h2>
-                <div className="start-button">
+                <CircularProgress style={{ display: `${isLoading ? "inline" : "none"}` }} color="secondary" />
+                <div className="start-button" style={{ display: `${!isLoading ? "inline" : "none"}` }}>
                   <DSButton onClick={onStart} text="Let's Go!" />
                 </div>
               </div>
