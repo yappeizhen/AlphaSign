@@ -3,12 +3,14 @@ import "./App.css";
 // Import dependencies
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
+import styled from "styled-components"
 
 import { Modal } from '@material-ui/core';
 import { CircularProgress } from "@mui/material"
 import * as tf from "@tensorflow/tfjs";
 
 import aslImg from "../src/assets/images/ASL_Alphabet.png"
+import backgroundImg from "../src/assets/images/background.png"
 import boyImg from "../src/assets/images/boy-hand.png"
 import tick from "../src/assets/images/checked.png"
 import studyIcon from "../src/assets/images/notebook.png";
@@ -20,6 +22,199 @@ import TextBubble from "./components/TextBubble";
 // e.g. import { drawRect } from "./utilities";
 import { drawRect } from "./utilities"
 
+// Styled Components
+
+const StyledAppContainer = styled.div`
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: poppins;
+  align-items: center;
+  justify-content: space-evenly;
+  color: rgb(40, 44, 52);
+  background-image: url(${backgroundImg});
+  background-size: cover;
+
+  @media only screen and (max-width: 680px) {
+    justify-content: space-evenly;
+    height: auto;
+  }
+`;
+const StyledAppBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+`;
+const StyledH1 = styled.h1`
+  font-size: 52px;
+  padding: 0;
+  margin: 0;
+  @media only screen and (max-width: 680px) {
+    font-size: 24px;
+  }
+`;
+const StyledH2 = styled.h2`
+  font-size: 44px;
+  @media only screen and (max-width: 680px) {
+    font-size: 20px;
+  }
+`;
+const StyledContentBody = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  @media only screen and (max-width: 680px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+`;
+const StyledLeftPanel = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 30%;
+  @media only screen and (max-width: 680px) {
+    width: 70%;
+    margin-top: 32px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+const StyledCamWrapper = styled.div`
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media only screen and (max-width: 680px) {
+    width: 70%;
+  }
+`;
+const StyledSuccessScreen = styled.div`
+  display: ${props => props.hidden ? "none" : "flex"};
+  position: absolute;
+  text-align: center;
+  z-index: 12;
+  width: 100%;
+  height: calc(100% - 24px);
+  border-radius: 24px;
+  background-color: rgba(166, 247, 220, 0.527);
+  justify-content: center;
+  align-items: center;
+`;
+const StyledTickIcon = styled.img`
+  width: 140px;
+`;
+const StyledCanvas = styled.canvas`
+  position: absolute;
+  text-align: center;
+  z-index: 10;
+  width: 100%;
+  height: calc(100% - 24px);
+  border-radius: 24px;  
+`;
+const StyledWebcam = styled(Webcam)`
+  text-align: center;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
+  border: 16px solid rgb(40, 44, 52);
+  box-shadow: 20px 20px 2px 4px rgb(40, 44, 52, 0.5);
+  @media only screen and (max-width: 680px) {
+    height: 60%;
+    max-width: 60%;
+  }
+`;
+const StyledAslImg = styled.img`
+  height: 80%;
+  max-width: 70%;
+`;
+const StyledAslModal = styled(Modal)`
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const StyledNameText = styled.div`
+  text-align: right;
+  margin: 4px;
+  @media only screen and (max-width: 680px) {
+    text-align: center;
+    padding: 0;
+  }
+`;
+const StyledResponseButtonGroup = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+`;
+const StyledBubbleWrapper = styled.div`
+  display: ${props => props.hidden ? "none" : "flex"};
+  height: 100%;
+  flex-direction: column;
+  justify-content: ${props => props.prestart ? "center" : "space-evenly"};
+  align-items: center;
+  padding: 20px;
+`;
+const StyledStudyIcon = styled.img`
+  height: 60px;
+  width: 60px;
+  @media only screen and (max-width: 680px) {
+    height: 40px;
+    width: 40px
+  }
+`;
+const StyledPeaceSign = styled.img`
+  height: 80px;
+  width: 80px;
+  padding: 0;
+`;
+const StyledPrompt = styled.p`
+  font-weight: 400;
+  font-size: 40px;
+  padding: 0;
+  margin: 0;
+`;
+const StyledTargetWord = styled.p`
+  font-weight: 600;
+  font-size: 72px;
+  padding: 0;
+  margin: 12px;
+`;
+const StyledBoyImg = styled.img`
+  height: 300px;
+  width: auto;
+`;
+const StyledBoyContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 16px;
+`;
+const StyledCountdown = styled.p`
+  font-size: 52px;
+  display: ${props => props.hidden ? "none" : "flex"}
+`;
 function App() {
   const [isStarted, setIsStarted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -151,69 +346,68 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App-container">
-        <div className="app-bar">
+      <StyledAppContainer>
+        <StyledAppBar>
           <div style={{ marginRight: "20px", width: "auto" }}>
-            <h1 className="custom-h1">Sign Language Game</h1>
-            <p className="custom-p name-text">by Zhili and Pei Zhen</p>
+            <StyledH1>Sign Language Game</StyledH1>
+            <StyledNameText>by Zhili and Pei Zhen</StyledNameText>
           </div>
-          <img src={fistBump} className="fistbump" alt="V Sign" />
-        </div>
-        <div className="content-body">
-          <div className="left-panel">
+          <StyledPeaceSign src={fistBump} alt="V Sign" />
+        </StyledAppBar>
+        <StyledContentBody>
+          <StyledLeftPanel>
             <TextBubble>
-              <div className={`bubble-wrapper pre-start ${!isStarted ? "visible" : "hidden"}`}>
-                <h2 className="custom-h2">Ready to start?</h2>
+              <StyledBubbleWrapper prestart={true} hidden={isStarted}>
+                <StyledH2>Ready to start?</StyledH2>
                 <CircularProgress style={{ display: `${isLoading ? "inline" : "none"}` }} color="secondary" />
-                <div className="start-button" style={{ display: `${!isLoading ? "inline" : "none"}` }}>
+                <div style={{ display: `${!isLoading ? "inline" : "none"}` }}>
                   <DSButton onClick={onStart} text="Let's Go!" />
                 </div>
-              </div>
-              <div className={`bubble-wrapper ${countdown > 0 ? "visible" : "hidden"}`}>
-                <h2 className="custom-h2 countdown-text">{countdown}</h2>
-              </div>
-              <div className={`bubble-wrapper ${isStarted && countdown === 0 ? "visible" : "hidden"}`}>
-                <p className="prompt">Sign this alphabet:</p>
-                <p className="target-word">{currentWord}</p>
-                <div className="response-button-group">
+              </StyledBubbleWrapper>
+              <StyledBubbleWrapper hidden={countdown <= 0}>
+                <StyledCountdown>{countdown}</StyledCountdown>
+              </StyledBubbleWrapper>
+              <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
+                <StyledPrompt>Sign this alphabet:</StyledPrompt>
+                <StyledTargetWord>{currentWord}</StyledTargetWord>
+                <StyledResponseButtonGroup>
                   <DSButton onClick={onExit} text="Exit" />
                   <DSButton onClick={onNextQuestion} text="Next Question!" />
-                </div>
-              </div>
+                </StyledResponseButtonGroup>
+              </StyledBubbleWrapper>
             </TextBubble>
-            <div className="boy-container">
-              <img className="boy-img" alt="Boy raising hand" src={boyImg}></img>
-              <button className="study-button gradient-button" onClick={handleModalOpen}>
-                <img src={studyIcon} className="study-icon" alt="Sign language alphabet" />
+            <StyledBoyContainer>
+              <StyledBoyImg alt="Boy raising hand" src={boyImg}></StyledBoyImg>
+              <button className="study-button" onClick={handleModalOpen}>
+                <StyledStudyIcon src={studyIcon} alt="Sign language alphabet" />
                 <span className="tooltiptext">American sign language alphabet guide</span>
               </button>
-              <Modal
+              <StyledAslModal
                 open={isModalOpen}
                 onClose={handleModalClose}
                 aria-labelledby="ASL Guide"
                 aria-describedby="A short guide to American Sign Language Alphabets"
-                className="asl-modal">
-                <img src={aslImg} alt="American Sign Language Guide" className="asl-img" />
-              </Modal>
-            </div>
-          </div>
-          <div className="cam-wrapper">
-            <div className={`success-screen ${isCorrect ? "visible" : "hidden"}`}>
-              <img src={tick} alt="Check mark" className="tick-icon" />
-            </div>
-            <Webcam
+              >
+                <StyledAslImg src={aslImg} alt="American Sign Language Guide" />
+              </StyledAslModal>
+            </StyledBoyContainer>
+          </StyledLeftPanel>
+          <StyledCamWrapper>
+
+            <StyledSuccessScreen hidden={!isCorrect}>
+              <StyledTickIcon src={tick} alt="Check mark" />
+            </StyledSuccessScreen>
+            <StyledWebcam
               ref={webcamRef}
               muted={true}
-              className="webcam"
             />
-            <canvas
+            <StyledCanvas
               ref={canvasRef}
-              className="canvas"
             />
-          </div>
-        </div>
-      </div>
-    </div >
+          </StyledCamWrapper>
+        </StyledContentBody>
+      </StyledAppContainer>
+    </div>
   );
 }
 
