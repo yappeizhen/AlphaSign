@@ -18,7 +18,7 @@ import DSButton from "./components/DSButton";
 import TextBubble from "./components/TextBubble";
 // 2. TODO - Import drawing utility here
 // e.g. import { drawRect } from "./utilities";
-import { drawRect } from "./utilities";
+import { drawRect } from "./utilities"
 
 function App() {
   const [isStarted, setIsStarted] = useState(false);
@@ -71,7 +71,7 @@ function App() {
       const casted = resized.cast('int32')
       const expanded = casted.expandDims(0)
       const obj = await net.executeAsync(expanded)
-      console.log(obj)
+      //console.log(obj)
 
       // const boxes = await obj[2].array()
       // const classes = await obj[5].array()
@@ -107,12 +107,12 @@ function App() {
   const runCoco = useCallback(
     async () => {
       // 3. TODO - Load network 
-      console.log('Loading Model')
+      //console.log('Loading Model')
       // e.g. const net = await cocossd.load();
       // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
       // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
       const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
-      console.log('Loaded Model')
+      //console.log('Loaded Model')
       setIsLoading(false);
       //  Loop and detect hands
       setInterval(() => {
@@ -154,23 +154,23 @@ function App() {
       <div className="App-container">
         <div className="app-bar">
           <div style={{ marginRight: "20px", width: "auto" }}>
-            <h1>Sign Language Game</h1>
-            <p className="name-text">by Zhili and Pei Zhen</p>
+            <h1 className="custom-h1">Sign Language Game</h1>
+            <p className="custom-p name-text">by Zhili and Pei Zhen</p>
           </div>
-          <img src={fistBump} className="fistbump" alt="Fist Bump" />
+          <img src={fistBump} className="fistbump" alt="V Sign" />
         </div>
         <div className="content-body">
           <div className="left-panel">
             <TextBubble>
               <div className={`bubble-wrapper pre-start ${!isStarted ? "visible" : "hidden"}`}>
-                <h2>Ready to start?</h2>
+                <h2 className="custom-h2">Ready to start?</h2>
                 <CircularProgress style={{ display: `${isLoading ? "inline" : "none"}` }} color="secondary" />
                 <div className="start-button" style={{ display: `${!isLoading ? "inline" : "none"}` }}>
                   <DSButton onClick={onStart} text="Let's Go!" />
                 </div>
               </div>
               <div className={`bubble-wrapper ${countdown > 0 ? "visible" : "hidden"}`}>
-                <h2 style={{ fontWeight: 500, fontSize: 60 }}>{countdown}</h2>
+                <h2 className="custom-h2 countdown-text">{countdown}</h2>
               </div>
               <div className={`bubble-wrapper ${isStarted && countdown === 0 ? "visible" : "hidden"}`}>
                 <p className="prompt">Sign this alphabet:</p>

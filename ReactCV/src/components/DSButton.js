@@ -28,7 +28,7 @@ const StyledButton = styled.button`
   }
 `;
 const StyledText = styled.p`
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 600;
     @media only screen and (max-width: 680px) {
         font-size: 12px;
