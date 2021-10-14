@@ -54,7 +54,7 @@ const StyledH1 = styled.h1`
   padding: 0;
   margin: 0;
   @media only screen and (max-width: 680px) {
-    font-size: 18px;
+    font-size: 20px;
   }
 `;
 const StyledH2 = styled.h2`
@@ -153,7 +153,7 @@ const StyledNameText = styled.div`
   text-align: right;
   margin: 4px;
   @media only screen and (max-width: 680px) {
-    text-align: center;
+    font-size: 8px;
     padding: 0;
   }
 `;
@@ -194,7 +194,7 @@ const StyledPrompt = styled.p`
   padding: 0;
   margin: 0;
   @media only screen and (max-width: 680px) {
-    font-size: 32px;
+    font-size: 20px;
   }
 `;
 const StyledTargetWord = styled.p`
@@ -203,7 +203,7 @@ const StyledTargetWord = styled.p`
   padding: 0;
   margin: 12px;
   @media only screen and (max-width: 680px) {
-    font-size: 60px;
+    font-size: 40px;
   }
 `;
 const StyledBoyImg = styled.img`
@@ -223,7 +223,7 @@ const StyledCountdown = styled.p`
   font-size: 52px;
   display: ${props => props.hidden ? "none" : "flex"};
   @media only screen and (max-width: 680px) {
-    font-size: 44px;
+    font-size: 32px;
   }
 `;
 function App() {
