@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Sign-Language-Image-Recognition/static/css/main.455553cf.chunk.css",
-    "main.js": "/Sign-Language-Image-Recognition/static/js/main.6cb40d03.chunk.js",
-    "main.js.map": "/Sign-Language-Image-Recognition/static/js/main.6cb40d03.chunk.js.map",
+    "main.js": "/Sign-Language-Image-Recognition/static/js/main.436a23ed.chunk.js",
+    "main.js.map": "/Sign-Language-Image-Recognition/static/js/main.436a23ed.chunk.js.map",
     "runtime-main.js": "/Sign-Language-Image-Recognition/static/js/runtime-main.603b2b57.js",
     "runtime-main.js.map": "/Sign-Language-Image-Recognition/static/js/runtime-main.603b2b57.js.map",
-    "static/js/2.bfb2fb35.chunk.js": "/Sign-Language-Image-Recognition/static/js/2.bfb2fb35.chunk.js",
-    "static/js/2.bfb2fb35.chunk.js.map": "/Sign-Language-Image-Recognition/static/js/2.bfb2fb35.chunk.js.map",
+    "static/js/2.fcf04060.chunk.js": "/Sign-Language-Image-Recognition/static/js/2.fcf04060.chunk.js",
+    "static/js/2.fcf04060.chunk.js.map": "/Sign-Language-Image-Recognition/static/js/2.fcf04060.chunk.js.map",
     "index.html": "/Sign-Language-Image-Recognition/index.html",
-    "precache-manifest.88c18ef750cab2ffd91379f4ca22e12b.js": "/Sign-Language-Image-Recognition/precache-manifest.88c18ef750cab2ffd91379f4ca22e12b.js",
+    "precache-manifest.30efcb69b3677c185398ec6c38aeee01.js": "/Sign-Language-Image-Recognition/precache-manifest.30efcb69b3677c185398ec6c38aeee01.js",
     "service-worker.js": "/Sign-Language-Image-Recognition/service-worker.js",
     "static/css/main.455553cf.chunk.css.map": "/Sign-Language-Image-Recognition/static/css/main.455553cf.chunk.css.map",
-    "static/js/2.bfb2fb35.chunk.js.LICENSE.txt": "/Sign-Language-Image-Recognition/static/js/2.bfb2fb35.chunk.js.LICENSE.txt",
+    "static/js/2.fcf04060.chunk.js.LICENSE.txt": "/Sign-Language-Image-Recognition/static/js/2.fcf04060.chunk.js.LICENSE.txt",
     "static/media/ASL_Alphabet.png": "/Sign-Language-Image-Recognition/static/media/ASL_Alphabet.859b4ac4.png",
     "static/media/App.css": "/Sign-Language-Image-Recognition/static/media/background.7226b6cc.png",
     "static/media/boy-hand.png": "/Sign-Language-Image-Recognition/static/media/boy-hand.2d598a97.png",
@@ -20,8 +20,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.603b2b57.js",
-    "static/js/2.bfb2fb35.chunk.js",
+    "static/js/2.fcf04060.chunk.js",
     "static/css/main.455553cf.chunk.css",
-    "static/js/main.6cb40d03.chunk.js"
+    "static/js/main.436a23ed.chunk.js"
   ]
 }
