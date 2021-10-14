@@ -47,20 +47,20 @@ const StyledAppBar = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 12px;
+  margin-top: 12px;
 `;
 const StyledH1 = styled.h1`
-  font-size: 52px;
+  font-size: 44px;
   padding: 0;
   margin: 0;
   @media only screen and (max-width: 680px) {
-    font-size: 24px;
+    font-size: 18px;
   }
 `;
 const StyledH2 = styled.h2`
-  font-size: 44px;
+  font-size: 36px;
   @media only screen and (max-width: 680px) {
-    font-size: 20px;
+    font-size: 15px;
   }
 `;
 const StyledContentBody = styled.div`
@@ -73,8 +73,6 @@ const StyledContentBody = styled.div`
   @media only screen and (max-width: 680px) {
     flex-direction: column-reverse;
     justify-content: center;
-    align-items: center;
-    height: auto;
   }
 `;
 const StyledLeftPanel = styled.div`
@@ -82,7 +80,6 @@ const StyledLeftPanel = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
   width: 30%;
   @media only screen and (max-width: 680px) {
     width: 70%;
@@ -123,21 +120,23 @@ const StyledCanvas = styled.canvas`
   position: absolute;
   text-align: center;
   z-index: 10;
-  width: 100%;
+  width: 85%;
   height: calc(100% - 24px);
   border-radius: 24px;  
+  @media only screen and (max-width: 680px) {
+    width: 100%;
+  }
 `;
 const StyledWebcam = styled(Webcam)`
   text-align: center;
   z-index: 9;
-  width: 100%;
+  width: 85%;
   height: 100%;
   border-radius: 40px;
   border: 16px solid rgb(40, 44, 52);
   box-shadow: 20px 20px 2px 4px rgb(40, 44, 52, 0.5);
   @media only screen and (max-width: 680px) {
-    height: 60%;
-    max-width: 60%;
+    width: 100%;
   }
 `;
 const StyledAslImg = styled.img`
@@ -171,7 +170,6 @@ const StyledBubbleWrapper = styled.div`
   flex-direction: column;
   justify-content: ${props => props.prestart ? "center" : "space-evenly"};
   align-items: center;
-  padding: 20px;
 `;
 const StyledStudyIcon = styled.img`
   height: 60px;
@@ -185,22 +183,32 @@ const StyledPeaceSign = styled.img`
   height: 80px;
   width: 80px;
   padding: 0;
+  @media only screen and (max-width: 680px) {
+    height: 40px;
+    width: 40px
+  }
 `;
 const StyledPrompt = styled.p`
   font-weight: 400;
   font-size: 40px;
   padding: 0;
   margin: 0;
+  @media only screen and (max-width: 680px) {
+    font-size: 32px;
+  }
 `;
 const StyledTargetWord = styled.p`
   font-weight: 600;
   font-size: 72px;
   padding: 0;
   margin: 12px;
+  @media only screen and (max-width: 680px) {
+    font-size: 60px;
+  }
 `;
 const StyledBoyImg = styled.img`
-  height: 300px;
-  width: auto;
+  margin-top: 40px;
+  width: 45%;
 `;
 const StyledBoyContainer = styled.div`
   display: flex;
@@ -208,12 +216,15 @@ const StyledBoyContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
-  margin-top: 16px;
+  height: auto;
+  overflow-y: hidden;
 `;
 const StyledCountdown = styled.p`
   font-size: 52px;
-  display: ${props => props.hidden ? "none" : "flex"}
+  display: ${props => props.hidden ? "none" : "flex"};
+  @media only screen and (max-width: 680px) {
+    font-size: 44px;
+  }
 `;
 function App() {
   const [isStarted, setIsStarted] = useState(false);
@@ -345,69 +356,67 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <StyledAppContainer>
-        <StyledAppBar>
-          <div style={{ marginRight: "20px", width: "auto" }}>
-            <StyledH1>Sign Language Game</StyledH1>
-            <StyledNameText>by Zhili and Pei Zhen</StyledNameText>
-          </div>
-          <StyledPeaceSign src={fistBump} alt="V Sign" />
-        </StyledAppBar>
-        <StyledContentBody>
-          <StyledLeftPanel>
-            <TextBubble>
-              <StyledBubbleWrapper prestart={true} hidden={isStarted}>
-                <StyledH2>Ready to start?</StyledH2>
-                <CircularProgress style={{ display: `${isLoading ? "inline" : "none"}` }} color="secondary" />
-                <div style={{ display: `${!isLoading ? "inline" : "none"}` }}>
-                  <DSButton onClick={onStart} text="Let's Go!" />
-                </div>
-              </StyledBubbleWrapper>
-              <StyledBubbleWrapper hidden={countdown <= 0}>
-                <StyledCountdown>{countdown}</StyledCountdown>
-              </StyledBubbleWrapper>
-              <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
-                <StyledPrompt>Sign this alphabet:</StyledPrompt>
-                <StyledTargetWord>{currentWord}</StyledTargetWord>
-                <StyledResponseButtonGroup>
-                  <DSButton onClick={onExit} text="Exit" />
-                  <DSButton onClick={onNextQuestion} text="Next Question!" />
-                </StyledResponseButtonGroup>
-              </StyledBubbleWrapper>
-            </TextBubble>
-            <StyledBoyContainer>
-              <StyledBoyImg alt="Boy raising hand" src={boyImg}></StyledBoyImg>
-              <button className="study-button" onClick={handleModalOpen}>
-                <StyledStudyIcon src={studyIcon} alt="Sign language alphabet" />
-                <span className="tooltiptext">American sign language alphabet guide</span>
-              </button>
-              <StyledAslModal
-                open={isModalOpen}
-                onClose={handleModalClose}
-                aria-labelledby="ASL Guide"
-                aria-describedby="A short guide to American Sign Language Alphabets"
-              >
-                <StyledAslImg src={aslImg} alt="American Sign Language Guide" />
-              </StyledAslModal>
-            </StyledBoyContainer>
-          </StyledLeftPanel>
-          <StyledCamWrapper>
+    <StyledAppContainer>
+      <StyledAppBar>
+        <div>
+          <StyledH1>Sign Language Game</StyledH1>
+          <StyledNameText>by Zhili and Pei Zhen</StyledNameText>
+        </div>
+        <StyledPeaceSign src={fistBump} alt="V Sign" />
+      </StyledAppBar>
+      <StyledContentBody>
+        <StyledLeftPanel>
+          <TextBubble>
+            <StyledBubbleWrapper prestart={true} hidden={isStarted}>
+              <StyledH2>Ready to start?</StyledH2>
+              <CircularProgress style={{ display: `${isLoading ? "inline" : "none"}` }} color="secondary" />
+              <div style={{ display: `${!isLoading ? "inline" : "none"}` }}>
+                <DSButton onClick={onStart} text="Let's Go!" />
+              </div>
+            </StyledBubbleWrapper>
+            <StyledBubbleWrapper hidden={countdown <= 0}>
+              <StyledCountdown>{countdown}</StyledCountdown>
+            </StyledBubbleWrapper>
+            <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
+              <StyledPrompt>Sign this alphabet:</StyledPrompt>
+              <StyledTargetWord>{currentWord}</StyledTargetWord>
+              <StyledResponseButtonGroup>
+                <DSButton onClick={onExit} text="Exit" />
+                <DSButton onClick={onNextQuestion} text="Next Question!" />
+              </StyledResponseButtonGroup>
+            </StyledBubbleWrapper>
+          </TextBubble>
+          <StyledBoyContainer>
+            <StyledBoyImg alt="Boy raising hand" src={boyImg}></StyledBoyImg>
+            <button className="study-button" onClick={handleModalOpen}>
+              <StyledStudyIcon src={studyIcon} alt="Sign language alphabet" />
+              <span className="tooltiptext">American sign language alphabet guide</span>
+            </button>
+            <StyledAslModal
+              open={isModalOpen}
+              onClose={handleModalClose}
+              aria-labelledby="ASL Guide"
+              aria-describedby="A short guide to American Sign Language Alphabets"
+            >
+              <StyledAslImg src={aslImg} alt="American Sign Language Guide" />
+            </StyledAslModal>
+          </StyledBoyContainer>
+        </StyledLeftPanel>
+        <StyledCamWrapper>
 
-            <StyledSuccessScreen hidden={!isCorrect}>
-              <StyledTickIcon src={tick} alt="Check mark" />
-            </StyledSuccessScreen>
-            <StyledWebcam
-              ref={webcamRef}
-              muted={true}
-            />
-            <StyledCanvas
-              ref={canvasRef}
-            />
-          </StyledCamWrapper>
-        </StyledContentBody>
-      </StyledAppContainer>
-    </div>
+          <StyledSuccessScreen hidden={!isCorrect}>
+            <StyledTickIcon src={tick} alt="Check mark" />
+          </StyledSuccessScreen>
+          <StyledWebcam
+            ref={webcamRef}
+            muted={true}
+          />
+          <StyledCanvas
+            ref={canvasRef}
+          />
+        </StyledCamWrapper>
+      </StyledContentBody>
+    </StyledAppContainer>
   );
 }
 

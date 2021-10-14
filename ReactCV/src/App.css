@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 .study-button {
   outline: none;
   border: none;
@@ -46,4 +42,9 @@
 }
 .study-button:hover .tooltiptext {
   visibility: visible;
+}
+@media only screen and (max-width: 680px) {
+  .tooltiptext {
+    display: none;
+  }
 }
