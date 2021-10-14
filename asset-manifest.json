@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Sign-Language-Image-Recognition/static/css/main.0d0b0bb9.chunk.css",
-    "main.js": "/Sign-Language-Image-Recognition/static/js/main.1477641b.chunk.js",
-    "main.js.map": "/Sign-Language-Image-Recognition/static/js/main.1477641b.chunk.js.map",
+    "main.css": "/Sign-Language-Image-Recognition/static/css/main.63440864.chunk.css",
+    "main.js": "/Sign-Language-Image-Recognition/static/js/main.85b7d702.chunk.js",
+    "main.js.map": "/Sign-Language-Image-Recognition/static/js/main.85b7d702.chunk.js.map",
     "runtime-main.js": "/Sign-Language-Image-Recognition/static/js/runtime-main.603b2b57.js",
     "runtime-main.js.map": "/Sign-Language-Image-Recognition/static/js/runtime-main.603b2b57.js.map",
     "static/js/2.5b0e4423.chunk.js": "/Sign-Language-Image-Recognition/static/js/2.5b0e4423.chunk.js",
     "static/js/2.5b0e4423.chunk.js.map": "/Sign-Language-Image-Recognition/static/js/2.5b0e4423.chunk.js.map",
     "index.html": "/Sign-Language-Image-Recognition/index.html",
-    "precache-manifest.3a2e7badd51a71904f937135bf8f896f.js": "/Sign-Language-Image-Recognition/precache-manifest.3a2e7badd51a71904f937135bf8f896f.js",
+    "precache-manifest.e287947d0b0c9f2da19c9bb1bc0f1205.js": "/Sign-Language-Image-Recognition/precache-manifest.e287947d0b0c9f2da19c9bb1bc0f1205.js",
     "service-worker.js": "/Sign-Language-Image-Recognition/service-worker.js",
-    "static/css/main.0d0b0bb9.chunk.css.map": "/Sign-Language-Image-Recognition/static/css/main.0d0b0bb9.chunk.css.map",
+    "static/css/main.63440864.chunk.css.map": "/Sign-Language-Image-Recognition/static/css/main.63440864.chunk.css.map",
     "static/js/2.5b0e4423.chunk.js.LICENSE.txt": "/Sign-Language-Image-Recognition/static/js/2.5b0e4423.chunk.js.LICENSE.txt",
     "static/media/ASL_Alphabet.png": "/Sign-Language-Image-Recognition/static/media/ASL_Alphabet.859b4ac4.png",
     "static/media/background.png": "/Sign-Language-Image-Recognition/static/media/background.7226b6cc.png",
@@ -21,7 +21,7 @@
   "entrypoints": [
     "static/js/runtime-main.603b2b57.js",
     "static/js/2.5b0e4423.chunk.js",
-    "static/css/main.0d0b0bb9.chunk.css",
-    "static/js/main.1477641b.chunk.js"
+    "static/css/main.63440864.chunk.css",
+    "static/js/main.85b7d702.chunk.js"
   ]
 }
