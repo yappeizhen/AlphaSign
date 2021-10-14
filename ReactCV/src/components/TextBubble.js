@@ -7,7 +7,7 @@ const Bubble = styled.div`
 	background: rgb(196, 180, 328, 0.5);
 	border-radius: .4em;
     width: 100%;
-    height: 250px;
+    height: 280px;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -36,7 +36,7 @@ const StyledAppContainer = styled.div`
   background-image: url(${backgroundImg});
   background-size: cover;
 
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     justify-content: space-evenly;
     height: auto;
   }
@@ -50,16 +50,16 @@ const StyledAppBar = styled.div`
   margin-top: 12px;
 `;
 const StyledH1 = styled.h1`
-  font-size: 44px;
+  font-size: 40px;
   padding: 0;
   margin: 0;
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     font-size: 20px;
   }
 `;
 const StyledH2 = styled.h2`
-  font-size: 36px;
-  @media only screen and (max-width: 680px) {
+  font-size: 24px;
+  @media only screen and (max-width: 768px) {
     font-size: 15px;
   }
 `;
@@ -70,7 +70,7 @@ const StyledContentBody = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     flex-direction: column-reverse;
     justify-content: center;
   }
@@ -81,7 +81,7 @@ const StyledLeftPanel = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 30%;
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     width: 70%;
     margin-top: 32px;
     height: auto;
@@ -97,7 +97,7 @@ const StyledCamWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     width: 70%;
   }
 `;
@@ -123,7 +123,7 @@ const StyledCanvas = styled.canvas`
   width: 85%;
   height: calc(100% - 24px);
   border-radius: 24px;  
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     width: 100%;
   }
 `;
@@ -152,7 +152,7 @@ const StyledAslModal = styled(Modal)`
 const StyledNameText = styled.div`
   text-align: right;
   margin: 4px;
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     font-size: 8px;
     padding: 0;
   }
@@ -174,7 +174,7 @@ const StyledBubbleWrapper = styled.div`
 const StyledStudyIcon = styled.img`
   height: 60px;
   width: 60px;
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     height: 40px;
     width: 40px
   }
@@ -183,26 +183,26 @@ const StyledPeaceSign = styled.img`
   height: 80px;
   width: 80px;
   padding: 0;
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     height: 40px;
     width: 40px
   }
 `;
 const StyledPrompt = styled.p`
   font-weight: 400;
-  font-size: 40px;
+  font-size: 28px;
   padding: 0;
   margin: 0;
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     font-size: 20px;
   }
 `;
 const StyledTargetWord = styled.p`
   font-weight: 600;
-  font-size: 72px;
+  font-size: 48px;
   padding: 0;
   margin: 12px;
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     font-size: 40px;
   }
 `;
@@ -220,9 +220,9 @@ const StyledBoyContainer = styled.div`
   overflow-y: hidden;
 `;
 const StyledCountdown = styled.p`
-  font-size: 52px;
+  font-size: 40px;
   display: ${props => props.hidden ? "none" : "flex"};
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 768px) {
     font-size: 32px;
   }
 `;
