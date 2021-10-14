@@ -106,7 +106,7 @@ const StyledSuccessScreen = styled.div`
   position: absolute;
   text-align: center;
   z-index: 12;
-  width: 100%;
+  width: 85%;
   height: calc(100% - 24px);
   border-radius: 24px;
   background-color: rgba(166, 247, 220, 0.527);
