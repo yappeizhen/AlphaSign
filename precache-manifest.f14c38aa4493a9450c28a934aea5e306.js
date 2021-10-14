@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2c09fd6ab7cd0321e42592453ad01917",
+    "revision": "3d30c9b641217d1f1c90085bc0ee561a",
     "url": "/Sign-Language-Image-Recognition/index.html"
   },
   {
-    "revision": "d1e212b08c9a792f50ef",
-    "url": "/Sign-Language-Image-Recognition/static/css/main.455553cf.chunk.css"
+    "revision": "d7092c2382be5842dc45",
+    "url": "/Sign-Language-Image-Recognition/static/css/main.bf0ba20e.chunk.css"
   },
   {
     "revision": "0026ba0a6426bddea242",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Sign-Language-Image-Recognition/static/js/2.fcf04060.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d1e212b08c9a792f50ef",
-    "url": "/Sign-Language-Image-Recognition/static/js/main.436a23ed.chunk.js"
+    "revision": "d7092c2382be5842dc45",
+    "url": "/Sign-Language-Image-Recognition/static/js/main.83b67c8b.chunk.js"
   },
   {
     "revision": "a7e6a957d105e4a2f62c",
