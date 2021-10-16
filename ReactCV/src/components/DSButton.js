@@ -28,9 +28,9 @@ const StyledButton = styled.button`
   }
 `;
 const StyledText = styled.p`
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 600;
-    @media only screen and (max-width: 680px) {
+    @media only screen and (max-width: 768px) {
         font-size: 12px;
     }
 `;
