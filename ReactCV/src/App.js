@@ -26,6 +26,7 @@ function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
+  
   // Main function
   const runCoco = async () => {
     // 3. TODO - Load network 
@@ -34,14 +35,19 @@ function App() {
     // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
     // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
     const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
+
     console.log('Loaded Model')
     //  Loop and detect hands
     setInterval(() => {
+ 
       detect(net);
-    }, 16.7);
+
+      console.log(tf.memory().numTensors);
+    }, 1000);
   };
 
   const detect = async (net) => {
+    
     // Check data is available
     if (
       typeof webcamRef.current !== "undefined" &&
@@ -89,12 +95,16 @@ function App() {
       tf.dispose(casted)
       tf.dispose(expanded)
       tf.dispose(obj)
+      tf.dispose(boxes)
+      tf.dispose(classes)
+      tf.dispose(scores)
 
     }
   };
 
-  useEffect(()=>{runCoco()});
 
+  useEffect(()=>{runCoco()});
+  
   useEffect(() => {
     handleChooseAlphabet();
   }, []);
