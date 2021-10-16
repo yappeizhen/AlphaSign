@@ -323,6 +323,7 @@ function App() {
       //  Loop and detect hands
       setInterval(() => {
         detect(net);
+        console.log(tf.memory().numTensors);
       }, 2000);
     }, [detect]);
 
