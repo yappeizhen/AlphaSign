@@ -9,7 +9,7 @@ const labelMap = {
 }
 */
 
-/*
+///*
 const labelMap = {
 
     1: { name: 'A', color: 'red' },
@@ -17,8 +17,8 @@ const labelMap = {
     3: { name: 'C', color: 'lime' },
     4: { name: 'D', color: 'blue' },
 }
-*/
-///*
+//*/
+/*
 const labelMap = {
 
     1: { name: 'A', color: 'red' },
@@ -49,7 +49,7 @@ const labelMap = {
     26: { name: 'Z', color: 'red' },
 
 }
-//*/
+*/
 // Define a drawing function
 export const drawRect = (boxes, classes, scores, threshold, imgWidth, imgHeight, ctx, target) => {
     for (let i = 0; i <= boxes.length; i++) {
@@ -58,8 +58,8 @@ export const drawRect = (boxes, classes, scores, threshold, imgWidth, imgHeight,
             const [y, x, height, width] = boxes[i]
             const text = classes[i]
 
-            //console.log(classes[i])
-            //console.log(scores[i])
+            console.log(classes[i])
+            console.log(scores[i])
             // Set styling
             ctx.strokeStyle = labelMap[text]['color']
             ctx.lineWidth = 10

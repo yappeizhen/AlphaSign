@@ -236,7 +236,7 @@ function App() {
   const canvasRef = useRef(null);
 
   const chooseRandomAlphabet = useCallback(() => {
-    const i = Math.floor(Math.random() * 25);
+    const i = Math.floor(Math.random() * 3);//25
     return wordBank[i];
   }, [])
   const [currentWord, setCurrentWord] = useState(null);
@@ -277,15 +277,41 @@ function App() {
       const casted = resized.cast('int32')
       const expanded = casted.expandDims(0)
       const obj = await net.executeAsync(expanded)
-      //console.log(obj)
+      console.log(obj)
 
-      // const boxes = await obj[2].array()
-      // const classes = await obj[5].array()
-      // const scores = await obj[4].array()
+      // mobilenetv2 fpnlite 320x320
+      const boxes = await obj[7].array()  // bounding boxes array size 4 contain +ve values 0 to 1
+      const classes = await obj[3].array() // integers class indexes
+      const scores = await obj[5].array() // value from 0 to 1 descending order
 
-      const boxes = await obj[6].array()
-      const classes = await obj[1].array()
-      const scores = await obj[3].array()
+      // mobilenetv1 320x320
+      //const boxes = await obj[6].array()
+      //const classes = await obj[1].array()
+      //const scores = await obj[3].array()
+      
+      
+      /*
+      //Testing
+      const zero = await obj[0].array()
+      const one = await obj[1].array()
+      const two = await obj[2].array()
+      const three = await obj[3].array()
+      const four = await obj[4].array()
+      const five = await obj[5].array()
+      const six = await obj[6].array()
+      const seven = await obj[7].array()
+
+      console.log('zero:'+zero[0])
+      console.log('one:'+one[0])
+      console.log('two:'+two[0])
+      console.log('three:'+three[0])
+      console.log('four:'+four[0])
+      console.log('five:'+five[0])
+      console.log('six:'+six[0])
+      console.log('six:'+seven[0])
+      */
+
+      
 
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
@@ -293,7 +319,7 @@ function App() {
       // 5. TODO - Update drawing utility
       // drawSomething(obj, ctx)  
       requestAnimationFrame(() => {
-        const result = drawRect(boxes[0], classes[0], scores[0], 0.5, videoWidth, videoHeight, ctx, currentWord);
+        const result = drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx, currentWord);
         if (result) {
           setIsCorrect(true);
           setTimeout(() => {
@@ -313,21 +339,22 @@ function App() {
   const runCoco = useCallback(
     async () => {
       // 3. TODO - Load network 
-      //console.log('Loading Model')
+      console.log('Loading Model')
       // e.g. const net = await cocossd.load();
       // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
       // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
-      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
       
+      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite/model.json')
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
-      //console.log('Loaded Model')
+      console.log('Loaded Model')
       setIsLoading(false);
       //  Loop and detect hands
       setInterval(() => {
         detect(net);
         console.log(tf.memory().numTensors);
       }, 2000);
-    }, [detect]);
+    }, []);
 
   useEffect(() => { runCoco() }, [runCoco]);
 
