@@ -8,6 +8,16 @@ const labelMap = {
     5:{name:'No', color:'purple'},
 }
 */
+
+/*
+const labelMap = {
+
+    1: { name: 'A', color: 'red' },
+    2: { name: 'B', color: 'yellow' },
+    3: { name: 'C', color: 'lime' },
+    4: { name: 'D', color: 'blue' },
+}
+*/
 ///*
 const labelMap = {
 
