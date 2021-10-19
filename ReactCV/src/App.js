@@ -279,12 +279,14 @@ function App() {
       const obj = await net.executeAsync(expanded)
       console.log(obj)
 
-      // mobilenetv2 fpnlite 320x320
+      // mobilenetv2 fpnlite 320x320 ABCD
       const boxes = await obj[7].array()  // bounding boxes array size 4 contain +ve values 0 to 1
       const classes = await obj[3].array() // integers class indexes
       const scores = await obj[5].array() // value from 0 to 1 descending order
 
-      // mobilenetv1 320x320
+      console.log(await obj[5].array())
+
+      // mobilenetv1 320x320 A to Z
       //const boxes = await obj[6].array()
       //const classes = await obj[1].array()
       //const scores = await obj[3].array()
@@ -327,7 +329,8 @@ function App() {
           }, 500);
         }
       });
-
+      
+      //dispose tensors to prevent memory leak
       tf.dispose(img)
       tf.dispose(resized)
       tf.dispose(casted)
@@ -341,19 +344,25 @@ function App() {
       // 3. TODO - Load network 
       console.log('Loading Model')
       // e.g. const net = await cocossd.load();
-      // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
       // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
+
+      // load tfjs_model_mobilenetv1 320x320
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
       
+      // load tfjs_model_mobilenetv2_fpnlite 320x320
       const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite/model.json')
-      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
+      
+    
       console.log('Loaded Model')
       setIsLoading(false);
       //  Loop and detect hands
       setInterval(() => {
+        //call detect function
         detect(net);
+        //load number of tensors to check for memory leak
         console.log(tf.memory().numTensors);
-      }, 2000);
+      }, 2000); //time lag for each inference
     }, []);
 
   useEffect(() => { runCoco() }, [runCoco]);
