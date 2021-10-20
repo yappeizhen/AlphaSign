@@ -286,7 +286,8 @@ function AllClasses() {
       const scores = await obj[3].array()
 
       // Draw mesh
-      const ctx = canvasRef.current.getContext("2d");
+      if (canvasRef.current) {
+        const ctx = canvasRef.current.getContext("2d");
 
       // 5. TODO - Update drawing utility
       // drawSomething(obj, ctx)  
@@ -307,6 +308,7 @@ function AllClasses() {
       tf.dispose(obj)
 
     }
+  }
   }, [currentWord, onNextQuestion]);
   const runCoco = useCallback(
     async () => {
