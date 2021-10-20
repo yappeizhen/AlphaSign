@@ -3,24 +3,23 @@ import "../App.css";
 // Import dependencies
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
-import styled from "styled-components"
+import styled from "styled-components";
 
 import { Modal } from '@material-ui/core';
-import { CircularProgress } from "@mui/material"
+import { CircularProgress } from "@mui/material";
 import * as tf from "@tensorflow/tfjs";
 
-import aslImg from "../../src/assets/images/ASL_Alphabet.png"
-import backgroundImg from "../../src/assets/images/background.png"
-import boyImg from "../../src/assets/images/boy-hand.png"
-import tick from "../../src/assets/images/checked.png"
+import aslImg from "../../src/assets/images/ASL_Alphabet.png";
+import backgroundImg from "../../src/assets/images/background.png";
+import boyImg from "../../src/assets/images/boy-hand.png";
+import tick from "../../src/assets/images/checked.png";
 import studyIcon from "../../src/assets/images/notebook.png";
-import fistBump from "../../src/assets/images/peace.png"
 import { wordBank } from "../../src/constants/wordBank";
 import DSButton from "../components/DSButton";
 import TextBubble from "../components/TextBubble";
 // 2. TODO - Import drawing utility here
 // e.g. import { drawRect } from "./utilities";
-import { drawRect } from "../utilities"
+import { drawRect } from "../utilities";
 
 // Styled Components
 
@@ -49,10 +48,17 @@ const StyledAppBar = styled.div`
   width: 100%;
   margin-top: 12px;
 `;
+const StyledIntroContainer = styled.div`
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 const StyledH1 = styled.h1`
   font-size: 40px;
   padding: 0;
   margin: 0;
+  text-align: center;
   @media only screen and (max-width: 768px) {
     font-size: 20px;
   }
@@ -149,9 +155,10 @@ const StyledAslModal = styled(Modal)`
   align-items: center;
   justify-content: center;
 `;
-const StyledNameText = styled.div`
-  text-align: right;
+const StyledDescription = styled.div`
+  text-align: center;
   margin: 4px;
+  max-width: 50%;
   @media only screen and (max-width: 768px) {
     font-size: 8px;
     padding: 0;
@@ -174,15 +181,6 @@ const StyledBubbleWrapper = styled.div`
 const StyledStudyIcon = styled.img`
   height: 60px;
   width: 60px;
-  @media only screen and (max-width: 768px) {
-    height: 40px;
-    width: 40px
-  }
-`;
-const StyledPeaceSign = styled.img`
-  height: 80px;
-  width: 80px;
-  padding: 0;
   @media only screen and (max-width: 768px) {
     height: 40px;
     width: 40px
@@ -318,7 +316,7 @@ function AllClasses() {
       // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
       // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
       const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
-      
+
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
       //console.log('Loaded Model')
       setIsLoading(false);
@@ -361,11 +359,13 @@ function AllClasses() {
   return (
     <StyledAppContainer>
       <StyledAppBar>
-        <div>
-          <StyledH1>Sign Language Game</StyledH1>
-          <StyledNameText>by Zhili and Pei Zhen</StyledNameText>
-        </div>
-        <StyledPeaceSign src={fistBump} alt="V Sign" />
+        <StyledIntroContainer>
+          <StyledH1>Extended Model</StyledH1>
+          <StyledDescription>
+            This model was trained on 24 alphabets for a more holistic representation of a sign language alphabet game.
+            The letters 'J' and 'Z' were excluded as they are dynamic signs that involve motion.
+          </StyledDescription>
+        </StyledIntroContainer>
       </StyledAppBar>
       <StyledContentBody>
         <StyledLeftPanel>
