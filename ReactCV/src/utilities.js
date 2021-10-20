@@ -20,7 +20,6 @@ const labelMap = {
 //*/
 
 const labelMap = {
-
     1: { name: 'A', color: 'red' },
     2: { name: 'B', color: 'yellow' },
     3: { name: 'C', color: 'lime' },
@@ -47,7 +46,6 @@ const labelMap = {
     24: { name: 'X', color: 'blue' },
     25: { name: 'Y', color: 'purple' },
     26: { name: 'Z', color: 'red' },
-
 }
 
 // Define a drawing function
@@ -72,7 +70,7 @@ export const drawRect = (boxes, classes, scores, threshold, imgWidth, imgHeight,
             ctx.rect(x * imgWidth, y * imgHeight, width * imgWidth / 2, height * imgHeight / 1.5);
             ctx.stroke()
 
-            console.log("HAII", target, labelMap[text]['name']);
+            console.log("Test Target", target, labelMap[text]['name']);
 
             if (target && target.toUpperCase() === labelMap[text]['name'].toUpperCase()) {
                 return true;

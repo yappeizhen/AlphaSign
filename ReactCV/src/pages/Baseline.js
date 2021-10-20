@@ -324,13 +324,12 @@ function Baseline() {
             }, 500);
           }
         });
-
-        tf.dispose(img)
-        tf.dispose(resized)
-        tf.dispose(casted)
-        tf.dispose(expanded)
-        tf.dispose(obj)
       }
+      tf.dispose(img)
+      tf.dispose(resized)
+      tf.dispose(casted)
+      tf.dispose(expanded)
+      tf.dispose(obj)
     }
   }, [currentWord, onNextQuestion]);
   const runCoco = useCallback(

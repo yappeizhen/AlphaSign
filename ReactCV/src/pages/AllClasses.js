@@ -286,20 +286,21 @@ function AllClasses() {
       const scores = await obj[3].array()
 
       // Draw mesh
-      const ctx = canvasRef.current.getContext("2d");
+      if (canvasRef.current) {
+        const ctx = canvasRef.current.getContext("2d");
 
-      // 5. TODO - Update drawing utility
-      // drawSomething(obj, ctx)  
-      requestAnimationFrame(() => {
-        const result = drawRect(boxes[0], classes[0], scores[0], 0.5, videoWidth, videoHeight, ctx, currentWord);
-        if (result) {
-          setIsCorrect(true);
-          setTimeout(() => {
-            onNextQuestion();
-          }, 500);
-        }
-      });
-
+        // 5. TODO - Update drawing utility
+        // drawSomething(obj, ctx)  
+        requestAnimationFrame(() => {
+          const result = drawRect(boxes[0], classes[0], scores[0], 0.5, videoWidth, videoHeight, ctx, currentWord);
+          if (result) {
+            setIsCorrect(true);
+            setTimeout(() => {
+              onNextQuestion();
+            }, 500);
+          }
+        });
+      }
       tf.dispose(img)
       tf.dispose(resized)
       tf.dispose(casted)
