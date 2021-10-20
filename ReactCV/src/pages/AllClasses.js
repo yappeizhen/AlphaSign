@@ -324,7 +324,7 @@ function AllClasses() {
         detect(net);
         console.log(tf.memory().numTensors);
       }, 2000);
-    }, [detect]);
+    }, []);
 
   useEffect(() => { runCoco() }, [runCoco]);
 
