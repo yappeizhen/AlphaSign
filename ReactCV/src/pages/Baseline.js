@@ -225,226 +225,227 @@ const StyledCountdown = styled.p`
   }
 `;
 function Baseline() {
-    const [isStarted, setIsStarted] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [countdown, setCountdown] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isCorrect, setIsCorrect] = useState(false);
-    const webcamRef = useRef(null);
-    const canvasRef = useRef(null);
+  const [isStarted, setIsStarted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [countdown, setCountdown] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isCorrect, setIsCorrect] = useState(false);
+  const webcamRef = useRef(null);
+  const canvasRef = useRef(null);
 
-    const chooseRandomAlphabet = useCallback(() => {
-        const i = Math.floor(Math.random() * 3);//25
-        return wordBank[i];
-    }, [])
-    const [currentWord, setCurrentWord] = useState(null);
+  const chooseRandomAlphabet = useCallback(() => {
+    const i = Math.floor(Math.random() * 3);//25
+    return wordBank[i];
+  }, [])
+  const [currentWord, setCurrentWord] = useState(null);
 
-    // Helper functions
-    const handleChooseAlphabet = useCallback(() => {
-        setCurrentWord(chooseRandomAlphabet());
-    }, [chooseRandomAlphabet]);
-    const onNextQuestion = useCallback(() => {
-        setIsCorrect(false);
-        handleChooseAlphabet();
-    }, [handleChooseAlphabet]);
+  // Helper functions
+  const handleChooseAlphabet = useCallback(() => {
+    setCurrentWord(chooseRandomAlphabet());
+  }, [chooseRandomAlphabet]);
+  const onNextQuestion = useCallback(() => {
+    setIsCorrect(false);
+    handleChooseAlphabet();
+  }, [handleChooseAlphabet]);
 
-    // Main function
-    const detect = useCallback(async (net) => {
-        // Check data is available
-        if (
-            typeof webcamRef.current !== "undefined" &&
-            webcamRef.current !== null &&
-            webcamRef.current.video.readyState === 4
-        ) {
-            // Get Video Properties
-            const video = webcamRef.current.video;
-            const videoWidth = webcamRef.current.video.videoWidth;
-            const videoHeight = webcamRef.current.video.videoHeight;
+  // Main function
+  const detect = useCallback(async (net) => {
+    // Check data is available
+    if (
+      typeof webcamRef.current !== "undefined" &&
+      webcamRef.current !== null &&
+      webcamRef.current.video.readyState === 4
+    ) {
+      // Get Video Properties
+      const video = webcamRef.current.video;
+      const videoWidth = webcamRef.current.video.videoWidth;
+      const videoHeight = webcamRef.current.video.videoHeight;
 
-            // Set video width
-            webcamRef.current.video.width = videoWidth;
-            webcamRef.current.video.height = videoHeight;
+      // Set video width
+      webcamRef.current.video.width = videoWidth;
+      webcamRef.current.video.height = videoHeight;
 
-            // Set canvas height and width
-            canvasRef.current.width = videoWidth;
-            canvasRef.current.height = videoHeight;
+      // Set canvas height and width
+      canvasRef.current.width = videoWidth;
+      canvasRef.current.height = videoHeight;
 
-            // 4. TODO - Make Detections
-            const img = tf.browser.fromPixels(video)
-            const resized = tf.image.resizeBilinear(img, [640, 480])
-            const casted = resized.cast('int32')
-            const expanded = casted.expandDims(0)
-            const obj = await net.executeAsync(expanded)
-            console.log(obj)
+      // 4. TODO - Make Detections
+      const img = tf.browser.fromPixels(video)
+      const resized = tf.image.resizeBilinear(img, [640, 480])
+      const casted = resized.cast('int32')
+      const expanded = casted.expandDims(0)
+      const obj = await net.executeAsync(expanded)
+      console.log(obj)
 
-            // mobilenetv2 fpnlite 320x320
-            const boxes = await obj[7].array()  // bounding boxes array size 4 contain +ve values 0 to 1
-            const classes = await obj[3].array() // integers class indexes
-            const scores = await obj[5].array() // value from 0 to 1 descending order
+      // mobilenetv2 fpnlite 320x320
+      const boxes = await obj[7].array()  // bounding boxes array size 4 contain +ve values 0 to 1
+      const classes = await obj[3].array() // integers class indexes
+      const scores = await obj[5].array() // value from 0 to 1 descending order
 
-            // mobilenetv1 320x320
-            //const boxes = await obj[6].array()
-            //const classes = await obj[1].array()
-            //const scores = await obj[3].array()
+      // mobilenetv1 320x320
+      //const boxes = await obj[6].array()
+      //const classes = await obj[1].array()
+      //const scores = await obj[3].array()
 
 
-            /*
-            //Testing
-            const zero = await obj[0].array()
-            const one = await obj[1].array()
-            const two = await obj[2].array()
-            const three = await obj[3].array()
-            const four = await obj[4].array()
-            const five = await obj[5].array()
-            const six = await obj[6].array()
-            const seven = await obj[7].array()
-      
-            console.log('zero:'+zero[0])
-            console.log('one:'+one[0])
-            console.log('two:'+two[0])
-            console.log('three:'+three[0])
-            console.log('four:'+four[0])
-            console.log('five:'+five[0])
-            console.log('six:'+six[0])
-            console.log('six:'+seven[0])
-            */
+      /*
+      //Testing
+      const zero = await obj[0].array()
+      const one = await obj[1].array()
+      const two = await obj[2].array()
+      const three = await obj[3].array()
+      const four = await obj[4].array()
+      const five = await obj[5].array()
+      const six = await obj[6].array()
+      const seven = await obj[7].array()
+ 
+      console.log('zero:'+zero[0])
+      console.log('one:'+one[0])
+      console.log('two:'+two[0])
+      console.log('three:'+three[0])
+      console.log('four:'+four[0])
+      console.log('five:'+five[0])
+      console.log('six:'+six[0])
+      console.log('six:'+seven[0])
+      */
 
-            // Draw mesh
-            const ctx = canvasRef.current.getContext("2d");
+      // Draw mesh
+      if (canvasRef.current) {
+        const ctx = canvasRef.current.getContext("2d");
 
-            // 5. TODO - Update drawing utility
-            // drawSomething(obj, ctx)  
-            requestAnimationFrame(() => {
-                const result = drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx, currentWord);
-                if (result) {
-                    setIsCorrect(true);
-                    setTimeout(() => {
-                        onNextQuestion();
-                    }, 500);
-                }
-            });
-
-            tf.dispose(img)
-            tf.dispose(resized)
-            tf.dispose(casted)
-            tf.dispose(expanded)
-            tf.dispose(obj)
-
-        }
-    }, [currentWord, onNextQuestion]);
-    const runCoco = useCallback(
-        async () => {
-            // 3. TODO - Load network 
-            console.log('Loading Model')
-            // e.g. const net = await cocossd.load();
-            // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
-            // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
-            //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
-
-            const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite/model.json')
-            //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
-            console.log('Loaded Model')
-            setIsLoading(false);
-            //  Loop and detect hands
-            setInterval(() => {
-                detect(net);
-                console.log(tf.memory().numTensors);
-            }, 2000);
-        }, []);
-
-    useEffect(() => { runCoco() }, [runCoco]);
-
-    // Render Methods
-    const handleModalOpen = () => {
-        setIsModalOpen(true);
-    }
-    const handleModalClose = () => {
-        setIsModalOpen(false);
-    }
-
-    useEffect(() => {
-        let timer;
-        if (countdown > 0) {
-            timer = setTimeout(() => {
-                setCountdown(countdown - 1);
+        // 5. TODO - Update drawing utility
+        // drawSomething(obj, ctx)  
+        requestAnimationFrame(() => {
+          const result = drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx, currentWord);
+          if (result) {
+            setIsCorrect(true);
+            setTimeout(() => {
+              onNextQuestion();
             }, 500);
-        }
-        // Clear timeout if the component is unmounted
-        return () => clearTimeout(timer);
-    }, [countdown]);
-    const onStart = () => {
-        setCurrentWord(chooseRandomAlphabet());
-        setCountdown(3);
-        setIsStarted(true);
-    }
-    const onExit = () => {
-        setIsStarted(false);
-    }
+          }
+        });
 
-    return (
-        <StyledAppContainer>
-            <StyledAppBar>
-                <StyledIntroContainer>
-                    <StyledH1>Baseline Model</StyledH1>
-                    <StyledDescription>
-                        This model was trained on 4 classes, 'A', 'B', 'C', and 'D' to minimise training loss.
-                    </StyledDescription>
-                </StyledIntroContainer>
-            </StyledAppBar>
-            <StyledContentBody>
-                <StyledLeftPanel>
-                    <TextBubble backgroundColor="rgb(81, 161, 186, 0.5)">
-                        <StyledBubbleWrapper prestart={true} hidden={isStarted}>
-                            <StyledH2>Ready to start?</StyledH2>
-                            <CircularProgress style={{ display: `${isLoading ? "inline" : "none"}` }} />
-                            <div style={{ display: `${!isLoading ? "inline" : "none"}` }}>
-                                <DSButton onClick={onStart} text="Let's Go!" />
-                            </div>
-                        </StyledBubbleWrapper>
-                        <StyledBubbleWrapper hidden={countdown <= 0}>
-                            <StyledCountdown>{countdown}</StyledCountdown>
-                        </StyledBubbleWrapper>
-                        <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
-                            <StyledPrompt>Sign this alphabet:</StyledPrompt>
-                            <StyledTargetWord>{currentWord}</StyledTargetWord>
-                            <StyledResponseButtonGroup>
-                                <DSButton onClick={onExit} text="Exit" />
-                                <DSButton onClick={onNextQuestion} text="Next Question!" />
-                            </StyledResponseButtonGroup>
-                        </StyledBubbleWrapper>
-                    </TextBubble>
-                    <StyledBoyContainer>
-                        <StyledBoyImg alt="Boy raising hand" src={boyImg}></StyledBoyImg>
-                        <button className="study-button" onClick={handleModalOpen}>
-                            <StyledStudyIcon src={studyIcon} alt="Sign language alphabet" />
-                            <span className="tooltiptext">American sign language alphabet guide</span>
-                        </button>
-                        <StyledAslModal
-                            open={isModalOpen}
-                            onClose={handleModalClose}
-                            aria-labelledby="ASL Guide"
-                            aria-describedby="A short guide to American Sign Language Alphabets"
-                        >
-                            <StyledAslImg src={aslImg} alt="American Sign Language Guide" />
-                        </StyledAslModal>
-                    </StyledBoyContainer>
-                </StyledLeftPanel>
-                <StyledCamWrapper>
+        tf.dispose(img)
+        tf.dispose(resized)
+        tf.dispose(casted)
+        tf.dispose(expanded)
+        tf.dispose(obj)
+      }
+    }
+  }, [currentWord, onNextQuestion]);
+  const runCoco = useCallback(
+    async () => {
+      // 3. TODO - Load network 
+      console.log('Loading Model')
+      // e.g. const net = await cocossd.load();
+      // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
+      // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
 
-                    <StyledSuccessScreen hidden={!isCorrect}>
-                        <StyledTickIcon src={tick} alt="Check mark" />
-                    </StyledSuccessScreen>
-                    <StyledWebcam
-                        ref={webcamRef}
-                        muted={true}
-                    />
-                    <StyledCanvas
-                        ref={canvasRef}
-                    />
-                </StyledCamWrapper>
-            </StyledContentBody>
-        </StyledAppContainer>
-    );
+      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite/model.json')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
+      console.log('Loaded Model')
+      setIsLoading(false);
+      //  Loop and detect hands
+      setInterval(() => {
+        detect(net);
+        console.log(tf.memory().numTensors);
+      }, 2000);
+    }, []);
+
+  useEffect(() => { runCoco() }, [runCoco]);
+
+  // Render Methods
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  }
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  }
+
+  useEffect(() => {
+    let timer;
+    if (countdown > 0) {
+      timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 500);
+    }
+    // Clear timeout if the component is unmounted
+    return () => clearTimeout(timer);
+  }, [countdown]);
+  const onStart = () => {
+    setCurrentWord(chooseRandomAlphabet());
+    setCountdown(3);
+    setIsStarted(true);
+  }
+  const onExit = () => {
+    setIsStarted(false);
+  }
+
+  return (
+    <StyledAppContainer>
+      <StyledAppBar>
+        <StyledIntroContainer>
+          <StyledH1>Baseline Model</StyledH1>
+          <StyledDescription>
+            This model was trained on 4 classes, 'A', 'B', 'C', and 'D' to minimise training loss.
+          </StyledDescription>
+        </StyledIntroContainer>
+      </StyledAppBar>
+      <StyledContentBody>
+        <StyledLeftPanel>
+          <TextBubble backgroundColor="rgb(81, 161, 186, 0.5)">
+            <StyledBubbleWrapper prestart={true} hidden={isStarted}>
+              <StyledH2>Ready to start?</StyledH2>
+              <CircularProgress style={{ display: `${isLoading ? "inline" : "none"}` }} />
+              <div style={{ display: `${!isLoading ? "inline" : "none"}` }}>
+                <DSButton onClick={onStart} text="Let's Go!" />
+              </div>
+            </StyledBubbleWrapper>
+            <StyledBubbleWrapper hidden={countdown <= 0}>
+              <StyledCountdown>{countdown}</StyledCountdown>
+            </StyledBubbleWrapper>
+            <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
+              <StyledPrompt>Sign this alphabet:</StyledPrompt>
+              <StyledTargetWord>{currentWord}</StyledTargetWord>
+              <StyledResponseButtonGroup>
+                <DSButton onClick={onExit} text="Exit" />
+                <DSButton onClick={onNextQuestion} text="Next Question!" />
+              </StyledResponseButtonGroup>
+            </StyledBubbleWrapper>
+          </TextBubble>
+          <StyledBoyContainer>
+            <StyledBoyImg alt="Boy raising hand" src={boyImg}></StyledBoyImg>
+            <button className="study-button" onClick={handleModalOpen}>
+              <StyledStudyIcon src={studyIcon} alt="Sign language alphabet" />
+              <span className="tooltiptext">American sign language alphabet guide</span>
+            </button>
+            <StyledAslModal
+              open={isModalOpen}
+              onClose={handleModalClose}
+              aria-labelledby="ASL Guide"
+              aria-describedby="A short guide to American Sign Language Alphabets"
+            >
+              <StyledAslImg src={aslImg} alt="American Sign Language Guide" />
+            </StyledAslModal>
+          </StyledBoyContainer>
+        </StyledLeftPanel>
+        <StyledCamWrapper>
+
+          <StyledSuccessScreen hidden={!isCorrect}>
+            <StyledTickIcon src={tick} alt="Check mark" />
+          </StyledSuccessScreen>
+          <StyledWebcam
+            ref={webcamRef}
+            muted={true}
+          />
+          <StyledCanvas
+            ref={canvasRef}
+          />
+        </StyledCamWrapper>
+      </StyledContentBody>
+    </StyledAppContainer>
+  );
 }
 
 export default Baseline;

@@ -72,7 +72,9 @@ export const drawRect = (boxes, classes, scores, threshold, imgWidth, imgHeight,
             ctx.rect(x * imgWidth, y * imgHeight, width * imgWidth / 2, height * imgHeight / 1.5);
             ctx.stroke()
 
-            if (target && target.toUpperCase() === labelMap[text]['name']) {
+            console.log("HAII", target, labelMap[text]['name']);
+
+            if (target && target.toUpperCase() === labelMap[text]['name'].toUpperCase()) {
                 return true;
             };
         }
