@@ -10,15 +10,15 @@ const labelMap = {
 */
 
 ///*
-const labelMap = {
+// const labelMap = {
 
-    1: { name: 'A', color: 'red' },
-    2: { name: 'B', color: 'yellow' },
-    3: { name: 'C', color: 'lime' },
-    4: { name: 'D', color: 'blue' },
-}
+//     1: { name: 'A', color: 'red' },
+//     2: { name: 'B', color: 'yellow' },
+//     3: { name: 'C', color: 'lime' },
+//     4: { name: 'D', color: 'blue' },
+// }
 //*/
-/*
+
 const labelMap = {
 
     1: { name: 'A', color: 'red' },
@@ -49,10 +49,10 @@ const labelMap = {
     26: { name: 'Z', color: 'red' },
 
 }
-*/
+
 // Define a drawing function
 export const drawRect = (boxes, classes, scores, threshold, imgWidth, imgHeight, ctx, target) => {
-    for (let i = 0; i <= Math.min(5,boxes.length); i++) {
+    for (let i = 0; i <= Math.min(5, boxes.length); i++) {
         if (boxes[i] && classes[i] && scores[i] > threshold) {
             // Extract variables
             const [y, x, height, width] = boxes[i]
@@ -72,7 +72,9 @@ export const drawRect = (boxes, classes, scores, threshold, imgWidth, imgHeight,
             ctx.rect(x * imgWidth, y * imgHeight, width * imgWidth / 2, height * imgHeight / 1.5);
             ctx.stroke()
 
-            if (target && target.toUpperCase() === labelMap[text]['name']) {
+            console.log("HAII", target, labelMap[text]['name']);
+
+            if (target && target.toUpperCase() === labelMap[text]['name'].toUpperCase()) {
                 return true;
             };
         }
