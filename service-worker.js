@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Sign-Language-Image-Recognition/precache-manifest.5000bc16c0e2d2b92e2b8fe361d3fb7e.js"
+  "/Sign-Language-Image-Recognition/precache-manifest.4c75c6f59ad7739f1cfbf89045f9dd06.js"
 );
 
 self.addEventListener('message', (event) => {
