@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a6db1e9a2cfe301fe9c413a7db7f01ec",
+    "revision": "1dea70b4e5a25238a10840f8ce6e04c1",
     "url": "/Sign-Language-Image-Recognition/index.html"
   },
   {
