@@ -156,6 +156,7 @@ const StyledDescription = styled.div`
   text-align: center;
   margin: 4px;
   max-width: 50%;
+  font-size: 10px;
   @media only screen and (max-width: 768px) {
     font-size: 8px;
     padding: 0;
