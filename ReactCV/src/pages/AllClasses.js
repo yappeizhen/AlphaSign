@@ -39,6 +39,9 @@ const StyledAppContainer = styled.div`
     justify-content: space-evenly;
     height: auto;
   }
+  @media only screen and (max-width: 680px) {
+    padding-top: 40px;
+  }
 `;
 const StyledAppBar = styled.div`
   display: flex;

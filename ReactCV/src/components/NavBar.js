@@ -77,8 +77,11 @@ const StyledTabBar = styled.nav`
     flex-direction: row;
     transition: all 0.5s;
     @media only screen and (max-width: 768px) {
+        border-radius: 5%;
+        background-color: rgb(240, 248, 255, 0.5);
         flex-direction: column;
         align-items: flex-start;
+        justify-content: center;
         display: ${props => props.showNav ? `flex` : `none`}
     }
 `;
@@ -106,8 +109,10 @@ const StyledLinkBox = styled.div`
     }
     @media only screen and (max-width: 768px) {
         margin-top: 12px;
+        border-bottom: 1px solid black;
+
         ${StyledLink}{
-            font-size: 12px;
+            font-size: 9px;
         }
     }
 `;
@@ -138,14 +143,14 @@ function NavBar() {
                 <StyledTabBar showNav={!isNavCollapsed} >
                     <StyledLinkBox>
                         <StyledLink
-                            to={NAV_ITEMS.ALL_CLASSES.to}>
-                            {NAV_ITEMS.ALL_CLASSES.text}
+                            to={NAV_ITEMS.FOUR_CLASSES.to}>
+                            {NAV_ITEMS.FOUR_CLASSES.text}
                         </StyledLink>
                     </StyledLinkBox>
                     <StyledLinkBox>
                         <StyledLink
-                            to={NAV_ITEMS.FOUR_CLASSES.to}>
-                            {NAV_ITEMS.FOUR_CLASSES.text}
+                            to={NAV_ITEMS.ALL_CLASSES.to}>
+                            {NAV_ITEMS.ALL_CLASSES.text}
                         </StyledLink>
                     </StyledLinkBox>
                 </StyledTabBar>

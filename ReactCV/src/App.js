@@ -10,14 +10,14 @@ import Baseline from './pages/Baseline';
 
 function App() {
   return (
-    <div className="App">
-      <NavBar/>
+    <>
+      <NavBar />
       <Switch>
         <Route exact path={NAV_ITEMS.ALL_CLASSES.to} component={AllClasses} />
         <Route exact path={NAV_ITEMS.FOUR_CLASSES.to} component={Baseline} />
         <Route render={() => <Redirect to={NAV_ITEMS.FOUR_CLASSES.to} />} />
       </Switch>
-    </div>
+    </>
 
   );
 }

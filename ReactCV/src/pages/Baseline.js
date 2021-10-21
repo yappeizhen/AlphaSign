@@ -39,6 +39,9 @@ const StyledAppContainer = styled.div`
     justify-content: space-evenly;
     height: auto;
   }
+  @media only screen and (max-width: 680px) {
+    padding-top: 40px;
+  }
 `;
 const StyledAppBar = styled.div`
   display: flex;
@@ -70,7 +73,7 @@ const StyledContentBody = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1036px) {
     flex-direction: column-reverse;
     justify-content: center;
   }
@@ -287,10 +290,10 @@ function Baseline() {
       //const classes = await obj[1].array()
       //const scores = await obj[3].array()
 
-       //best model mobilenetv2 ABCD
-       const boxes = await obj[7].array()
-       const classes = await obj[4].array()
-       const scores = await obj[6].array()
+      //best model mobilenetv2 ABCD
+      const boxes = await obj[7].array()
+      const classes = await obj[4].array()
+      const scores = await obj[6].array()
 
       /*
       //Testing
@@ -346,12 +349,12 @@ function Baseline() {
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite/model.json')
-      
 
 
-      
+
+
       const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_ABCD_best/model.json')
-      
+
       console.log('Loaded Model')
       setIsLoading(false);
       //  Loop and detect hands
