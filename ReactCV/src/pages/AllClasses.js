@@ -58,7 +58,7 @@ const StyledIntroContainer = styled.div`
   align-items: center;
 `;
 const StyledH1 = styled.h1`
-  font-size: 40px;
+  font-size: 28px;
   padding: 0;
   margin: 0;
   text-align: center;

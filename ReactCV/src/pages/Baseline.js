@@ -52,7 +52,7 @@ const StyledAppBar = styled.div`
   margin-top: 12px;
 `;
 const StyledH1 = styled.h1`
-  font-size: 40px;
+  font-size: 28px;
   padding: 0;
   margin: 0;
   text-align: center;

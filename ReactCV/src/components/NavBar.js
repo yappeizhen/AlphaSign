@@ -27,7 +27,7 @@ const StyledIntro = styled.div`
     align-items: center;
 `;
 const StyledH1 = styled.h1`
-    font-size: 32px;
+    font-size: 24px;
     padding: 0;
     margin: 0;
     font-family: "poppins";
@@ -88,7 +88,7 @@ const StyledTabBar = styled.nav`
 const StyledLink = styled(Link)`
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 400;
     color: black;
     text-decoration: none;
