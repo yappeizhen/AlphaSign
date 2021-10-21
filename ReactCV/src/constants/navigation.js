@@ -1,10 +1,12 @@
+const baseUrl = '/Sign-Language-Image-Recognition'
+
 export const NAV_ITEMS = {
   ALL_CLASSES: {
-    to: '/extended',
+    to: `${baseUrl}/extended`,
     text: 'Extended Model',
   },
   FOUR_CLASSES: {
-    to: '/baseline',
+    to: `${baseUrl}/baseline`,
     text: 'Baseline Model',
   },
 };
