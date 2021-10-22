@@ -16,24 +16,26 @@ import tick from "../../src/assets/images/checked.png";
 import studyIcon from "../../src/assets/images/notebook.png";
 import { wordBank } from "../../src/constants/wordBank";
 import DSButton from "../components/DSButton";
+import Footer from "../components/Footer";
 import TextBubble from "../components/TextBubble";
 // 2. TODO - Import drawing utility here
 // e.g. import { drawRect } from "./utilities";
 import { drawRect } from "../utilities";
 
 // Styled Components
-
+const StyledWrapper = styled.div`
+  color: rgb(40, 44, 52);
+  background-image: url(${backgroundImg});
+  background-size: cover;
+  height: auto;
+`;
 const StyledAppContainer = styled.div`
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: poppins;
   align-items: center;
   justify-content: space-evenly;
-  color: rgb(40, 44, 52);
-  background-image: url(${backgroundImg});
-  background-size: cover;
 
   @media only screen and (max-width: 768px) {
     justify-content: space-evenly;
@@ -361,69 +363,72 @@ function AllClasses() {
   }
 
   return (
-    <StyledAppContainer>
-      <StyledAppBar>
-        <StyledIntroContainer>
-          <StyledH1>Extended Model</StyledH1>
-          <StyledDescription>
-            This model was trained on 24 alphabets for a more holistic representation of a sign language alphabet game.
-            The letters 'J' and 'Z' were excluded as they are dynamic signs that involve motion.
-          </StyledDescription>
-        </StyledIntroContainer>
-      </StyledAppBar>
-      <StyledContentBody>
-        <StyledLeftPanel>
-          <TextBubble>
-            <StyledBubbleWrapper prestart={true} hidden={isStarted}>
-              <StyledH2>Ready to start?</StyledH2>
-              <CircularProgress style={{ display: `${isLoading ? "inline" : "none"}` }} color="secondary" />
-              <div style={{ display: `${!isLoading ? "inline" : "none"}` }}>
-                <DSButton onClick={onStart} text="Let's Go!" />
-              </div>
-            </StyledBubbleWrapper>
-            <StyledBubbleWrapper hidden={countdown <= 0}>
-              <StyledCountdown>{countdown}</StyledCountdown>
-            </StyledBubbleWrapper>
-            <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
-              <StyledPrompt>Sign this alphabet:</StyledPrompt>
-              <StyledTargetWord>{currentWord}</StyledTargetWord>
-              <StyledResponseButtonGroup>
-                <DSButton onClick={onExit} text="Exit" />
-                <DSButton onClick={onNextQuestion} text="Next Question!" />
-              </StyledResponseButtonGroup>
-            </StyledBubbleWrapper>
-          </TextBubble>
-          <StyledBoyContainer>
-            <StyledBoyImg alt="Boy raising hand" src={boyImg}></StyledBoyImg>
-            <button className="study-button" onClick={handleModalOpen}>
-              <StyledStudyIcon src={studyIcon} alt="Sign language alphabet" />
-              <span className="tooltiptext">American sign language alphabet guide</span>
-            </button>
-            <StyledAslModal
-              open={isModalOpen}
-              onClose={handleModalClose}
-              aria-labelledby="ASL Guide"
-              aria-describedby="A short guide to American Sign Language Alphabets"
-            >
-              <StyledAslImg src={aslImg} alt="American Sign Language Guide" />
-            </StyledAslModal>
-          </StyledBoyContainer>
-        </StyledLeftPanel>
-        <StyledCamWrapper>
+    <StyledWrapper>
+      <StyledAppContainer>
+        <StyledAppBar>
+          <StyledIntroContainer>
+            <StyledH1>Extended Model</StyledH1>
+            <StyledDescription>
+              This model was trained on 24 alphabets for a more holistic representation of a sign language alphabet game.
+              The letters 'J' and 'Z' were excluded as they are dynamic signs that involve motion.
+            </StyledDescription>
+          </StyledIntroContainer>
+        </StyledAppBar>
+        <StyledContentBody>
+          <StyledLeftPanel>
+            <TextBubble>
+              <StyledBubbleWrapper prestart={true} hidden={isStarted}>
+                <StyledH2>Ready to start?</StyledH2>
+                <CircularProgress style={{ display: `${isLoading ? "inline" : "none"}` }} color="secondary" />
+                <div style={{ display: `${!isLoading ? "inline" : "none"}` }}>
+                  <DSButton onClick={onStart} text="Let's Go!" />
+                </div>
+              </StyledBubbleWrapper>
+              <StyledBubbleWrapper hidden={countdown <= 0}>
+                <StyledCountdown>{countdown}</StyledCountdown>
+              </StyledBubbleWrapper>
+              <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
+                <StyledPrompt>Sign this alphabet:</StyledPrompt>
+                <StyledTargetWord>{currentWord}</StyledTargetWord>
+                <StyledResponseButtonGroup>
+                  <DSButton onClick={onExit} text="Exit" />
+                  <DSButton onClick={onNextQuestion} text="Next Question!" />
+                </StyledResponseButtonGroup>
+              </StyledBubbleWrapper>
+            </TextBubble>
+            <StyledBoyContainer>
+              <StyledBoyImg alt="Boy raising hand" src={boyImg}></StyledBoyImg>
+              <button className="study-button" onClick={handleModalOpen}>
+                <StyledStudyIcon src={studyIcon} alt="Sign language alphabet" />
+                <span className="tooltiptext">American sign language alphabet guide</span>
+              </button>
+              <StyledAslModal
+                open={isModalOpen}
+                onClose={handleModalClose}
+                aria-labelledby="ASL Guide"
+                aria-describedby="A short guide to American Sign Language Alphabets"
+              >
+                <StyledAslImg src={aslImg} alt="American Sign Language Guide" />
+              </StyledAslModal>
+            </StyledBoyContainer>
+          </StyledLeftPanel>
+          <StyledCamWrapper>
 
-          <StyledSuccessScreen hidden={!isCorrect}>
-            <StyledTickIcon src={tick} alt="Check mark" />
-          </StyledSuccessScreen>
-          <StyledWebcam
-            ref={webcamRef}
-            muted={true}
-          />
-          <StyledCanvas
-            ref={canvasRef}
-          />
-        </StyledCamWrapper>
-      </StyledContentBody>
-    </StyledAppContainer>
+            <StyledSuccessScreen hidden={!isCorrect}>
+              <StyledTickIcon src={tick} alt="Check mark" />
+            </StyledSuccessScreen>
+            <StyledWebcam
+              ref={webcamRef}
+              muted={true}
+            />
+            <StyledCanvas
+              ref={canvasRef}
+            />
+          </StyledCamWrapper>
+        </StyledContentBody>
+      </StyledAppContainer>
+      <Footer />
+    </StyledWrapper>
   );
 }
 
