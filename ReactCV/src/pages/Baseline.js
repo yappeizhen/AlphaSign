@@ -251,7 +251,7 @@ function Baseline() {
   const canvasRef = useRef(null);
 
   const chooseRandomAlphabet = useCallback(() => {
-    const i = Math.floor(Math.random() * 3);//25
+    const i = Math.floor(Math.random() * 4);//25
     return wordBank[i];
   }, [])
   const [currentWord, setCurrentWord] = useState(null);
