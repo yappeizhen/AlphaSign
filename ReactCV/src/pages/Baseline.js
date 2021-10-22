@@ -106,6 +106,17 @@ const StyledCamWrapper = styled.div`
     width: 70%;
   }
 `;
+const StyledCamLoadingScreen = styled.div`
+  display: ${props => props.hidden ? "none" : "flex"};
+  position: absolute;
+  text-align: center;
+  width: 85%;
+  height: calc(100% - 24px);
+  border-radius: 24px;
+  background-color: rgb(240, 248, 255, 0.5);
+  justify-content: center;
+  align-items: center;
+`;
 const StyledSuccessScreen = styled.div`
   display: ${props => props.hidden ? "none" : "flex"};
   position: absolute;
@@ -446,17 +457,22 @@ function Baseline() {
             </StyledBoyContainer>
           </StyledLeftPanel>
           <StyledCamWrapper>
-
+            <StyledCamLoadingScreen hidden={!isLoading}>
+              <CircularProgress />
+            </StyledCamLoadingScreen>
             <StyledSuccessScreen hidden={!isCorrect}>
               <StyledTickIcon src={tick} alt="Check mark" />
             </StyledSuccessScreen>
-            <StyledWebcam
-              ref={webcamRef}
-              muted={true}
-            />
-            <StyledCanvas
-              ref={canvasRef}
-            />
+            {!isLoading &&
+              <>
+                <StyledWebcam
+                  ref={webcamRef}
+                  muted={true}
+                />
+                <StyledCanvas
+                  ref={canvasRef}
+                />
+              </>}
           </StyledCamWrapper>
         </StyledContentBody>
       </StyledAppContainer>
