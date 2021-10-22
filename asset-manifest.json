@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Sign-Language-Image-Recognition/static/css/main.642c0362.chunk.css",
-    "main.js": "/Sign-Language-Image-Recognition/static/js/main.0d301d1c.chunk.js",
-    "main.js.map": "/Sign-Language-Image-Recognition/static/js/main.0d301d1c.chunk.js.map",
+    "main.js": "/Sign-Language-Image-Recognition/static/js/main.77c257e0.chunk.js",
+    "main.js.map": "/Sign-Language-Image-Recognition/static/js/main.77c257e0.chunk.js.map",
     "runtime-main.js": "/Sign-Language-Image-Recognition/static/js/runtime-main.603b2b57.js",
     "runtime-main.js.map": "/Sign-Language-Image-Recognition/static/js/runtime-main.603b2b57.js.map",
     "static/js/2.bcc99003.chunk.js": "/Sign-Language-Image-Recognition/static/js/2.bcc99003.chunk.js",
     "static/js/2.bcc99003.chunk.js.map": "/Sign-Language-Image-Recognition/static/js/2.bcc99003.chunk.js.map",
     "index.html": "/Sign-Language-Image-Recognition/index.html",
-    "precache-manifest.03debc892d1a9ac43ddfd3ccf8e8e383.js": "/Sign-Language-Image-Recognition/precache-manifest.03debc892d1a9ac43ddfd3ccf8e8e383.js",
+    "precache-manifest.1e66ba19ad1fd9f7650c814f92b1b26f.js": "/Sign-Language-Image-Recognition/precache-manifest.1e66ba19ad1fd9f7650c814f92b1b26f.js",
     "service-worker.js": "/Sign-Language-Image-Recognition/service-worker.js",
     "static/css/main.642c0362.chunk.css.map": "/Sign-Language-Image-Recognition/static/css/main.642c0362.chunk.css.map",
     "static/js/2.bcc99003.chunk.js.LICENSE.txt": "/Sign-Language-Image-Recognition/static/js/2.bcc99003.chunk.js.LICENSE.txt",
@@ -23,6 +23,6 @@
     "static/js/runtime-main.603b2b57.js",
     "static/js/2.bcc99003.chunk.js",
     "static/css/main.642c0362.chunk.css",
-    "static/js/main.0d301d1c.chunk.js"
+    "static/js/main.77c257e0.chunk.js"
   ]
 }
