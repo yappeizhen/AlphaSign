@@ -13,7 +13,7 @@ const StyledContainer = styled.div`
     background-color: rgb(240, 248, 255, 0.5);
 `;
 const StyledLogo = styled.img`
-    width: 200px;
+    width: 160px;
 `;
 const StyledText = styled.div`
     margin-right: 12px;
