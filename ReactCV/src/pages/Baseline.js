@@ -9,7 +9,7 @@ import { Modal } from '@material-ui/core';
 import { CircularProgress } from "@mui/material"
 import * as tf from "@tensorflow/tfjs";
 
-import aslImg from "../../src/assets/images/ASL_Alphabet.png"
+import aslImg from "../../src/assets/images/ASL_Alphabet_ABCD.png"
 import boyImg from "../../src/assets/images/boy-hand.png"
 import tick from "../../src/assets/images/checked.png"
 import backgroundImg from "../../src/assets/images/clouds_background.jpeg"
@@ -156,7 +156,7 @@ const StyledWebcam = styled(Webcam)`
   }
 `;
 const StyledAslImg = styled.img`
-  height: 80%;
+  height: 30%;
   max-width: 70%;
 `;
 const StyledAslModal = styled(Modal)`
