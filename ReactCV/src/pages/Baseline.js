@@ -253,6 +253,7 @@ function Baseline() {
   const canvasRef = useRef(null);
   const currentWordRef = useRef(null);
   const intervalIdRef = useRef(null);
+  const modelRef = useRef(null);
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 4);//25
@@ -371,6 +372,7 @@ function Baseline() {
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite/model.json')
 
       const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_ABCD_best/model.json')
+      modelRef.current = net;
 
       console.log('Loaded Model')
       setIsLoading(false);
@@ -385,6 +387,10 @@ function Baseline() {
     runCoco();
     return () => {
       clearInterval(intervalIdRef.current)
+      if (modelRef.current) {
+        console.log("Cleaning")
+        modelRef.current.dispose()
+      }
     }
   }, [runCoco]);
 

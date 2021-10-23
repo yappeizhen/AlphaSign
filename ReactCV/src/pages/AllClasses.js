@@ -253,6 +253,7 @@ function AllClasses() {
   const canvasRef = useRef(null);
   const currentWordRef = useRef(null);
   const intervalIdRef = useRef(null);
+  const modelRef = useRef(null);
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 23);
@@ -370,8 +371,8 @@ function AllClasses() {
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
 
       const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_all_classes/model.json')
+      modelRef.current = net;
       console.log('Loaded Model')
-
       setIsLoading(false);
       //  Loop and detect hands
       intervalIdRef.current = setInterval(() => {
@@ -384,6 +385,8 @@ function AllClasses() {
     runCoco();
     return () => {
       clearInterval(intervalIdRef.current)
+      console.log("Cleaning");
+      modelRef.current.dispose();
     }
   }, [runCoco]);
 
