@@ -327,7 +327,7 @@ function Baseline() {
       console.log('four:'+four[0])
       console.log('five:'+five[0])
       console.log('six:'+six[0])
-      console.log('six:'+seven[0])
+      console.log('seven:'+seven[0])
       */
 
       // Draw mesh

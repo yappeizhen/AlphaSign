@@ -292,15 +292,43 @@ function AllClasses() {
       const casted = resized.cast('int32')
       const expanded = casted.expandDims(0)
       const obj = await net.executeAsync(expanded)
-      //console.log(obj)
+      console.log(obj)
 
-      // const boxes = await obj[2].array()
-      // const classes = await obj[5].array()
-      // const scores = await obj[4].array()
+      // mobilenetv1 320x320 All Classes (Poor Performance Model)
+      //const boxes = await obj[6].array()
+      //const classes = await obj[1].array()
+      //const scores = await obj[3].array()
 
-      const boxes = await obj[6].array()
-      const classes = await obj[1].array()
-      const scores = await obj[3].array()
+
+      // mobilenetv2 320x320 All Classes 11k Epochs
+      const boxes = await obj[3].array()
+      const classes = await obj[4].array()
+      const scores = await obj[1].array()
+
+
+      /*
+      //Testing
+      const zero = await obj[0].array()
+      const one = await obj[1].array()
+      const two = await obj[2].array()
+      const three = await obj[3].array()
+      const four = await obj[4].array()
+      const five = await obj[5].array()
+      const six = await obj[6].array()
+      const seven = await obj[7].array()
+ 
+      console.log('zero:'+zero[0])
+      console.log('one:'+one[0])
+      console.log('two:'+two[0])
+      console.log('three:'+three[0])
+      console.log('four:'+four[0])
+      console.log('five:'+five[0])
+      console.log('six:'+six[0])
+      console.log('seven:'+seven[0])
+      */
+
+
+
 
       // Draw mesh
       if (canvasRef.current) {
@@ -329,13 +357,16 @@ function AllClasses() {
   const runCoco = useCallback(
     async () => {
       // 3. TODO - Load network 
-      //console.log('Loading Model')
+      console.log('Loading Model')
       // e.g. const net = await cocossd.load();
       // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
       // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
-      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
-      //console.log('Loaded Model')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
+    
+      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_all_classes/model.json')
+      console.log('Loaded Model')
+
       setIsLoading(false);
       //  Loop and detect hands
       setInterval(() => {
