@@ -255,7 +255,7 @@ function AllClasses() {
   const intervalIdRef = useRef(null);
 
   const chooseRandomAlphabet = useCallback(() => {
-    const i = Math.floor(Math.random() * 25);
+    const i = Math.floor(Math.random() * 23);
     return wordBank[i];
   }, [])
   const [currentWord, setCurrentWord] = useState(null);
@@ -368,7 +368,7 @@ function AllClasses() {
       // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
-    
+
       const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_all_classes/model.json')
       console.log('Loaded Model')
 
