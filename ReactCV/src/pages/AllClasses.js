@@ -159,6 +159,8 @@ const StyledWebcam = styled(Webcam)`
   box-shadow: 20px 20px 2px 4px rgb(40, 44, 52, 0.5);
   @media only screen and (max-width: 680px) {
     width: 100%;
+    border: 8px solid rgb(40, 44, 52);
+    box-shadow: 10px 10px 2px 4px rgb(40, 44, 52, 0.5);
   }
 `;
 const StyledAslImg = styled.img`
