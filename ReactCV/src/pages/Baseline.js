@@ -249,6 +249,8 @@ function Baseline() {
   const [isCorrect, setIsCorrect] = useState(false);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+  const currentWordRef = useRef(null);
+  const intervalIdRef = useRef(null);
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 4);//25
@@ -258,7 +260,9 @@ function Baseline() {
 
   // Helper functions
   const handleChooseAlphabet = useCallback(() => {
-    setCurrentWord(chooseRandomAlphabet());
+    const newWord = chooseRandomAlphabet()
+    setCurrentWord(newWord);
+    currentWordRef.current = newWord;
   }, [chooseRandomAlphabet]);
   const onNextQuestion = useCallback(() => {
     setIsCorrect(false);
@@ -337,7 +341,7 @@ function Baseline() {
         // 5. TODO - Update drawing utility
         // drawSomething(obj, ctx)  
         requestAnimationFrame(() => {
-          const result = drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx, currentWord);
+          const result = drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx, currentWordRef.current);
           if (result) {
             setIsCorrect(true);
             setTimeout(() => {
@@ -352,7 +356,7 @@ function Baseline() {
       tf.dispose(expanded)
       tf.dispose(obj)
     }
-  }, [currentWord, onNextQuestion]);
+  }, [onNextQuestion]);
   const runCoco = useCallback(
     async () => {
       // 3. TODO - Load network 
@@ -364,21 +368,23 @@ function Baseline() {
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite/model.json')
 
-
-
-
       const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_ABCD_best/model.json')
 
       console.log('Loaded Model')
       setIsLoading(false);
       //  Loop and detect hands
-      setInterval(() => {
+      intervalIdRef.current = setInterval(() => {
         detect(net);
         console.log(tf.memory().numTensors);
       }, 2000);
-    }, []);
+    }, [detect]);
 
-  useEffect(() => { runCoco() }, [runCoco]);
+  useEffect(() => {
+    runCoco();
+    return () => {
+      clearInterval(intervalIdRef.current)
+    }
+  }, [runCoco]);
 
   // Render Methods
   const handleModalOpen = () => {
@@ -399,7 +405,9 @@ function Baseline() {
     return () => clearTimeout(timer);
   }, [countdown]);
   const onStart = () => {
-    setCurrentWord(chooseRandomAlphabet());
+    const newWord = chooseRandomAlphabet()
+    setCurrentWord(newWord);
+    currentWordRef.current = newWord;
     setCountdown(3);
     setIsStarted(true);
   }

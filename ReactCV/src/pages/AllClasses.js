@@ -249,6 +249,8 @@ function AllClasses() {
   const [isCorrect, setIsCorrect] = useState(false);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+  const currentWordRef = useRef(null);
+  const intervalIdRef = useRef(null);
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 25);
@@ -258,7 +260,9 @@ function AllClasses() {
 
   // Helper functions
   const handleChooseAlphabet = useCallback(() => {
-    setCurrentWord(chooseRandomAlphabet());
+    const newWord = chooseRandomAlphabet()
+    setCurrentWord(newWord);
+    currentWordRef.current = newWord;
   }, [chooseRandomAlphabet]);
   const onNextQuestion = useCallback(() => {
     setIsCorrect(false);
@@ -309,7 +313,7 @@ function AllClasses() {
         // 5. TODO - Update drawing utility
         // drawSomething(obj, ctx)  
         requestAnimationFrame(() => {
-          const result = drawRect(boxes[0], classes[0], scores[0], 0.5, videoWidth, videoHeight, ctx, currentWord);
+          const result = drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx, currentWordRef.current);
           if (result) {
             setIsCorrect(true);
             setTimeout(() => {
@@ -323,9 +327,8 @@ function AllClasses() {
       tf.dispose(casted)
       tf.dispose(expanded)
       tf.dispose(obj)
-
     }
-  }, [currentWord, onNextQuestion]);
+  }, [onNextQuestion]);
   const runCoco = useCallback(
     async () => {
       // 3. TODO - Load network 
@@ -338,13 +341,18 @@ function AllClasses() {
       //console.log('Loaded Model')
       setIsLoading(false);
       //  Loop and detect hands
-      setInterval(() => {
+      intervalIdRef.current = setInterval(() => {
         detect(net);
         console.log(tf.memory().numTensors);
       }, 2000);
-    }, []);
+    }, [detect]);
 
-  useEffect(() => { runCoco() }, [runCoco]);
+  useEffect(() => {
+    runCoco();
+    return () => {
+      clearInterval(intervalIdRef.current)
+    }
+  }, [runCoco]);
 
   // Render Methods
   const handleModalOpen = () => {
@@ -365,7 +373,9 @@ function AllClasses() {
     return () => clearTimeout(timer);
   }, [countdown]);
   const onStart = () => {
-    setCurrentWord(chooseRandomAlphabet());
+    const newWord = chooseRandomAlphabet()
+    setCurrentWord(newWord);
+    currentWordRef.current = newWord;
     setCountdown(3);
     setIsStarted(true);
   }
