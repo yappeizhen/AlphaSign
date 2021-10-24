@@ -75,7 +75,7 @@ const StyledContentBody = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  @media only screen and (max-width: 1036px) {
+  @media only screen and (max-width: 768px) {
     flex-direction: column-reverse;
     justify-content: center;
   }
