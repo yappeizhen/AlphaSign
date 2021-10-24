@@ -1,2 +1,27 @@
 export const wordBank =
-  ['A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y']
+  [
+    { word: 'A', img: "" },
+    { word: 'B', img: "" },
+    { word: 'C', img: "" },
+    { word: 'D', img: "" },
+    { word: 'E', img: "" },
+    { word: 'F', img: "" },
+    { word: 'G', img: "" },
+    { word: 'H', img: "" },
+    { word: 'I', img: "" },
+    { word: 'K', img: "" },
+    { word: 'L', img: "" },
+    { word: 'M', img: "" },
+    { word: 'N', img: "" },
+    { word: 'O', img: "" },
+    { word: 'P', img: "" },
+    { word: 'Q', img: "" },
+    { word: 'R', img: "" },
+    { word: 'S', img: "" },
+    { word: 'T', img: "" },
+    { word: 'U', img: "" },
+    { word: 'V', img: "" },
+    { word: 'W', img: "" },
+    { word: 'X', img: "" },
+    { word: 'Y', img: "" }
+  ]

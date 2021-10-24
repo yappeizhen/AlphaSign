@@ -215,6 +215,16 @@ const StyledPrompt = styled.p`
     font-size: 20px;
   }
 `;
+const StyledWordContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+const StyledWordImg = styled.img`
+  max-height: 50px;
+  margin-left: 12px;
+`;
 const StyledTargetWord = styled.p`
   font-weight: 600;
   font-size: 48px;
@@ -259,7 +269,7 @@ function Baseline() {
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 4);//25
-    return wordBank[i];
+    return i;
   }, [])
   const [currentWord, setCurrentWord] = useState(null);
 
@@ -350,7 +360,7 @@ function Baseline() {
         // 5. TODO - Update drawing utility
         // drawSomething(obj, ctx)  
         requestAnimationFrame(() => {
-          const result = drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx, currentWordRef.current);
+          const result = drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx, wordBank[currentWordRef.current]?.word);
           if (result) {
             setIsCorrect(true);
             setTimeout(() => {
@@ -454,7 +464,10 @@ function Baseline() {
               </StyledBubbleWrapper>
               <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
                 <StyledPrompt>Sign this alphabet:</StyledPrompt>
-                <StyledTargetWord>{currentWord}</StyledTargetWord>
+                <StyledWordContainer>
+                  <StyledTargetWord>{wordBank[currentWord]?.word}</StyledTargetWord>
+                  <StyledWordImg src={wordBank[currentWord]?.img} alt="Target sign language" />
+                </StyledWordContainer>
                 <StyledResponseButtonGroup>
                   <DSButton onClick={onExit} text="Exit" />
                   <DSButton onClick={onNextQuestion} text="Next Question!" />
