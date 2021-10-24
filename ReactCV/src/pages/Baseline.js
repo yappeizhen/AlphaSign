@@ -110,6 +110,7 @@ const StyledCamLoadingScreen = styled.div`
   display: ${props => props.hidden ? "none" : "flex"};
   position: absolute;
   text-align: center;
+  z-index: 12;
   width: 85%;
   height: calc(100% - 24px);
   border-radius: 24px;
@@ -244,9 +245,6 @@ const StyledCountdown = styled.p`
   }
 `;
 
-
-let detection_start = false
-
 function Baseline() {
   const [isStarted, setIsStarted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -305,8 +303,8 @@ function Baseline() {
       const obj = await net.executeAsync(expanded)
       console.log(obj)
 
-      if (typeof obj !== 'undefined') {
-        detection_start = true
+      if (obj) {
+        setIsLoading(false);
       }
 
       // mobilenetv2 fpnlite 320x320
@@ -383,33 +381,9 @@ function Baseline() {
       modelRef.current = net;
 
       console.log('Loaded Model')
-      setIsLoading(false);
       //  Loop and detect hands
       intervalIdRef.current = setInterval(() => {
         detect(net);
-        if (detection_start === false) {
-          if (canvasRef.current) {
-            const videoWidth = webcamRef.current.video.videoWidth;
-            const videoHeight = webcamRef.current.video.videoHeight;
-            const ctx = canvasRef.current.getContext("2d");
-            //console.log(ctx)
-            //var canvas_width = ctx.canvas.clientWidth;
-            //var canvas_height = ctx.canvas.clientHeight;
-            //console.log(canvas_width, canvas_height);
-            ctx.beginPath();
-
-            ctx.rect(0, 0, videoWidth, videoHeight);
-            ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-            ctx.fill();
-
-            ctx.font = "30px Arial, Helvetica, sans-serif";
-            ctx.fillStyle = "black";
-            ctx.textAlign = "center";
-            ctx.fillText('Loading Model...', videoWidth / 2, videoHeight / 2)
-            ctx.stroke();
-          }
-        }
-        //console.log(tf.memory().numTensors);
         console.log(`# of tensors: ${tf.memory().numTensors}`);
       }, 2000);
     }, [detect]);
@@ -505,21 +479,18 @@ function Baseline() {
           </StyledLeftPanel>
           <StyledCamWrapper>
             <StyledCamLoadingScreen hidden={!isLoading}>
-              <CircularProgress />
+              <p style={{ fontSize: "20px", fontWeight: 600 }}>Loading Model...</p>
             </StyledCamLoadingScreen>
             <StyledSuccessScreen hidden={!isCorrect}>
               <StyledTickIcon src={tick} alt="Check mark" />
             </StyledSuccessScreen>
-            {!isLoading &&
-              <>
-                <StyledWebcam
-                  ref={webcamRef}
-                  muted={true}
-                />
-                <StyledCanvas
-                  ref={canvasRef}
-                />
-              </>}
+            <StyledWebcam
+              ref={webcamRef}
+              muted={true}
+            />
+            <StyledCanvas
+              ref={canvasRef}
+            />
           </StyledCamWrapper>
         </StyledContentBody>
       </StyledAppContainer>
