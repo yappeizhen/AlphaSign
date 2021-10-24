@@ -501,6 +501,7 @@ function Baseline() {
             <StyledWebcam
               ref={webcamRef}
               muted={true}
+              audio={false}
             />
             <StyledCanvas
               ref={canvasRef}

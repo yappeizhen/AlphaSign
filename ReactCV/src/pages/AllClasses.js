@@ -456,7 +456,7 @@ function AllClasses() {
                 <StyledCountdown>{countdown}</StyledCountdown>
               </StyledBubbleWrapper>
               <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
-              <StyledPrompt>Sign this alphabet:</StyledPrompt>
+                <StyledPrompt>Sign this alphabet:</StyledPrompt>
                 <StyledWordContainer>
                   <StyledTargetWord>{wordBank[currentWord]?.word}</StyledTargetWord>
                   <StyledWordImg src={wordBank[currentWord]?.img} alt="Target sign language" />
@@ -493,6 +493,7 @@ function AllClasses() {
             <StyledWebcam
               ref={webcamRef}
               muted={true}
+              audio={false}
             />
             <StyledCanvas
               ref={canvasRef}
