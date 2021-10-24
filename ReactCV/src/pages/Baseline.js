@@ -223,7 +223,6 @@ const StyledWordContainer = styled.div`
 `;
 const StyledWordImg = styled.img`
   max-height: 100px;
-  margin-left: 12px;
 `;
 const StyledTargetWord = styled.p`
   font-weight: 600;
@@ -465,9 +464,8 @@ function Baseline() {
               <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
                 <StyledPrompt>Sign this alphabet:</StyledPrompt>
                 <StyledWordContainer>
-                  <StyledTargetWord>{wordBank[currentWord]?.word}</StyledTargetWord>
-                  
                   <StyledWordImg src={wordBank[currentWord]?.img} alt="Target sign language" />
+                  <StyledTargetWord>{wordBank[currentWord]?.word}</StyledTargetWord>
                 </StyledWordContainer>
                 <StyledResponseButtonGroup>
                   <DSButton onClick={onExit} text="Exit" />
