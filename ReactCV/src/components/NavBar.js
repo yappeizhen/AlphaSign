@@ -15,7 +15,8 @@ const StyledAppBar = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 16px;
     @media only screen and (max-width: 768px) {
         align-items: flex-start;
     }
@@ -72,7 +73,6 @@ const StyledNavContainer = styled.div`
     }
 `;
 const StyledTabBar = styled.nav`
-    margin-right: 20px;
     display: flex;
     flex-direction: row;
     transition: all 0.5s;

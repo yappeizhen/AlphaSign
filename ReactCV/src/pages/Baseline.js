@@ -52,6 +52,7 @@ const StyledAppBar = styled.div`
   justify-content: center;
   width: 100%;
   margin-top: 12px;
+  margin-bottom: 8px;
 `;
 const StyledH1 = styled.h1`
   font-size: 28px;
@@ -106,6 +107,13 @@ const StyledCamWrapper = styled.div`
     width: 70%;
   }
 `;
+const StyledLoadingText = styled.p`
+  font-size: 20px;
+  font-weight: 600;
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+  }
+`;
 const StyledCamLoadingScreen = styled.div`
   display: ${props => props.hidden ? "none" : "flex"};
   position: absolute;
@@ -117,6 +125,11 @@ const StyledCamLoadingScreen = styled.div`
   background-color: rgb(240, 248, 255, 0.5);
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    height: calc(100% - 16px);
+    border-radius: 28px;
+  }
 `;
 const StyledSuccessScreen = styled.div`
   display: ${props => props.hidden ? "none" : "flex"};
@@ -129,9 +142,17 @@ const StyledSuccessScreen = styled.div`
   background-color: rgba(166, 247, 220, 0.527);
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    height: calc(100% - 16px);
+    border-radius: 28px;
+  }
 `;
 const StyledTickIcon = styled.img`
   width: 140px;
+  @media only screen and (max-width: 768px) {
+    width: 96px;
+  }
 `;
 const StyledCanvas = styled.canvas`
   position: absolute;
@@ -142,6 +163,8 @@ const StyledCanvas = styled.canvas`
   border-radius: 24px;  
   @media only screen and (max-width: 768px) {
     width: 100%;
+    height: calc(100% - 16px);
+    border-radius: 28px;
   }
 `;
 const StyledWebcam = styled(Webcam)`
@@ -174,8 +197,9 @@ const StyledDescription = styled.div`
   max-width: 50%;
   font-size: 14px;
   @media only screen and (max-width: 768px) {
-    font-size: 8px;
+    font-size: 10px;
     padding: 0;
+    max-width: 70%
   }
 `;
 const StyledResponseButtonGroup = styled.div`
@@ -184,6 +208,9 @@ const StyledResponseButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  @media only screen and (max-width: 768px) {
+    margin-top: 12px;
+  }
 `;
 const StyledBubbleWrapper = styled.div`
   display: ${props => props.hidden ? "none" : "flex"};
@@ -491,7 +518,7 @@ function Baseline() {
           </StyledLeftPanel>
           <StyledCamWrapper>
             <StyledCamLoadingScreen hidden={!isLoading}>
-              <p style={{ fontSize: "20px", fontWeight: 600 }}>Loading Model...</p>
+              <StyledLoadingText>Loading Model...</StyledLoadingText>
             </StyledCamLoadingScreen>
             <StyledSuccessScreen hidden={!isCorrect}>
               <StyledTickIcon src={tick} alt="Check mark" />

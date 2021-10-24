@@ -14,9 +14,15 @@ const StyledContainer = styled.div`
 `;
 const StyledLogo = styled.img`
     width: 160px;
+    @media only screen and (max-width: 768px) {
+        width: 100px;
+    }
 `;
 const StyledText = styled.div`
     margin-right: 12px;
+    @media only screen and (max-width: 768px) {
+        font-size: 12px;
+    }
 `;
 function Footer() {
     return (
