@@ -466,6 +466,7 @@ function Baseline() {
                 <StyledPrompt>Sign this alphabet:</StyledPrompt>
                 <StyledWordContainer>
                   <StyledTargetWord>{wordBank[currentWord]?.word}</StyledTargetWord>
+                  
                   <StyledWordImg src={wordBank[currentWord]?.img} alt="Target sign language" />
                 </StyledWordContainer>
                 <StyledResponseButtonGroup>
