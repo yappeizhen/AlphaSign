@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Sign-Language-Image-Recognition/static/css/main.642c0362.chunk.css",
-    "main.js": "/Sign-Language-Image-Recognition/static/js/main.2080a341.chunk.js",
-    "main.js.map": "/Sign-Language-Image-Recognition/static/js/main.2080a341.chunk.js.map",
+    "main.css": "/Sign-Language-Image-Recognition/static/css/main.2f2ee5b1.chunk.css",
+    "main.js": "/Sign-Language-Image-Recognition/static/js/main.8e11a0a5.chunk.js",
+    "main.js.map": "/Sign-Language-Image-Recognition/static/js/main.8e11a0a5.chunk.js.map",
     "runtime-main.js": "/Sign-Language-Image-Recognition/static/js/runtime-main.603b2b57.js",
     "runtime-main.js.map": "/Sign-Language-Image-Recognition/static/js/runtime-main.603b2b57.js.map",
-    "static/js/2.24c8faab.chunk.js": "/Sign-Language-Image-Recognition/static/js/2.24c8faab.chunk.js",
-    "static/js/2.24c8faab.chunk.js.map": "/Sign-Language-Image-Recognition/static/js/2.24c8faab.chunk.js.map",
+    "static/js/2.92b68b13.chunk.js": "/Sign-Language-Image-Recognition/static/js/2.92b68b13.chunk.js",
+    "static/js/2.92b68b13.chunk.js.map": "/Sign-Language-Image-Recognition/static/js/2.92b68b13.chunk.js.map",
     "index.html": "/Sign-Language-Image-Recognition/index.html",
-    "precache-manifest.61e0adc84d537a6f744449742dce0ca2.js": "/Sign-Language-Image-Recognition/precache-manifest.61e0adc84d537a6f744449742dce0ca2.js",
+    "precache-manifest.dafb15de7fa5ade499c3065e51e88073.js": "/Sign-Language-Image-Recognition/precache-manifest.dafb15de7fa5ade499c3065e51e88073.js",
     "service-worker.js": "/Sign-Language-Image-Recognition/service-worker.js",
-    "static/css/main.642c0362.chunk.css.map": "/Sign-Language-Image-Recognition/static/css/main.642c0362.chunk.css.map",
-    "static/js/2.24c8faab.chunk.js.LICENSE.txt": "/Sign-Language-Image-Recognition/static/js/2.24c8faab.chunk.js.LICENSE.txt",
+    "static/css/main.2f2ee5b1.chunk.css.map": "/Sign-Language-Image-Recognition/static/css/main.2f2ee5b1.chunk.css.map",
+    "static/js/2.92b68b13.chunk.js.LICENSE.txt": "/Sign-Language-Image-Recognition/static/js/2.92b68b13.chunk.js.LICENSE.txt",
     "static/media/A.png": "/Sign-Language-Image-Recognition/static/media/A.93e91906.png",
     "static/media/ASL_Alphabet.png": "/Sign-Language-Image-Recognition/static/media/ASL_Alphabet.28f3e993.png",
     "static/media/ASL_Alphabet_ABCD.png": "/Sign-Language-Image-Recognition/static/media/ASL_Alphabet_ABCD.3ca4d72e.png",
@@ -46,8 +46,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.603b2b57.js",
-    "static/js/2.24c8faab.chunk.js",
-    "static/css/main.642c0362.chunk.css",
-    "static/js/main.2080a341.chunk.js"
+    "static/js/2.92b68b13.chunk.js",
+    "static/css/main.2f2ee5b1.chunk.css",
+    "static/js/main.8e11a0a5.chunk.js"
   ]
 }
