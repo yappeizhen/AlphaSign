@@ -243,6 +243,9 @@ const StyledCountdown = styled.p`
     font-size: 32px;
   }
 `;
+
+let detection_start = false
+
 function AllClasses() {
   const [isStarted, setIsStarted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -299,19 +302,22 @@ function AllClasses() {
       const casted = resized.cast('int32')
       const expanded = casted.expandDims(0)
       const obj = await net.executeAsync(expanded)
-      console.log(obj)
+      //console.log(obj)
+
+      if (typeof obj !== 'undefined') {
+        detection_start = true
+
+      }
 
       // mobilenetv1 320x320 All Classes (Poor Performance Model)
       //const boxes = await obj[6].array()
       //const classes = await obj[1].array()
       //const scores = await obj[3].array()
 
-
       // mobilenetv2 320x320 All Classes 11k Epochs
       const boxes = await obj[3].array()
       const classes = await obj[4].array()
       const scores = await obj[1].array()
-
 
       /*
       //Testing
@@ -333,9 +339,6 @@ function AllClasses() {
       console.log('six:'+six[0])
       console.log('seven:'+seven[0])
       */
-
-
-
 
       // Draw mesh
       if (canvasRef.current) {
@@ -374,10 +377,37 @@ function AllClasses() {
       modelRef.current = net;
       console.log('Loaded Model')
       setIsLoading(false);
+
       //  Loop and detect hands
       intervalIdRef.current = setInterval(() => {
         detect(net);
-        console.log(tf.memory().numTensors);
+
+        if (detection_start === false) {
+          if (canvasRef.current) {
+            const videoWidth = webcamRef.current.video.videoWidth;
+            const videoHeight = webcamRef.current.video.videoHeight;
+            const ctx = canvasRef.current.getContext("2d");
+            //console.log(ctx)
+            //var canvas_width = ctx.canvas.clientWidth;
+            //var canvas_height = ctx.canvas.clientHeight;
+            //console.log(canvas_width, canvas_height);
+            ctx.beginPath();
+
+            ctx.rect(0, 0, videoWidth, videoHeight);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+            ctx.fill();
+
+            ctx.font = "30px Arial, Helvetica, sans-serif";
+            ctx.fillStyle = "black";
+            ctx.textAlign = "center";
+            ctx.fillText('Loading Model...', videoWidth / 2, videoHeight / 2)
+            ctx.stroke();
+          }
+        }
+
+        //console.log(tf.memory().numTensors);
+        //console.log(detection_start)
+        console.log(`# of tensors: ${tf.memory().numTensors}`);
       }, 2000);
     }, [detect]);
 

@@ -54,8 +54,8 @@ export const drawRect = (boxes, classes, scores, threshold, imgWidth, imgHeight,
             const [y, x, height, width] = boxes[i]
             const text = classes[i]
 
-            console.log(classes[i])
-            console.log(scores[i])
+            console.log(`Detected Class: ${labelMap[text]['name']}. Prediction Score: ${scores[i]}`)
+
             // Set styling
             ctx.strokeStyle = labelMap[text]['color']
             ctx.lineWidth = 10

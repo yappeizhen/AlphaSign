@@ -243,6 +243,10 @@ const StyledCountdown = styled.p`
     font-size: 32px;
   }
 `;
+
+
+let detection_start = false
+
 function Baseline() {
   const [isStarted, setIsStarted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -300,6 +304,10 @@ function Baseline() {
       const expanded = casted.expandDims(0)
       const obj = await net.executeAsync(expanded)
       console.log(obj)
+
+      if (typeof obj !== 'undefined') {
+        detection_start = true
+      }
 
       // mobilenetv2 fpnlite 320x320
       //const boxes = await obj[7].array()  // bounding boxes array size 4 contain +ve values 0 to 1
@@ -379,7 +387,30 @@ function Baseline() {
       //  Loop and detect hands
       intervalIdRef.current = setInterval(() => {
         detect(net);
-        console.log(tf.memory().numTensors);
+        if (detection_start === false) {
+          if (canvasRef.current) {
+            const videoWidth = webcamRef.current.video.videoWidth;
+            const videoHeight = webcamRef.current.video.videoHeight;
+            const ctx = canvasRef.current.getContext("2d");
+            //console.log(ctx)
+            //var canvas_width = ctx.canvas.clientWidth;
+            //var canvas_height = ctx.canvas.clientHeight;
+            //console.log(canvas_width, canvas_height);
+            ctx.beginPath();
+
+            ctx.rect(0, 0, videoWidth, videoHeight);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+            ctx.fill();
+
+            ctx.font = "30px Arial, Helvetica, sans-serif";
+            ctx.fillStyle = "black";
+            ctx.textAlign = "center";
+            ctx.fillText('Loading Model...', videoWidth / 2, videoHeight / 2)
+            ctx.stroke();
+          }
+        }
+        //console.log(tf.memory().numTensors);
+        console.log(`# of tensors: ${tf.memory().numTensors}`);
       }, 2000);
     }, [detect]);
 
