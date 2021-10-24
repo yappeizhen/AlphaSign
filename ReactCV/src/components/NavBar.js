@@ -9,7 +9,7 @@ import fistBump from "../../src/assets/images/peace.png";
 import { NAV_ITEMS } from "../constants/navigation";
 
 const StyledAppBar = styled.div`
-    position: fixed;
+    position: absolute;
     display: flex;
     flex-direction: row;
     align-items: center;
