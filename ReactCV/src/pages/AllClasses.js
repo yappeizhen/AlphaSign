@@ -7,6 +7,7 @@ import styled from "styled-components";
 
 import { Modal } from '@material-ui/core';
 import { CircularProgress } from "@mui/material";
+import { Switch } from "@mui/material";
 import * as tf from "@tensorflow/tfjs";
 
 import aslImg from "../../src/assets/images/ASL_Alphabet.png";
@@ -226,8 +227,8 @@ const StyledBubbleWrapper = styled.div`
   align-items: center;
 `;
 const StyledStudyIcon = styled.img`
-  height: 60px;
-  width: 60px;
+  height: 52px;
+  width: 52px;
   @media only screen and (max-width: 768px) {
     height: 40px;
     width: 40px
@@ -250,6 +251,7 @@ const StyledWordContainer = styled.div`
 `;
 const StyledWordImg = styled.img`
   max-height: 100px;
+  display: ${props => props.hidden ? "none" : "inline"}
 `;
 const StyledTargetWord = styled.p`
   font-weight: 600;
@@ -263,6 +265,26 @@ const StyledTargetWord = styled.p`
 const StyledBoyImg = styled.img`
   margin-top: 40px;
   width: 45%;
+`;
+const StyledTogglePanel = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+`;
+const StyledSwitchGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+const StyledSwitchLabel = styled.p`
+  font-size: 14px;
+  text-align: center;
+  @media only screen and (max-width: 768px) {
+    font-size: 10px;
+  }
 `;
 const StyledBoyContainer = styled.div`
   display: flex;
@@ -287,6 +309,8 @@ function AllClasses() {
   const [countdown, setCountdown] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(true);
+
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const currentWordRef = useRef(null);
@@ -487,7 +511,7 @@ function AllClasses() {
               <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
                 <StyledPrompt>Sign this alphabet:</StyledPrompt>
                 <StyledWordContainer>
-                  <StyledWordImg src={wordBank[currentWord]?.img} alt="Target sign language" />
+                  <StyledWordImg hidden={!showAnswer} src={wordBank[currentWord]?.img} alt="Target sign language" />
                   <StyledTargetWord>{wordBank[currentWord]?.word}</StyledTargetWord>
                 </StyledWordContainer>
                 <StyledResponseButtonGroup>
@@ -498,10 +522,20 @@ function AllClasses() {
             </TextBubble>
             <StyledBoyContainer>
               <StyledBoyImg alt="Boy raising hand" src={boyImg}></StyledBoyImg>
-              <button className="study-button" onClick={handleModalOpen}>
-                <StyledStudyIcon src={studyIcon} alt="Sign language alphabet" />
-                <span className="tooltiptext">American sign language alphabet guide</span>
-              </button>
+              <StyledTogglePanel>
+                <StyledSwitchGroup>
+                  <StyledSwitchLabel>Show answers:</StyledSwitchLabel>
+                  <Switch
+                    checked={showAnswer}
+                    color="secondary"
+                    onChange={() => setShowAnswer(!showAnswer)}
+                  />
+                </StyledSwitchGroup>
+                <button className="study-button" onClick={handleModalOpen}>
+                  <StyledStudyIcon src={studyIcon} alt="Sign language alphabet" />
+                  <span className="tooltiptext">American sign language alphabet guide</span>
+                </button>
+              </StyledTogglePanel>
               <StyledAslModal
                 open={isModalOpen}
                 onClose={handleModalClose}
