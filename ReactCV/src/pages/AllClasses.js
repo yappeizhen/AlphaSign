@@ -222,7 +222,7 @@ const StyledWordContainer = styled.div`
   align-items: center;
 `;
 const StyledWordImg = styled.img`
-  max-height: 50px;
+  max-height: 100px;
   margin-left: 12px;
 `;
 const StyledTargetWord = styled.p`
