@@ -301,7 +301,10 @@ function AllClasses() {
 
   // Helper functions
   const handleChooseAlphabet = useCallback(() => {
-    const newWord = chooseRandomAlphabet()
+    let newWord = chooseRandomAlphabet()
+    while (newWord === currentWordRef.current) {
+      newWord = chooseRandomAlphabet();
+    }
     setCurrentWord(newWord);
     currentWordRef.current = newWord;
   }, [chooseRandomAlphabet]);

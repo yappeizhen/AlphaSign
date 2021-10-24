@@ -287,6 +287,8 @@ function Baseline() {
   const [countdown, setCountdown] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [currentWord, setCurrentWord] = useState(null);
+
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const currentWordRef = useRef(null);
@@ -297,11 +299,13 @@ function Baseline() {
     const i = Math.floor(Math.random() * 4);//25
     return i;
   }, [])
-  const [currentWord, setCurrentWord] = useState(null);
 
   // Helper functions
   const handleChooseAlphabet = useCallback(() => {
-    const newWord = chooseRandomAlphabet()
+    let newWord = chooseRandomAlphabet()
+    while (newWord === currentWordRef.current) {
+      newWord = chooseRandomAlphabet();
+    }
     setCurrentWord(newWord);
     currentWordRef.current = newWord;
   }, [chooseRandomAlphabet]);
