@@ -7,17 +7,17 @@ A tensorflow.js web application that utilies TF2 object detection models to reco
 
 
 # Object Detection Models
-Utilized concept of transfer learning to fine tune TF2 model weights via TF2 Object Detection API in Google Colab. 
+Using the concept of transfer learning, we finetuned TensorFlow 2 Detection Model Zoo's SSD MobileNetv2 FPNLite 320x320 model weights via the TF2 Object Detection API in Google Colab. 
 As the computer vision models are running on tensorflow.js, inference is carried out on cilent side and no video/image data from the user is sent to the website hosting server.
 
 ## 1) Baseline Model
 - 4 Classes: A, B, C, D.
-- Finetuned on TF2 Model ZOO SSD MobileNetv2 FPNLite 320x320 pre-trained on COCO 2017 dataset.
+- Finetuned on SSD MobileNetv2 FPNLite 320x320 pre-trained on COCO 2017 dataset.
 
 ## 2) Extended Model
 - 24 Classes: A, B, C, D, E, F, G, H, I, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y.
 - J and Z are excluded as they are both dynamic sign langauges involving movement.
-- Finetuned on TF2 Model ZOO SSD MobileNetv2 FPNLite 320x320 pre-trained on COCO 2017 dataset.
+- Finetuned on SSD MobileNetv2 FPNLite 320x320 pre-trained on COCO 2017 dataset.
 
 ### Evaluation Results @11,000 steps
 
