@@ -19,6 +19,9 @@ As the computer vision models are running on [tensorflow.js](https://www.tensorf
 - J and Z are excluded as they are both dynamic sign langauges involving movement.
 - Finetuned on SSD MobileNetv2 FPNLite 320x320 pre-trained on COCO 2017 dataset.
 
+### Exploratory Data Analysis
+![image](https://github.com/yappeizhen/Sign-Language-Image-Recognition/blob/4528b2082f3e533376f2a0e5dfa5cb31cf1c743d/read-me-images/extended-model-train-distribution.png)          ![image](https://github.com/yappeizhen/Sign-Language-Image-Recognition/blob/4528b2082f3e533376f2a0e5dfa5cb31cf1c743d/read-me-images/extended-model-test-distribution.png)
+
 ### Evaluation Results @11,000 steps
 
 - Test mean average precision (mAP) and average recall
