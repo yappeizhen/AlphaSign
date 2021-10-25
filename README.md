@@ -1,18 +1,20 @@
 # Static Sign Language Alphabet Game
-A tensorflow.js web application that utilies TF2 object detection models to recognize ASL static sign languages. This web application comes in a form of a game that recognises and translates sign language alphabets to English. Try the live demo [here](https://yappeizhen.github.io/Sign-Language-Image-Recognition/).
+A tensorflow.js web application that utilies TF2 object detection models to recognize real-time ASL static sign languages via web browser. This web application comes in a form of a game that recognises sign language alphabets via the user's web cam. Try the live demo [here](https://yappeizhen.github.io/Sign-Language-Image-Recognition/).
+
 
 ## Web Application Home Page
 ![image](https://user-images.githubusercontent.com/66234273/137351776-50edd012-7aef-45b2-b023-34ecd776c4ba.png)
 
 
-# Object Detection Model
-Utilized concept of transfer learning to fine tune TF2 model weights via TF2 Object Detection API in Google Colab.
+# Object Detection Models
+Utilized concept of transfer learning to fine tune TF2 model weights via TF2 Object Detection API in Google Colab. 
+As the computer vision models are running on tensorflow.js, inference is carried out on cilent side and no video/image data from the user is sent to the website hosting server.
 
-## Baseline Model
+## 1) Baseline Model
 - 4 Classes: A, B, C, D.
 - Finetuned on TF2 Model ZOO SSD MobileNetv2 FPNLite 320x320 pre-trained on COCO 2017 dataset.
 
-## Extended Model
+## 2) Extended Model
 - 24 Classes: A, B, C, D, E, F, G, H, I, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y.
 - J and Z are excluded as they are both dynamic sign langauges involving movement.
 - Finetuned on TF2 Model ZOO SSD MobileNetv2 FPNLite 320x320 pre-trained on COCO 2017 dataset.
