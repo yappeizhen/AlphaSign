@@ -7,7 +7,7 @@ A tensorflow.js web application that utilies TF2 object detection models to reco
 
 
 # Object Detection Models
-Using the concept of transfer learning, we finetuned TensorFlow 2 Detection Model Zoo's SSD MobileNetv2 FPNLite 320x320 model weights via the TF2 Object Detection API in Google Colab. 
+Using the concept of transfer learning, we finetuned [TensorFlow 2 Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md) SSD MobileNetv2 FPNLite 320x320 model weights via the TF2 Object Detection API in Google Colab. 
 As the computer vision models are running on tensorflow.js, inference is carried out on cilent side and no video/image data from the user is sent to the website hosting server.
 
 ## 1) Baseline Model
