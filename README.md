@@ -38,3 +38,6 @@ As the computer vision models are running on [tensorflow.js](https://www.tensorf
 
 - Test Recall Plot @0.5IOU
 ![image](https://github.com/yappeizhen/Sign-Language-Image-Recognition/blob/3a9cdeb235bbbce4ce2113f9cf7d8212ab4defd5/read-me-images/extended-model-test-recall.png)
+
+- Inference on Test Image (Groundtruth bounding box in blue with IOU Score of prediction)
+![image](https://github.com/yappeizhen/Sign-Language-Image-Recognition/blob/ec61cb5aa6485d9f93bc5b79aa57139957def862/read-me-images/inference-iou-h.png)
