@@ -31,5 +31,5 @@ Utilized concept of transfer learning to fine tune TF2 model weights via TF2 Obj
 - Test Precision Plot @0.5IOU
 ![image](https://github.com/yappeizhen/Sign-Language-Image-Recognition/blob/3a9cdeb235bbbce4ce2113f9cf7d8212ab4defd5/read-me-images/extended-model-test-precision.png)
 
-- Test Recall Plot
+- Test Recall Plot @0.5IOU
 ![image](https://github.com/yappeizhen/Sign-Language-Image-Recognition/blob/3a9cdeb235bbbce4ce2113f9cf7d8212ab4defd5/read-me-images/extended-model-test-recall.png)
