@@ -432,6 +432,9 @@ function Baseline() {
   const runCoco = useCallback(
     async () => {
       // 3. TODO - Load network 
+      //tf.setBackend('wasm');
+      tf.setBackend('webgl');
+      console.log('Backend : ',tf.getBackend());
       console.log('Loading Model')
       // e.g. const net = await cocossd.load();
       // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
@@ -448,7 +451,7 @@ function Baseline() {
       intervalIdRef.current = setInterval(() => {
         detect(net);
         console.log(`# of tensors: ${tf.memory().numTensors}`);
-      }, 2000);
+      }, 1000);
     }, [detect]);
 
   useEffect(() => {
