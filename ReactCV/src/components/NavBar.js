@@ -88,7 +88,7 @@ const StyledTabBar = styled.nav`
 const StyledLink = styled(Link)`
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 400;
     color: black;
     text-decoration: none;
@@ -98,9 +98,10 @@ const StyledLink = styled(Link)`
 `;
 const StyledLinkBox = styled.div`
     padding-bottom: 12px;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
     &:hover {
-        border-bottom: 3px solid rgb(139,0,139);
+        border-bottom: 2px solid rgb(139,0,139);
         ${StyledLink}{
             color: rgb(139,0,139)
 ;
@@ -110,7 +111,7 @@ const StyledLinkBox = styled.div`
     @media only screen and (max-width: 768px) {
         margin-top: 12px;
         border-bottom: 1px solid black;
-
+        width: 100%;
         ${StyledLink}{
             font-size: 9px;
         }
@@ -141,6 +142,12 @@ function NavBar() {
                     {!isNavCollapsed && <StyledIcon src={closeIcon} alt="Close menu" />}
                 </StyledNavToggle>
                 <StyledTabBar showNav={!isNavCollapsed} >
+                    <StyledLinkBox>
+                        <StyledLink
+                            to={NAV_ITEMS.ABOUT_US.to}>
+                            {NAV_ITEMS.ABOUT_US.text}
+                        </StyledLink>
+                    </StyledLinkBox>
                     <StyledLinkBox>
                         <StyledLink
                             to={NAV_ITEMS.FOUR_CLASSES.to}>
