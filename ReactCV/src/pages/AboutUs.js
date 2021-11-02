@@ -4,7 +4,7 @@ import "../App.css";
 import React from "react";
 import styled from "styled-components"
 
-import backgroundImg from "../../src/assets/images/about-us-background.png";
+import backgroundImg from "../../src/assets/images/about-us-background2.png";
 import GithubImg from "../../src/assets/images/GitHub-Emblem.png";
 
 
@@ -48,7 +48,10 @@ function AboutUs() {
                   <p>
                   We created SignAI as part of our deep learning project to inquire how can we leverage on AI to encourage more people to learn sign langauge.
                   The web application is developed using React and Node.js, and hosted on Github Pages.
-                  SignAI leverages on finetuning pre-trained ssd mobilenetv2 fpnlite 320x320 from Tensorflow 2 Model Zoo, and tensorflow.js, a JavaScript library for Machine Learning on the browser.
+                  SignAI leverages on finetuning pre-trained ssd mobilenetv2 fpnlite 320x320 from <a href="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md">Tensorflow 2 Detection Model Zoo</a>
+                  
+                  , and <a href="https://www.tensorflow.org/js">Tensorflow.js</a>
+                  , a JavaScript library for Machine Learning on the browser.
                   </p>
 
                   <p>
@@ -59,6 +62,8 @@ function AboutUs() {
                   <img src={GithubImg} alt="Github Emblem" style={{width:"10%"}}></img>
 
                   </a>
+
+
                   
                   </div>
             </StyledAppContainer>
