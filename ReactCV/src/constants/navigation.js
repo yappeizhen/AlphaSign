@@ -1,8 +1,8 @@
-const baseUrl = '/Sign-Language-Image-Recognition'
+const baseUrl = '/SignAI'
 
 export const NAV_ITEMS = {
   ABOUT_US: {
-    to: `${baseUrl}/extended`,
+    to: `${baseUrl}/about-us`,
     text: 'About Us',
   },
   ALL_CLASSES: {
