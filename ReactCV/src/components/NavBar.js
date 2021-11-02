@@ -28,7 +28,7 @@ const StyledIntro = styled.div`
     align-items: center;
 `;
 const StyledH1 = styled.h1`
-    font-size: 24px;
+    font-size: 28px;
     padding: 0;
     margin: 0;
     font-family: "poppins";
@@ -49,6 +49,7 @@ const StyledPeaceSign = styled.img`
 const StyledNameText = styled.div`
     text-align: left;
     margin: 4px;
+    font-size: 12px;
     @media only screen and (max-width: 768px) {
         font-size: 8px;
         padding: 0;
@@ -132,7 +133,7 @@ function NavBar() {
             <StyledIntro>
                 <StyledPeaceSign src={fistBump} alt="V Sign" />
                 <div>
-                    <StyledH1>Sign Language Game</StyledH1>
+                    <StyledH1>SignAI</StyledH1>
                     <StyledNameText>by Zhili and Pei Zhen</StyledNameText>
                 </div>
             </StyledIntro>
