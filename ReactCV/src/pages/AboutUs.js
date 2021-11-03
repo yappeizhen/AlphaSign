@@ -52,7 +52,7 @@ const StyledBodyWrapper = styled.div`
   padding-top: 120px;
 `;
 const StyledTeamContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   padding-left: 100px;
   padding-right: 100px;
   background-image: url(${teamBackground});
