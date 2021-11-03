@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b9acc1520038d06840c1f23b791a65e3",
+    "revision": "b40a1f281b8f475402d2693c8deb0f66",
     "url": "/SignAI/index.html"
   },
   {
-    "revision": "a147cf54ba658852029b",
+    "revision": "fbb7cedacf5fb1753f75",
     "url": "/SignAI/static/css/main.642c0362.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/SignAI/static/js/2.9e919d51.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a147cf54ba658852029b",
-    "url": "/SignAI/static/js/main.52b21fd0.chunk.js"
+    "revision": "fbb7cedacf5fb1753f75",
+    "url": "/SignAI/static/js/main.2b35dc65.chunk.js"
   },
   {
     "revision": "0b59db4c7fe657200f9a",

@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/SignAI/static/css/main.642c0362.chunk.css",
-    "main.js": "/SignAI/static/js/main.52b21fd0.chunk.js",
-    "main.js.map": "/SignAI/static/js/main.52b21fd0.chunk.js.map",
+    "main.js": "/SignAI/static/js/main.2b35dc65.chunk.js",
+    "main.js.map": "/SignAI/static/js/main.2b35dc65.chunk.js.map",
     "runtime-main.js": "/SignAI/static/js/runtime-main.9a3403ce.js",
     "runtime-main.js.map": "/SignAI/static/js/runtime-main.9a3403ce.js.map",
     "static/js/2.9e919d51.chunk.js": "/SignAI/static/js/2.9e919d51.chunk.js",
     "static/js/2.9e919d51.chunk.js.map": "/SignAI/static/js/2.9e919d51.chunk.js.map",
     "index.html": "/SignAI/index.html",
-    "precache-manifest.e780da75f963447c7100283f99c05806.js": "/SignAI/precache-manifest.e780da75f963447c7100283f99c05806.js",
+    "precache-manifest.9e1daadd716844e266c94c9222667a1b.js": "/SignAI/precache-manifest.9e1daadd716844e266c94c9222667a1b.js",
     "service-worker.js": "/SignAI/service-worker.js",
     "static/css/main.642c0362.chunk.css.map": "/SignAI/static/css/main.642c0362.chunk.css.map",
     "static/js/2.9e919d51.chunk.js.LICENSE.txt": "/SignAI/static/js/2.9e919d51.chunk.js.LICENSE.txt",
@@ -50,6 +50,6 @@
     "static/js/runtime-main.9a3403ce.js",
     "static/js/2.9e919d51.chunk.js",
     "static/css/main.642c0362.chunk.css",
-    "static/js/main.52b21fd0.chunk.js"
+    "static/js/main.2b35dc65.chunk.js"
   ]
 }
