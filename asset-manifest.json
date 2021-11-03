@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/SignAI/static/css/main.642c0362.chunk.css",
-    "main.js": "/SignAI/static/js/main.2b35dc65.chunk.js",
-    "main.js.map": "/SignAI/static/js/main.2b35dc65.chunk.js.map",
-    "runtime-main.js": "/SignAI/static/js/runtime-main.9a3403ce.js",
-    "runtime-main.js.map": "/SignAI/static/js/runtime-main.9a3403ce.js.map",
-    "static/js/2.9e919d51.chunk.js": "/SignAI/static/js/2.9e919d51.chunk.js",
-    "static/js/2.9e919d51.chunk.js.map": "/SignAI/static/js/2.9e919d51.chunk.js.map",
+    "main.js": "/SignAI/static/js/main.5e96cae9.chunk.js",
+    "main.js.map": "/SignAI/static/js/main.5e96cae9.chunk.js.map",
+    "runtime-main.js": "/SignAI/static/js/runtime-main.f5149bff.js",
+    "runtime-main.js.map": "/SignAI/static/js/runtime-main.f5149bff.js.map",
+    "static/js/2.5459f2fc.chunk.js": "/SignAI/static/js/2.5459f2fc.chunk.js",
+    "static/js/2.5459f2fc.chunk.js.map": "/SignAI/static/js/2.5459f2fc.chunk.js.map",
     "index.html": "/SignAI/index.html",
-    "precache-manifest.9e1daadd716844e266c94c9222667a1b.js": "/SignAI/precache-manifest.9e1daadd716844e266c94c9222667a1b.js",
+    "precache-manifest.10a4e0ccf3a60a2c395e06bf2a0957b0.js": "/SignAI/precache-manifest.10a4e0ccf3a60a2c395e06bf2a0957b0.js",
     "service-worker.js": "/SignAI/service-worker.js",
     "static/css/main.642c0362.chunk.css.map": "/SignAI/static/css/main.642c0362.chunk.css.map",
-    "static/js/2.9e919d51.chunk.js.LICENSE.txt": "/SignAI/static/js/2.9e919d51.chunk.js.LICENSE.txt",
+    "static/js/2.5459f2fc.chunk.js.LICENSE.txt": "/SignAI/static/js/2.5459f2fc.chunk.js.LICENSE.txt",
     "static/media/A.png": "/SignAI/static/media/A.93e91906.png",
     "static/media/ASL_Alphabet.png": "/SignAI/static/media/ASL_Alphabet.28f3e993.png",
     "static/media/ASL_Alphabet_ABCD.png": "/SignAI/static/media/ASL_Alphabet_ABCD.3ca4d72e.png",
@@ -21,7 +21,6 @@
     "static/media/E.png": "/SignAI/static/media/E.70b1bcb7.png",
     "static/media/F.png": "/SignAI/static/media/F.0aa5d03a.png",
     "static/media/G.png": "/SignAI/static/media/G.6805ddb6.png",
-    "static/media/GitHub-Emblem.png": "/SignAI/static/media/GitHub-Emblem.c5b8f49d.png",
     "static/media/H.png": "/SignAI/static/media/H.a9442094.png",
     "static/media/I.png": "/SignAI/static/media/I.ddda0b05.png",
     "static/media/K.png": "/SignAI/static/media/K.13ed4b5a.png",
@@ -39,17 +38,20 @@
     "static/media/W.png": "/SignAI/static/media/W.bc294a03.png",
     "static/media/X.png": "/SignAI/static/media/X.995714e9.png",
     "static/media/Y.png": "/SignAI/static/media/Y.c459daef.png",
-    "static/media/about-us-background.png": "/SignAI/static/media/about-us-background.774d4aa6.png",
     "static/media/background.png": "/SignAI/static/media/background.7226b6cc.png",
     "static/media/boy-hand.png": "/SignAI/static/media/boy-hand.2d598a97.png",
     "static/media/clouds_background.jpeg": "/SignAI/static/media/clouds_background.ff3521ec.jpeg",
+    "static/media/github.png": "/SignAI/static/media/github.dda4ed64.png",
+    "static/media/linkedin.png": "/SignAI/static/media/linkedin.bc42c022.png",
     "static/media/notebook.png": "/SignAI/static/media/notebook.f221546e.png",
-    "static/media/peace.png": "/SignAI/static/media/peace.08a9c3e6.png"
+    "static/media/peace.png": "/SignAI/static/media/peace.08a9c3e6.png",
+    "static/media/peizhen.jpeg": "/SignAI/static/media/peizhen.01cffc98.jpeg",
+    "static/media/zhili.jpeg": "/SignAI/static/media/zhili.faf7a71e.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.9a3403ce.js",
-    "static/js/2.9e919d51.chunk.js",
+    "static/js/runtime-main.f5149bff.js",
+    "static/js/2.5459f2fc.chunk.js",
     "static/css/main.642c0362.chunk.css",
-    "static/js/main.2b35dc65.chunk.js"
+    "static/js/main.5e96cae9.chunk.js"
   ]
 }
