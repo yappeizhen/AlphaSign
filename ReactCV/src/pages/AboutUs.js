@@ -48,7 +48,7 @@ function AboutUs() {
           <p>
             We created SignAI as part of our deep learning project to inquire how can we leverage on AI to encourage more people to learn sign langauge.
             The web application is developed using React and Node.js, and hosted on Github Pages.
-            SignAI leverages on finetuning pre-trained ssd mobilenetv2 fpnlite 320x320 from <Keyword url="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md" text="Tensorflow2 Detection mMdel Zoo" />
+            SignAI leverages on finetuning pre-trained ssd mobilenetv2 fpnlite 320x320 from <Keyword url="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md" text="Tensorflow2 Detection Model Zoo" />
 
             , and <Keyword url="https://www.tensorflow.org/js" text="Tensorflow.js" />
             , a JavaScript library for Machine Learning on the browser.
