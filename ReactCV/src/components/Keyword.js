@@ -3,17 +3,17 @@ import React from "react";
 import styled from "styled-components"
 
 const StyledButton = styled.button`
-    outline: none;
     border: none;
     cursor: pointer;
     display: inline;
     justify-content: center;
     border-radius: 5px;
-    background-color: rgb(245, 245, 245, 0.7);
+    background-color: rgb(260, 260, 260, 0.5);
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
     width: auto;
     padding: 4px 8px;
-    margin-left: 1px;
-    margin-right: 1px;
+    margin-left: 4px;
+    margin-right: 4px;
     margin-top: 0;
     margin-bottom: 0;
   &:hover {
@@ -25,7 +25,7 @@ const StyledText = styled.p`
     font-size: 16px;
     font-weight: 400;
     margin: 0;
-    color: rgb(72,72,72);
+    color: rgb(80,80,80);
     @media only screen and (max-width: 768px) {
         font-size: 12px;
     }
