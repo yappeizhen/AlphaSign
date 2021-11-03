@@ -1,5 +1,5 @@
 # Static Sign Language Alphabet Game
-A tensorflow.js web application that utilies TF2 object detection models to recognize real-time ASL static sign languages via web browser. This web application comes in a form of a game that recognises sign language alphabets via the user's web cam. Try the live demo [here](https://yappeizhen.github.io/Sign-Language-Image-Recognition/).
+A tensorflow.js web application that utilies TF2 object detection models to recognize real-time ASL static sign languages via web browser. This web application comes in a form of a game that recognises sign language alphabets via the user's web cam. Try the live demo [here](https://yappeizhen.github.io/SignAI/).
 
 
 ## Web Application Home Page
