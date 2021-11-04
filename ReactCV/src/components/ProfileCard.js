@@ -6,7 +6,7 @@ import githubLogo from "../../src/assets/images/logos/github.png"
 import linkedinLogo from "../../src/assets/images/logos/linkedin.png"
 
 const StyledInfoCard = styled.div`
-  max-width: 200px;
+  width: 300px;
   margin-bottom: 1.5em;
   margin-top: 12px;
   display: flex;
@@ -50,7 +50,7 @@ function ProfileCard({ imgSrc, linkedin, github, name, major, university }) {
             <StyledImage src={imgSrc} />
             <br />
             <StyledText>{name}</StyledText>
-            <StyledText>{major} Major in {university}</StyledText>
+            <StyledText>{major} student in {university}</StyledText>
             <StyledLogoContainer>
                 {
                     linkedin && <StyledLogo

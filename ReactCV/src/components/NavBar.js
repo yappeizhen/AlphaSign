@@ -145,12 +145,6 @@ function NavBar() {
                 <StyledTabBar showNav={!isNavCollapsed} >
                     <StyledLinkBox>
                         <StyledLink
-                            to={NAV_ITEMS.ABOUT_US.to}>
-                            {NAV_ITEMS.ABOUT_US.text}
-                        </StyledLink>
-                    </StyledLinkBox>
-                    <StyledLinkBox>
-                        <StyledLink
                             to={NAV_ITEMS.FOUR_CLASSES.to}>
                             {NAV_ITEMS.FOUR_CLASSES.text}
                         </StyledLink>
@@ -159,6 +153,12 @@ function NavBar() {
                         <StyledLink
                             to={NAV_ITEMS.ALL_CLASSES.to}>
                             {NAV_ITEMS.ALL_CLASSES.text}
+                        </StyledLink>
+                    </StyledLinkBox>
+                    <StyledLinkBox>
+                        <StyledLink
+                            to={NAV_ITEMS.ABOUT_US.to}>
+                            {NAV_ITEMS.ABOUT_US.text}
                         </StyledLink>
                     </StyledLinkBox>
                 </StyledTabBar>

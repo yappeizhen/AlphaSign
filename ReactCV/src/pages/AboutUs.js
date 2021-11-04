@@ -4,8 +4,6 @@ import "../App.css";
 import React from "react";
 import styled from "styled-components"
 
-import backgroundImg from "../../src/assets/images/about-us-background.png";
-import teamBackground from "../../src/assets/images/team-background.png";
 import peizhenImg from "../../src/assets/images/team/peizhen.jpeg"
 import zhiliImg from "../../src/assets/images/team/zhili.jpeg"
 import Keyword from "../components/Keyword";
@@ -18,7 +16,7 @@ import ProfileCard from "../components/ProfileCard";
 
 const StyledWrapper = styled.div`
   color: rgb(40, 44, 52);
-  background-image: url(${backgroundImg});
+  background-color: rgb(230,255,251);
   background-size: cover;
   height: auto;
 `;
@@ -32,7 +30,7 @@ const StyledAppContainer = styled.div`
     height: auto;
   }
   @media only screen and (max-width: 680px) {
-    padding-top: 40px;
+    margin: 0 28px;
   }
 `;
 const StyledH1 = styled.h1`
@@ -42,11 +40,14 @@ const StyledH1 = styled.h1`
   margin-bottom: 12px;
   text-align: left;
   @media only screen and (max-width: 768px) {
-    font-size: 18px;
+    font-size: 20px;
   }
 `;
 const StyledTextContainer = styled.div`
   font-size: 15px;
+  @media only screen and (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 const StyledBodyWrapper = styled.div`
   padding-top: 120px;
@@ -55,15 +56,15 @@ const StyledTeamContainer = styled.div`
   min-height: 100vh;
   padding-left: 100px;
   padding-right: 100px;
-  background-image: url(${teamBackground});
+  background-color: rgb(230,255,238);
 `;
 const StyledCardContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: flex-start;
+  justify-content: center;
   margin-top: 40px;
 `;
 function AboutUs() {
@@ -88,17 +89,17 @@ function AboutUs() {
           <StyledH1>Our Tech Stack</StyledH1>
           <StyledTextContainer>
             This web application was developed using ReactJs and hosted on Github Pages.
-            SignAI was created by fine tuning the pre-trained SSD MobileNet V2 FPNLite 320x320 from the
+            SignAI was created by fine tuning the pre-trained SSD MobileNet V2 FPNLite 320x320 from the&nbsp;
             <Keyword
               url="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md"
               text="TensorFlow 2 Object Detection Model Zoo" />
-            and
+            &nbsp;and&nbsp;
             <Keyword url="https://www.tensorflow.org/js" text="TensorFlow.js" />
             .
           </StyledTextContainer >
           <br />
           <StyledTextContainer>
-            Check out our source code
+            Check out our source code&nbsp;
             <Keyword url="https://github.com/yappeizhen/SignAI" text="here" />
             .
           </StyledTextContainer>

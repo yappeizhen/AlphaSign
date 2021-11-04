@@ -12,10 +12,7 @@ const StyledButton = styled.button`
     box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
     width: auto;
     padding: 4px 8px;
-    margin-left: 4px;
-    margin-right: 4px;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
   &:hover {
     background-position: right center;
     background-color: rgb(245, 245, 245);
