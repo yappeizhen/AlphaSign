@@ -629,11 +629,6 @@ function Baseline() {
             </tr>
           </thead>
           <tbody style={{ maxHeight: "200px", overflowY: "auto" }}>
-            {(!scoreSheet || scoreSheet.length === 0) &&
-              <tr>
-                <td style={{ textAlign: "center" }} colSpan="2">Play the game and accumulate scores!</td>
-              </tr>
-            }
             {scoreSheet && scoreSheet.map((item => {
               return (
                 <tr key={item.date} style={{ height: "24px" }}>
