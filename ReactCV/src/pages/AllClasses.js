@@ -236,7 +236,7 @@ const StyledStudyIcon = styled.img`
 `;
 const StyledPrompt = styled.p`
   font-weight: 400;
-  font-size: 28px;
+  font-size: 24px;
   padding: 0;
   margin: 0;
   @media only screen and (max-width: 768px) {
@@ -310,12 +310,14 @@ function AllClasses() {
   const [isLoading, setIsLoading] = useState(true);
   const [isCorrect, setIsCorrect] = useState(false);
   const [showAnswer, setShowAnswer] = useState(true);
+  const [score, setScore] = useState(0);
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const currentWordRef = useRef(null);
   const intervalIdRef = useRef(null);
   const modelRef = useRef(null);
+  const scoreRef = useRef(0);
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 23);
@@ -411,6 +413,8 @@ function AllClasses() {
           const result = drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx, wordBank[currentWordRef.current]?.word);
           if (result) {
             setIsCorrect(true);
+            setScore(scoreRef.current + 1);
+            scoreRef.current = scoreRef.current + 1;
             setTimeout(() => {
               onNextQuestion();
             }, 500);
@@ -429,7 +433,7 @@ function AllClasses() {
       // 3. TODO - Load network 
       //tf.setBackend('wasm');
       tf.setBackend('webgl');
-      console.log('Backend : ',tf.getBackend());
+      console.log('Backend : ', tf.getBackend());
       console.log('Loading Model')
       // e.g. const net = await cocossd.load();
       // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
@@ -453,7 +457,10 @@ function AllClasses() {
     return () => {
       clearInterval(intervalIdRef.current)
       console.log("Cleaning");
-      modelRef.current.dispose();
+      if (modelRef.current) {
+        console.log("Cleaning")
+        modelRef.current.dispose();
+      }
     }
   }, [runCoco]);
 
@@ -484,6 +491,8 @@ function AllClasses() {
   }
   const onExit = () => {
     setIsStarted(false);
+    setScore(0);
+    setIsStarted(false);
   }
 
   return (
@@ -500,6 +509,7 @@ function AllClasses() {
         </StyledAppBar>
         <StyledContentBody>
           <StyledLeftPanel>
+            <div style={{ width: "100%" }}>Your Score: {score}</div>
             <TextBubble>
               <StyledBubbleWrapper prestart={true} hidden={isStarted}>
                 <StyledH2>Ready to start?</StyledH2>

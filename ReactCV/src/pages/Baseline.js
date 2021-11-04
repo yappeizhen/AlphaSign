@@ -236,7 +236,7 @@ const StyledIntroContainer = styled.div`
 `;
 const StyledPrompt = styled.p`
   font-weight: 400;
-  font-size: 28px;
+  font-size: 24px;
   padding: 0;
   margin: 0;
   @media only screen and (max-width: 768px) {
@@ -311,12 +311,14 @@ function Baseline() {
   const [isCorrect, setIsCorrect] = useState(false);
   const [currentWord, setCurrentWord] = useState(null);
   const [showAnswer, setShowAnswer] = useState(true);
+  const [score, setScore] = useState(0);
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const currentWordRef = useRef(null);
   const intervalIdRef = useRef(null);
   const modelRef = useRef(null);
+  const scoreRef = useRef(0);
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 4);//25
@@ -416,6 +418,8 @@ function Baseline() {
           const result = drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx, wordBank[currentWordRef.current]?.word);
           if (result) {
             setIsCorrect(true);
+            setScore(scoreRef.current + 1);
+            scoreRef.current = scoreRef.current + 1;
             setTimeout(() => {
               onNextQuestion();
             }, 500);
@@ -434,7 +438,7 @@ function Baseline() {
       // 3. TODO - Load network 
       //tf.setBackend('wasm');
       tf.setBackend('webgl');
-      console.log('Backend : ',tf.getBackend());
+      console.log('Backend : ', tf.getBackend());
       console.log('Loading Model')
       // e.g. const net = await cocossd.load();
       // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
@@ -492,6 +496,8 @@ function Baseline() {
   }
   const onExit = () => {
     setIsStarted(false);
+    setScore(0);
+    scoreRef.current = 0;
   }
 
   return (
@@ -507,6 +513,7 @@ function Baseline() {
         </StyledAppBar>
         <StyledContentBody>
           <StyledLeftPanel>
+            <div style={{ width: "100%" }}>Your Score: {score}</div>
             <TextBubble backgroundColor="rgb(81, 161, 186, 0.5)">
               <StyledBubbleWrapper prestart={true} hidden={isStarted}>
                 <StyledH2>Ready to start?</StyledH2>
