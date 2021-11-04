@@ -618,7 +618,10 @@ function Baseline() {
       </StyledAppContainer>
       <StyledAppContainer>
         <StyledH1>Your Scores</StyledH1>
-        <StyledTable>
+        {(!scoreSheet || scoreSheet.length === 0) &&
+          <div>Play the game and accumulate scores!</div>
+        }
+        {(scoreSheet && scoreSheet.length > 0) && <StyledTable>
           <thead>
             <tr>
               <th>Date</th>
@@ -640,7 +643,7 @@ function Baseline() {
               )
             }))}
           </tbody>
-        </StyledTable>
+        </StyledTable>}
       </StyledAppContainer >
       <Footer />
     </StyledWrapper >
