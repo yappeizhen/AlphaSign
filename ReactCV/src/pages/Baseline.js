@@ -302,7 +302,15 @@ const StyledCountdown = styled.p`
     font-size: 32px;
   }
 `;
-
+const StyledTable = styled.table`
+  background-color: whitesmoke;
+  width: 40%;
+  min-width: 200px;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  table-layout: fixed;
+`;
 function Baseline() {
   const [isStarted, setIsStarted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -311,6 +319,7 @@ function Baseline() {
   const [isCorrect, setIsCorrect] = useState(false);
   const [currentWord, setCurrentWord] = useState(null);
   const [showAnswer, setShowAnswer] = useState(true);
+  const [scoreSheet, setScoreSheet] = useState([]);
   const [score, setScore] = useState(0);
 
   const webcamRef = useRef(null);
@@ -319,6 +328,7 @@ function Baseline() {
   const intervalIdRef = useRef(null);
   const modelRef = useRef(null);
   const scoreRef = useRef(0);
+  const scoreSheetRef = useRef([]);
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 4);//25
@@ -338,6 +348,29 @@ function Baseline() {
     setIsCorrect(false);
     handleChooseAlphabet();
   }, [handleChooseAlphabet]);
+  const updateScoreSheet = useCallback(() => {
+    if (scoreRef.current > 0) {
+      const today = new Date();
+      const currentScore = scoreRef.current;
+      let newScoreSheet = scoreSheetRef.current;
+      newScoreSheet.push({ date: today, score: currentScore });
+      setScoreSheet(newScoreSheet);
+      scoreSheetRef.current = newScoreSheet;
+      localStorage.setItem("baselineScoreSheet", JSON.stringify(newScoreSheet));
+    }
+  }, []);
+
+  useEffect(() => {
+    const jsonScoresheet = localStorage.getItem("baselineScoreSheet");
+    if (jsonScoresheet) {
+      const ss = JSON.parse(jsonScoresheet);
+      setScoreSheet(ss);
+      scoreSheetRef.current = ss;
+    }
+    return () => {
+      updateScoreSheet();
+    }
+  }, [updateScoreSheet])
 
   // Main function
   const detect = useCallback(async (net) => {
@@ -495,7 +528,10 @@ function Baseline() {
     setIsStarted(true);
   }
   const onExit = () => {
+    updateScoreSheet();
     setIsStarted(false);
+    setCurrentWord(null);
+    currentWordRef.current = null;
     setScore(0);
     scoreRef.current = 0;
   }
@@ -580,8 +616,34 @@ function Baseline() {
           </StyledCamWrapper>
         </StyledContentBody>
       </StyledAppContainer>
+      <StyledAppContainer>
+        <StyledH1>Your Scores</StyledH1>
+        <StyledTable>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody style={{ maxHeight: "200px", overflowY: "auto" }}>
+            {(!scoreSheet || scoreSheet.length === 0) &&
+              <tr>
+                <td style={{ textAlign: "center" }} colSpan="2">Play the game and accumulate scores!</td>
+              </tr>
+            }
+            {scoreSheet && scoreSheet.map((item => {
+              return (
+                <tr key={item.date} style={{ height: "24px" }}>
+                  <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{new Date(item.date).toLocaleDateString('en-US')} {new Date(item.date).toLocaleTimeString('en-US')}</td>
+                  <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{item.score}</td>
+                </tr>
+              )
+            }))}
+          </tbody>
+        </StyledTable>
+      </StyledAppContainer >
       <Footer />
-    </StyledWrapper>
+    </StyledWrapper >
   );
 }
 
