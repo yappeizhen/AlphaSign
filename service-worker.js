@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/SignAI/precache-manifest.99c36a3801f83f44af8500c3cc68be2c.js"
+  "/SignAI/precache-manifest.b137b813225bea4d949f94beda58fddd.js"
 );
 
 self.addEventListener('message', (event) => {
