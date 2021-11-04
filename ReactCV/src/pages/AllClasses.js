@@ -563,7 +563,7 @@ function AllClasses() {
                   <StyledTargetWord>{wordBank[currentWord]?.word}</StyledTargetWord>
                 </StyledWordContainer>
                 <StyledResponseButtonGroup>
-                  <DSButton onClick={onExit} text="End Game" />
+                  <DSButton onClick={onExit} text="Exit" />
                   <DSButton onClick={onNextQuestion} text="Next Question!" />
                 </StyledResponseButtonGroup>
               </StyledBubbleWrapper>
