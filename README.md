@@ -16,6 +16,9 @@ As the computer vision models are running on [tensorflow.js](https://www.tensorf
 - Finetuned on SSD MobileNetv2 FPNLite 320x320 pre-trained on COCO 2017 dataset.
 
 ## 2) Extended Model
+
+![image](https://github.com/yappeizhen/SignAI/blob/ff2d311503d1966eabfbcdd8d74a454d553a04ef/read-me-images/video_inference.gif)
+
 - 24 Classes: A, B, C, D, E, F, G, H, I, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y.
 - J and Z are excluded as they are both dynamic sign langauges involving movement.
 - Finetuned on SSD MobileNetv2 FPNLite 320x320 pre-trained on COCO 2017 dataset.
