@@ -52,12 +52,6 @@ const StyledTextContainer = styled.div`
 const StyledBodyWrapper = styled.div`
   padding-top: 120px;
 `;
-const StyledTeamContainer = styled.div`
-  min-height: 100vh;
-  padding-left: 100px;
-  padding-right: 100px;
-  background-color: rgb(230,255,238);
-`;
 const StyledCardContainer = styled.div`
   height: 100%;
   display: flex;
@@ -65,7 +59,6 @@ const StyledCardContainer = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
-  margin-top: 40px;
 `;
 function AboutUs() {
   return (
@@ -89,7 +82,7 @@ function AboutUs() {
           <StyledH1>Our Tech Stack</StyledH1>
           <StyledTextContainer>
             This web application was developed using ReactJs and hosted on Github Pages.
-            SignAI was created by fine tuning the pre-trained SSD MobileNet V2 FPNLite 320x320 from the&nbsp;
+            Our deep learning model was created by fine tuning the pre-trained SSD MobileNet V2 FPNLite 320x320 from the&nbsp;
             <Keyword
               url="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md"
               text="TensorFlow 2 Object Detection Model Zoo" />
@@ -104,33 +97,32 @@ function AboutUs() {
             .
           </StyledTextContainer>
           <br />
+          <StyledTextContainer>
+            <StyledH1>
+              Our Team
+            </StyledH1>
+            <StyledCardContainer>
+              <ProfileCard
+                imgSrc={peizhenImg}
+                name="Yap Pei Zhen"
+                major="Economics"
+                university="NUS"
+                github="https://github.com/yappeizhen"
+                linkedin="https://www.linkedin.com/in/peizhen/"
+              />
+              <ProfileCard
+                imgSrc={zhiliImg}
+                name="Ng Zhili"
+                major="Mechanical Engineering"
+                university="NUS"
+                github="https://github.com/ngzhili"
+                linkedin="https://www.linkedin.com/in/ngzhili/"
+              />
+            </StyledCardContainer>
+          </StyledTextContainer>
+          <br />
         </StyledBodyWrapper>
       </StyledAppContainer>
-      <StyledTeamContainer>
-        <StyledTextContainer>
-          <StyledH1 style={{ paddingTop: "40px" }}>
-            Our Team
-          </StyledH1>
-          <StyledCardContainer>
-            <ProfileCard
-              imgSrc={peizhenImg}
-              name="Yap Pei Zhen"
-              major="Economics"
-              university="NUS"
-              github="https://github.com/yappeizhen"
-              linkedin="https://www.linkedin.com/in/peizhen/"
-            />
-            <ProfileCard
-              imgSrc={zhiliImg}
-              name="Ng Zhili"
-              major="Mechanical Engineering"
-              university="NUS"
-              github="https://github.com/ngzhili"
-              linkedin="https://www.linkedin.com/in/ngzhili/"
-            />
-          </StyledCardContainer>
-        </StyledTextContainer>
-      </StyledTeamContainer>
     </StyledWrapper>
   );
 }
