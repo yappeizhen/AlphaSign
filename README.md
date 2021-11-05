@@ -42,3 +42,9 @@ As the computer vision models are running on [tensorflow.js](https://www.tensorf
 
 - Inference on Test Image (Groundtruth bounding box in blue with IOU Score of prediction result)
 ![image](https://github.com/yappeizhen/Sign-Language-Image-Recognition/blob/ec61cb5aa6485d9f93bc5b79aa57139957def862/read-me-images/inference-iou-h.png)
+
+
+
+## Video Inference 
+
+https://github.com/yappeizhen/SignAI/blob/b6d4f55301de8ef8e8407e1e61792679533de3fd/read-me-images/video_inference_output.mp4
