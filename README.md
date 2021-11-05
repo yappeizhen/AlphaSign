@@ -46,5 +46,5 @@ As the computer vision models are running on [tensorflow.js](https://www.tensorf
 
 
 ## Video Inference 
+<video src='https://github.com/yappeizhen/SignAI/blob/b6d4f55301de8ef8e8407e1e61792679533de3fd/read-me-images/video_inference_output.mp4' width=180/>
 
-https://github.com/yappeizhen/SignAI/blob/b6d4f55301de8ef8e8407e1e61792679533de3fd/read-me-images/video_inference_output.mp4
