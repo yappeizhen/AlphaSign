@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/AlphaSign/static/css/main.642c0362.chunk.css",
-    "main.js": "/AlphaSign/static/js/main.41f42325.chunk.js",
-    "main.js.map": "/AlphaSign/static/js/main.41f42325.chunk.js.map",
+    "main.js": "/AlphaSign/static/js/main.59a056ba.chunk.js",
+    "main.js.map": "/AlphaSign/static/js/main.59a056ba.chunk.js.map",
     "runtime-main.js": "/AlphaSign/static/js/runtime-main.8f93a910.js",
     "runtime-main.js.map": "/AlphaSign/static/js/runtime-main.8f93a910.js.map",
     "static/js/2.b06b37df.chunk.js": "/AlphaSign/static/js/2.b06b37df.chunk.js",
     "static/js/2.b06b37df.chunk.js.map": "/AlphaSign/static/js/2.b06b37df.chunk.js.map",
     "index.html": "/AlphaSign/index.html",
-    "precache-manifest.974e3eb875282e31fe03260b0ee72388.js": "/AlphaSign/precache-manifest.974e3eb875282e31fe03260b0ee72388.js",
+    "precache-manifest.2727ea2338ce15e77997b393a5267190.js": "/AlphaSign/precache-manifest.2727ea2338ce15e77997b393a5267190.js",
     "service-worker.js": "/AlphaSign/service-worker.js",
     "static/css/main.642c0362.chunk.css.map": "/AlphaSign/static/css/main.642c0362.chunk.css.map",
     "static/js/2.b06b37df.chunk.js.LICENSE.txt": "/AlphaSign/static/js/2.b06b37df.chunk.js.LICENSE.txt",
@@ -52,6 +52,6 @@
     "static/js/runtime-main.8f93a910.js",
     "static/js/2.b06b37df.chunk.js",
     "static/css/main.642c0362.chunk.css",
-    "static/js/main.41f42325.chunk.js"
+    "static/js/main.59a056ba.chunk.js"
   ]
 }
