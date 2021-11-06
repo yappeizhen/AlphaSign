@@ -544,7 +544,7 @@ function AllClasses() {
         </StyledAppBar>
         <StyledContentBody>
           <StyledLeftPanel>
-            <div style={{ width: "100%" }}>Your Score: {score}</div>
+            <div style={{ width: "100%", fontWeight: "600" }}>Your Score: {score}</div>
             <TextBubble>
               <StyledBubbleWrapper prestart={true} hidden={isStarted}>
                 <StyledH2>Ready to start?</StyledH2>

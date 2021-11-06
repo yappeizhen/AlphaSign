@@ -549,7 +549,7 @@ function Baseline() {
         </StyledAppBar>
         <StyledContentBody>
           <StyledLeftPanel>
-            <div style={{ width: "100%" }}>Your Score: {score}</div>
+            <div style={{ width: "100%", fontWeight: "600" }}>Your Score: {score}</div>
             <TextBubble backgroundColor="rgb(81, 161, 186, 0.5)">
               <StyledBubbleWrapper prestart={true} hidden={isStarted}>
                 <StyledH2>Ready to start?</StyledH2>

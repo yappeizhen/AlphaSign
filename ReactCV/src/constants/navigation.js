@@ -1,4 +1,4 @@
-const baseUrl = '/SignAI'
+const baseUrl = '/AlphaSign'
 
 export const NAV_ITEMS = {
   ABOUT_US: {

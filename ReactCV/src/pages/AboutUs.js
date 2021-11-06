@@ -65,18 +65,18 @@ function AboutUs() {
     <StyledWrapper>
       <StyledAppContainer>
         <StyledBodyWrapper>
-          <StyledH1>What is Sign AI?</StyledH1>
+          <StyledH1>What is AlphaSign?</StyledH1>
           <StyledTextContainer>
-            SignAI is an interactive game that seeks to encourage people to learn Sign Language, starting from the American Sign Language (ASL) alphabet.
+            AlphaSign is an interactive game that seeks to encourage people to learn Sign Language, starting from the American Sign Language (ASL) alphabet.
           </StyledTextContainer>
           <br />
           <StyledTextContainer>
-            SignAI was developed as part of deep learning project by two students hoping to leverage the power of AI to promote a more inclusive society. By automating and gamifying the teaching of basic Sign Language using AI, we hope to make the learning of sign language a fun and independent process.
-          </StyledTextContainer>
+            AlphaSign was developed as part of deep learning project by two students hoping to leverage the power of AI to promote a more inclusive society. By automating and gamifying the teaching of basic Sign Language using AI, we hope to make the learning of sign language a fun and independent process.
+            `` </StyledTextContainer>
           <br />
           <StyledH1>Our Models</StyledH1>
           <StyledTextContainer>
-            SignAI features 2 models – the Baseline Model, and the Extended Model. The Baseline Model was trained on four object classes, ‘A’, ‘B’, ‘C’, and ‘D’ to optimise for performance and accuracy. We then created the Extended Model which was trained on all letters of ASL excluding ‘J’, and ‘Z’, which are dynamic signs that require movement.
+            AlphaSign features 2 models – the Baseline Model, and the Extended Model. The Baseline Model was trained on four object classes, ‘A’, ‘B’, ‘C’, and ‘D’ to optimise for performance and accuracy. We then created the Extended Model which was trained on all letters of ASL excluding ‘J’, and ‘Z’, which are dynamic signs that require movement.
           </StyledTextContainer>
           <br />
           <StyledH1>Our Tech Stack</StyledH1>
@@ -93,7 +93,7 @@ function AboutUs() {
           <br />
           <StyledTextContainer>
             Check out our source code&nbsp;
-            <Keyword url="https://github.com/yappeizhen/SignAI" text="here" />
+            <Keyword url="https://github.com/yappeizhen/AlphaSign" text="here" />
             .
           </StyledTextContainer>
           <br />
