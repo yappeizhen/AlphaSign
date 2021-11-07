@@ -6,8 +6,7 @@ import Webcam from "react-webcam";
 import styled from "styled-components"
 
 import { Modal } from '@material-ui/core';
-import { CircularProgress } from "@mui/material"
-import { Switch } from "@mui/material";
+import { CircularProgress, Slider, Switch } from "@mui/material"
 import * as tf from "@tensorflow/tfjs";
 
 import aslImg from "../../src/assets/images/ASL_Alphabet_ABCD.png"
@@ -96,10 +95,10 @@ const StyledLeftPanel = styled.div`
     align-items: center;
   }
 `;
-const StyledCamWrapper = styled.div`
-  position: relative;
+const StyledRightPanel = styled.div`
   height: 100%;
   width: 50%;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,6 +106,13 @@ const StyledCamWrapper = styled.div`
   @media only screen and (max-width: 768px) {
     width: 70%;
   }
+`;
+const StyledCamWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 const StyledLoadingText = styled.p`
   font-size: 20px;
@@ -221,12 +227,8 @@ const StyledBubbleWrapper = styled.div`
   align-items: center;
 `;
 const StyledStudyIcon = styled.img`
-  height: 52px;
-  width: 52px;
-  @media only screen and (max-width: 768px) {
-    height: 40px;
-    width: 40px
-  }
+  width: 3em;
+  height: 3em;
 `;
 const StyledIntroContainer = styled.div`
   display: flex; 
@@ -264,7 +266,7 @@ const StyledTargetWord = styled.p`
 `;
 const StyledBoyImg = styled.img`
   margin-top: 40px;
-  width: 45%;
+  width: 35%;
 `;
 const StyledTogglePanel = styled.div`
   display: flex;
@@ -311,6 +313,22 @@ const StyledTable = styled.table`
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   table-layout: fixed;
 `;
+const StyledSliderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+const StyledSliderLabel = styled.p`
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  @media only screen and (max-width: 768px) {
+    font-size: 10px;
+  }
+`;
+
 function Baseline() {
   const [isStarted, setIsStarted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -321,6 +339,7 @@ function Baseline() {
   const [showAnswer, setShowAnswer] = useState(true);
   const [scoreSheet, setScoreSheet] = useState([]);
   const [score, setScore] = useState(0);
+  const [threshold, setThreshold] = useState(0.9);
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -329,6 +348,7 @@ function Baseline() {
   const modelRef = useRef(null);
   const scoreRef = useRef(0);
   const scoreSheetRef = useRef([]);
+  const thresholdRef = useRef(0.9);
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 4);//25
@@ -448,7 +468,7 @@ function Baseline() {
         // 5. TODO - Update drawing utility
         // drawSomething(obj, ctx)  
         requestAnimationFrame(() => {
-          const result = drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx, wordBank[currentWordRef.current]?.word);
+          const result = drawRect(boxes[0], classes[0], scores[0], thresholdRef.current, videoWidth, videoHeight, ctx, wordBank[currentWordRef.current]?.word);
           if (result) {
             setIsCorrect(true);
             setScore(scoreRef.current + 1);
@@ -543,7 +563,7 @@ function Baseline() {
           <StyledIntroContainer>
             <StyledH1>Baseline Model</StyledH1>
             <StyledDescription>
-              This model was trained on 4 classes, 'A', 'B', 'C', and 'D' to minimise training loss.
+              AlphaSign is a Sign Language Alphabet game based on an AI object detection model. This model was trained on 4 classes, 'A', 'B', 'C', and 'D' to minimise training loss.
             </StyledDescription>
           </StyledIntroContainer>
         </StyledAppBar>
@@ -598,22 +618,40 @@ function Baseline() {
               </StyledAslModal>
             </StyledBoyContainer>
           </StyledLeftPanel>
-          <StyledCamWrapper>
-            <StyledCamLoadingScreen hidden={!isLoading}>
-              <StyledLoadingText>Loading Model...</StyledLoadingText>
-            </StyledCamLoadingScreen>
-            <StyledSuccessScreen hidden={!isCorrect}>
-              <StyledTickIcon src={tick} alt="Check mark" />
-            </StyledSuccessScreen>
-            <StyledWebcam
-              ref={webcamRef}
-              muted={true}
-              audio={false}
-            />
-            <StyledCanvas
-              ref={canvasRef}
-            />
-          </StyledCamWrapper>
+          <StyledRightPanel>
+            <StyledSliderContainer>
+              <StyledSliderLabel>Detection Threshold</StyledSliderLabel>
+              <Slider
+                size="small"
+                value={threshold}
+                onChange={(e) => {
+                  setThreshold(e.target.value)
+                  thresholdRef.current = e.target.value;
+                }}
+                valueLabelDisplay="auto"
+                min={0}
+                max={1}
+                step={0.05}
+                style={{ width: "70%", margin: 0 }}
+              />
+            </StyledSliderContainer>
+            <StyledCamWrapper>
+              <StyledCamLoadingScreen hidden={!isLoading}>
+                <StyledLoadingText>Loading Model...</StyledLoadingText>
+              </StyledCamLoadingScreen>
+              <StyledSuccessScreen hidden={!isCorrect}>
+                <StyledTickIcon src={tick} alt="Check mark" />
+              </StyledSuccessScreen>
+              <StyledWebcam
+                ref={webcamRef}
+                muted={true}
+                audio={false}
+              />
+              <StyledCanvas
+                ref={canvasRef}
+              />
+            </StyledCamWrapper>
+          </StyledRightPanel>
         </StyledContentBody>
       </StyledAppContainer>
       <StyledAppContainer>
