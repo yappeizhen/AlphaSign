@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/AlphaSign/precache-manifest.2727ea2338ce15e77997b393a5267190.js"
+  "/AlphaSign/precache-manifest.30ece9407f4c247e887c48a3c9117cc9.js"
 );
 
 self.addEventListener('message', (event) => {
