@@ -14,10 +14,10 @@ import boyImg from "../../src/assets/images/boy-hand.png"
 import tick from "../../src/assets/images/checked.png"
 import backgroundImg from "../../src/assets/images/clouds_background.jpeg"
 import studyIcon from "../../src/assets/images/notebook.png";
-import { wordBank } from "../../src/constants/wordBank";
 import DSButton from "../components/DSButton";
 import Footer from "../components/Footer";
 import TextBubble from "../components/TextBubble";
+import { wordBank } from "../constants/wordBank";
 // 2. TODO - Import drawing utility here
 // e.g. import { drawRect } from "./utilities";
 import { drawRect } from "../utilities";
@@ -339,7 +339,7 @@ function Baseline() {
   const [showAnswer, setShowAnswer] = useState(true);
   const [scoreSheet, setScoreSheet] = useState([]);
   const [score, setScore] = useState(0);
-  const [threshold, setThreshold] = useState(0.9);
+  const [threshold, setThreshold] = useState(0.7);
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -348,7 +348,7 @@ function Baseline() {
   const modelRef = useRef(null);
   const scoreRef = useRef(0);
   const scoreSheetRef = useRef([]);
-  const thresholdRef = useRef(0.9);
+  const thresholdRef = useRef(0.7);
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 4);//25

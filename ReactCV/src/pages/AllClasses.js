@@ -337,7 +337,7 @@ function AllClasses() {
   const [showAnswer, setShowAnswer] = useState(true);
   const [scoreSheet, setScoreSheet] = useState([]);
   const [score, setScore] = useState(0);
-  const [threshold, setThreshold] = useState(0.9);
+  const [threshold, setThreshold] = useState(0.7);
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -346,7 +346,7 @@ function AllClasses() {
   const modelRef = useRef(null);
   const scoreRef = useRef(0);
   const scoreSheetRef = useRef([]);
-  const thresholdRef = useRef(0.9);
+  const thresholdRef = useRef(0.7);
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 23);
