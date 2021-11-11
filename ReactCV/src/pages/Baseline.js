@@ -670,7 +670,7 @@ function Baseline() {
             {scoreSheet && scoreSheet.map((item => {
               return (
                 <tr key={item.date} style={{ height: "24px" }}>
-                  <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{new Date(item.date).toLocaleDateString('en-US')} {new Date(item.date).toLocaleTimeString('en-US')}</td>
+                  <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{new Date(item.date).toLocaleDateString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
                   <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{item.score}</td>
                 </tr>
               )
