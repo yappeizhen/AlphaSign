@@ -663,14 +663,16 @@ function AllClasses() {
             </tr>
           </thead>
           <tbody style={{ maxHeight: "200px", overflowY: "auto" }}>
-            {scoreSheet && scoreSheet.map((item => {
-              return (
-                <tr key={item.date} style={{ height: "24px" }}>
-                  <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{new Date(item.date).toLocaleDateString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
-                  <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{item.score}</td>
-                </tr>
-              )
-            }))}
+            {scoreSheet && scoreSheet
+              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .map((item => {
+                return (
+                  <tr key={item.date} style={{ height: "24px" }}>
+                    <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{new Date(item.date).toLocaleDateString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
+                    <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{item.score}</td>
+                  </tr>
+                )
+              }))}
           </tbody>
         </StyledTable>}
       </StyledAppContainer >
