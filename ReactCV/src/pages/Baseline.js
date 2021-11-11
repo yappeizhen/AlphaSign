@@ -14,10 +14,10 @@ import boyImg from "../../src/assets/images/boy-hand.png"
 import tick from "../../src/assets/images/checked.png"
 import backgroundImg from "../../src/assets/images/clouds_background.jpeg"
 import studyIcon from "../../src/assets/images/notebook.png";
-import { wordBank } from "../../src/constants/wordBank";
 import DSButton from "../components/DSButton";
 import Footer from "../components/Footer";
 import TextBubble from "../components/TextBubble";
+import { wordBank } from "../constants/wordBank";
 // 2. TODO - Import drawing utility here
 // e.g. import { drawRect } from "./utilities";
 import { drawRect } from "../utilities";
@@ -181,11 +181,11 @@ const StyledWebcam = styled(Webcam)`
   height: 100%;
   border-radius: 40px;
   border: 16px solid rgb(40, 44, 52);
-  box-shadow: 20px 20px 2px 4px rgb(40, 44, 52, 0.5);
+  box-shadow: 8px 8px 2px 4px rgb(40, 44, 52, 0.5);
   @media only screen and (max-width: 680px) {
     width: 100%;
     border: 8px solid rgb(40, 44, 52);
-    box-shadow: 10px 10px 2px 4px rgb(40, 44, 52, 0.5);
+    box-shadow: 8px 8px 2px 4px rgb(40, 44, 52, 0.5);
   }
 `;
 const StyledAslImg = styled.img`
@@ -339,7 +339,7 @@ function Baseline() {
   const [showAnswer, setShowAnswer] = useState(true);
   const [scoreSheet, setScoreSheet] = useState([]);
   const [score, setScore] = useState(0);
-  const [threshold, setThreshold] = useState(0.9);
+  const [threshold, setThreshold] = useState(0.7);
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -348,7 +348,7 @@ function Baseline() {
   const modelRef = useRef(null);
   const scoreRef = useRef(0);
   const scoreSheetRef = useRef([]);
-  const thresholdRef = useRef(0.9);
+  const thresholdRef = useRef(0.7);
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 4);//25
@@ -496,11 +496,11 @@ function Baseline() {
       // e.g. const net = await cocossd.load();
       // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
       // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
-      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
-      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
-      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite/model.json')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/model/model.json')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite/model.json')
 
-      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_ABCD_best/model.json')
+      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_ABCD_best/model.json')
       modelRef.current = net;
 
       console.log('Loaded Model')
@@ -667,14 +667,16 @@ function Baseline() {
             </tr>
           </thead>
           <tbody style={{ maxHeight: "200px", overflowY: "auto" }}>
-            {scoreSheet && scoreSheet.map((item => {
-              return (
-                <tr key={item.date} style={{ height: "24px" }}>
-                  <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{new Date(item.date).toLocaleDateString('en-US')} {new Date(item.date).toLocaleTimeString('en-US')}</td>
-                  <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{item.score}</td>
-                </tr>
-              )
-            }))}
+            {scoreSheet && scoreSheet
+              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .map((item => {
+                return (
+                  <tr key={item.date} style={{ height: "24px" }}>
+                    <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{new Date(item.date).toLocaleDateString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
+                    <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{item.score}</td>
+                  </tr>
+                )
+              }))}
           </tbody>
         </StyledTable>}
       </StyledAppContainer >
