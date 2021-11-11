@@ -328,6 +328,9 @@ const StyledSliderLabel = styled.p`
     font-size: 10px;
   }
 `;
+
+
+
 function AllClasses() {
   const [isStarted, setIsStarted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -347,6 +350,7 @@ function AllClasses() {
   const scoreRef = useRef(0);
   const scoreSheetRef = useRef([]);
   const thresholdRef = useRef(0.9);
+
 
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 23);
@@ -615,13 +619,17 @@ function AllClasses() {
           </StyledLeftPanel>
           <StyledRightPanel>
             <StyledSliderContainer>
-              <StyledSliderLabel>Detection Threshold</StyledSliderLabel>
+              <StyledSliderLabel>Detection Threshold </StyledSliderLabel>
               <Slider
+
+                
+
                 size="small"
                 value={threshold}
                 onChange={(e) => {
                   setThreshold(e.target.value)
                   thresholdRef.current = e.target.value;
+
                 }}
                 valueLabelDisplay="auto"
                 min={0}
