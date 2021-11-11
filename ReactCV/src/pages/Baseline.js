@@ -181,11 +181,11 @@ const StyledWebcam = styled(Webcam)`
   height: 100%;
   border-radius: 40px;
   border: 16px solid rgb(40, 44, 52);
-  box-shadow: 20px 20px 2px 4px rgb(40, 44, 52, 0.5);
+  box-shadow: 8px 8px 2px 4px rgb(40, 44, 52, 0.5);
   @media only screen and (max-width: 680px) {
     width: 100%;
     border: 8px solid rgb(40, 44, 52);
-    box-shadow: 10px 10px 2px 4px rgb(40, 44, 52, 0.5);
+    box-shadow: 8px 8px 2px 4px rgb(40, 44, 52, 0.5);
   }
 `;
 const StyledAslImg = styled.img`
@@ -496,11 +496,11 @@ function Baseline() {
       // e.g. const net = await cocossd.load();
       // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
       // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
-      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/model/model.json')
-      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
-      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite/model.json')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/model/model.json')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite/model.json')
 
-      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/Sign-Language-Image-Recognition/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_ABCD_best/model.json')
+      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_ABCD_best/model.json')
       modelRef.current = net;
 
       console.log('Loaded Model')
