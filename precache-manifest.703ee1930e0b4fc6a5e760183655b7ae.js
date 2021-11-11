@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "636ae8f7497358d6d6cadd928c6928ef",
+    "revision": "f9681ccca563859b709c8bfdf4b4356a",
     "url": "/AlphaSign/index.html"
   },
   {
-    "revision": "3fd53d80a9c44284ea59",
+    "revision": "2d18827834d6bb669524",
     "url": "/AlphaSign/static/css/main.e2e32b27.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/AlphaSign/static/js/2.7e8b1274.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3fd53d80a9c44284ea59",
-    "url": "/AlphaSign/static/js/main.edb211d6.chunk.js"
+    "revision": "2d18827834d6bb669524",
+    "url": "/AlphaSign/static/js/main.7f75d79f.chunk.js"
   },
   {
     "revision": "e6491efbf99735b52903",
