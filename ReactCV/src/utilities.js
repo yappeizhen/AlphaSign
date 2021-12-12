@@ -48,7 +48,7 @@ const labelMap = {
 
 // Define a drawing function
 export const drawRect = (boxes, classes, scores, threshold, imgWidth, imgHeight, ctx, target) => {
-    console.log("Detection threshold: ", threshold);
+    //console.log("Detection threshold: ", threshold);
     
     for (let i = 0; i <= Math.min(5, boxes.length); i++) {
         if (boxes[i] && classes[i] && scores[i] > threshold) {

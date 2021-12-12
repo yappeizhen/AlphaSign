@@ -475,7 +475,7 @@ function Baseline() {
             scoreRef.current = scoreRef.current + 1;
             setTimeout(() => {
               onNextQuestion();
-            }, 500);
+            }, 1000);
           }
         });
       }

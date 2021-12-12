@@ -421,7 +421,7 @@ function AllClasses() {
       const casted = resized.cast('int32')
       const expanded = casted.expandDims(0)
       const obj = await net.executeAsync(expanded)
-      //console.log(obj)
+      // console.log(obj)
 
       if (obj) {
         setIsLoading(false);
@@ -433,9 +433,14 @@ function AllClasses() {
       //const scores = await obj[3].array()
 
       // mobilenetv2 320x320 All Classes 11k Epochs
-      const boxes = await obj[3].array()
-      const classes = await obj[4].array()
-      const scores = await obj[1].array()
+      //const boxes = await obj[3].array()
+      //const classes = await obj[4].array()
+      //const scores = await obj[1].array()
+
+      // mobilenetv2 320x320 All Classes 16k Epochs v2
+      const boxes = await obj[0].array()
+      const classes = await obj[2].array()
+      const scores = await obj[4].array()
 
       /*
       //Testing
@@ -472,7 +477,7 @@ function AllClasses() {
             scoreRef.current = scoreRef.current + 1;
             setTimeout(() => {
               onNextQuestion();
-            }, 500);
+            }, 1000);
           }
         });
       }
@@ -496,7 +501,9 @@ function AllClasses() {
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
       //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/model/model.json')
 
-      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_all_classes/model.json')
+      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_all_classes/model.json')
+      
+      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_all_classes_v2/model.json')
       modelRef.current = net;
       console.log('Loaded Model')
 
