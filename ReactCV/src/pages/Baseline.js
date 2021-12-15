@@ -392,6 +392,7 @@ function Baseline() {
     }
   }, [updateScoreSheet])
 
+  var previousFrameTime = 0;
   // Main function
   const detect = useCallback(async (net) => {
     // Check data is available
@@ -413,13 +414,25 @@ function Baseline() {
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
 
+      // get FPS of video frames processed per second
+      var d= new Date();
+      var time = d.getTime();
+      //console.log(time,previousFrameTime)
+      var FPS = Math.floor(1000/(time - previousFrameTime));
+      previousFrameTime = time;
+
+      const ctx = canvasRef.current.getContext("2d");
+      ctx.font = '20px normal bold courier';
+      ctx.clearRect(0,0,canvasRef.width,canvasRef.height);
+      ctx.fillText('FPS = '+FPS.toString(),10,30);
+
       // 4. TODO - Make Detections
       const img = tf.browser.fromPixels(video)
       const resized = tf.image.resizeBilinear(img, [640, 480])
       const casted = resized.cast('int32')
       const expanded = casted.expandDims(0)
       const obj = await net.executeAsync(expanded)
-      console.log(obj)
+      //console.log(obj)
 
       if (obj) {
         setIsLoading(false);
@@ -464,7 +477,7 @@ function Baseline() {
       // Draw mesh
       if (canvasRef.current) {
         const ctx = canvasRef.current.getContext("2d");
-
+        
         // 5. TODO - Update drawing utility
         // drawSomething(obj, ctx)  
         requestAnimationFrame(() => {
@@ -486,6 +499,7 @@ function Baseline() {
       tf.dispose(obj)
     }
   }, [onNextQuestion]);
+
   const runCoco = useCallback(
     async () => {
       // 3. TODO - Load network 

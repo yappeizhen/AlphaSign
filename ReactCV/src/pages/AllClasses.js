@@ -394,6 +394,8 @@ function AllClasses() {
       updateScoreSheet();
     }
   }, [updateScoreSheet])
+
+  var previousFrameTime = 0;
   // Main function
   const detect = useCallback(async (net) => {
     // Check data is available
@@ -414,6 +416,18 @@ function AllClasses() {
       // Set canvas height and width
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
+
+      // get FPS of video frames processed per second
+      var d= new Date();
+      var time = d.getTime();
+      //console.log(time,previousFrameTime)
+      var FPS = Math.floor(1000/(time - previousFrameTime));
+      previousFrameTime = time;
+
+      const ctx = canvasRef.current.getContext("2d");
+      ctx.font = '20px normal bold courier';
+      ctx.clearRect(0,0,canvasRef.width,canvasRef.height);
+      ctx.fillText('FPS = '+FPS.toString(),10,30);
 
       // 4. TODO - Make Detections
       const img = tf.browser.fromPixels(video)
