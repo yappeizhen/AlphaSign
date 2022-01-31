@@ -1,4 +1,8 @@
 # AlphaSign: A Static Sign Language Alphabet Game
+![framework](https://img.shields.io/badge/framework-node.js,react-red)
+![hosting](https://img.shields.io/badge/hosting-githubpages-blue)
+![libraries](https://img.shields.io/badge/libraries-tensorflow,tensorflow.js,opencv-green)
+
 A tensorflow.js web application that utilies TF2 object detection models to recognize real-time static American Sign Language (ASL) via web browser. This web application comes in a form of a game that recognises ASL alphabets via the user's web cam. Try the live demo [here](https://yappeizhen.github.io/AlphaSign/).
 
 Explore **SignPose**, the dynamic version of our sign language game [here](https://github.com/ngzhili/SignPose).
