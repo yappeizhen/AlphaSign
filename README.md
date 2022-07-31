@@ -10,6 +10,7 @@ Explore **SignPose**, the dynamic version of our sign language game [here](https
 ## Web Application Home Page
 ![image](https://user-images.githubusercontent.com/66234273/137351776-50edd012-7aef-45b2-b023-34ecd776c4ba.png)
 
+![image-inference](https://github.com/yappeizhen/AlphaSign/blob/master/read-me-images/extended-inference-2.JPG)
 
 # Object Detection Models
 Using the concept of transfer learning, we finetuned [TensorFlow 2 Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md) SSD MobileNetv2 FPNLite 320x320 model weights via the TF2 Object Detection API in Google Colab. 
