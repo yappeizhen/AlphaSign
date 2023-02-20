@@ -73,10 +73,11 @@ function AboutUs() {
           </StyledTextContainer>
           <br />
           <StyledTextContainer>
-            AlphaSign by two students hoping to leverage the power of AI to
-            promote a more inclusive society. We hope to make the learning of
-            sign language a fun and independent process by automating and
-            gamifying the teaching of basic Sign Language using AI.
+            AlphaSign was developed by two students hoping to leverage the power
+            of AI to promote a more inclusive society. We hope to make the
+            learning of sign language a fun and independent process by
+            automating and gamifying the teaching of basic Sign Language using
+            AI.
           </StyledTextContainer>
           <br />
           <StyledH1>Our Models</StyledH1>
