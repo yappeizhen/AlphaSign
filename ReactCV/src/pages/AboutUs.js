@@ -2,10 +2,10 @@ import "../App.css";
 
 // Import dependencies
 import React from "react";
-import styled from "styled-components"
+import styled from "styled-components";
 
-import peizhenImg from "../../src/assets/images/team/peizhen.jpeg"
-import zhiliImg from "../../src/assets/images/team/zhili.jpeg"
+import peizhenImg from "../../src/assets/images/team/peizhen.jpeg";
+import zhiliImg from "../../src/assets/images/team/zhili.jpeg";
 import Keyword from "../components/Keyword";
 import ProfileCard from "../components/ProfileCard";
 
@@ -16,7 +16,7 @@ import ProfileCard from "../components/ProfileCard";
 
 const StyledWrapper = styled.div`
   color: rgb(40, 44, 52);
-  background-color: rgb(230,255,251);
+  background-color: rgb(230, 255, 251);
   background-size: cover;
   height: auto;
 `;
@@ -67,45 +67,58 @@ function AboutUs() {
         <StyledBodyWrapper>
           <StyledH1>What is AlphaSign?</StyledH1>
           <StyledTextContainer>
-            AlphaSign is an interactive game that seeks to encourage people to learn Sign Language, starting from the American Sign Language (ASL) alphabet.
+            AlphaSign is an interactive game that seeks to encourage people to
+            learn Sign Language, starting from the American Sign Language (ASL)
+            alphabet.
           </StyledTextContainer>
           <br />
           <StyledTextContainer>
-            AlphaSign was developed as part of deep learning project by two students hoping to leverage the power of AI to promote a more inclusive society. By automating and gamifying the teaching of basic Sign Language using AI, we hope to make the learning of sign language a fun and independent process.
-            `` </StyledTextContainer>
+            AlphaSign by two students hoping to leverage the power of AI to
+            promote a more inclusive society. We hope to make the learning of
+            sign language a fun and independent process by automating and
+            gamifying the teaching of basic Sign Language using AI.
+          </StyledTextContainer>
           <br />
           <StyledH1>Our Models</StyledH1>
           <StyledTextContainer>
-            AlphaSign features 2 models – the Baseline Model, and the Extended Model. The Baseline Model was trained on four object classes, ‘A’, ‘B’, ‘C’, and ‘D’ to optimise for performance and accuracy. We then created the Extended Model which was trained on all letters of ASL excluding ‘J’, and ‘Z’, which are dynamic signs that require movement.
+            AlphaSign features 2 models – the Baseline Model, and the Extended
+            Model. The Baseline Model was trained on four object classes, ‘A’,
+            ‘B’, ‘C’, and ‘D’ to optimise for performance and accuracy. We then
+            created the Extended Model which was trained on all letters of ASL
+            excluding ‘J’, and ‘Z’, which are dynamic signs that require
+            movement.
           </StyledTextContainer>
           <br />
           <StyledH1>Our Tech Stack</StyledH1>
           <StyledTextContainer>
-            This web application was developed using ReactJs and hosted on Github Pages.
-            Our deep learning model was created by fine tuning the pre-trained SSD MobileNet V2 FPNLite 320x320 from the&nbsp;
+            This web application was developed using ReactJs and hosted on
+            Github Pages. Our deep learning model was created by fine tuning the
+            pre-trained model SSD MobileNet V2 FPNLite 320x320 from &nbsp;
             <Keyword
               url="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md"
-              text="TensorFlow 2 Object Detection Model Zoo" />
+              text="TensorFlow 2 Object Detection Model Zoo"
+            />
             &nbsp;and&nbsp;
             <Keyword url="https://www.tensorflow.org/js" text="TensorFlow.js" />
-            .
-          </StyledTextContainer >
-          <br />
-          <StyledTextContainer>
-            Check out our source code&nbsp;
-            <Keyword url="https://github.com/yappeizhen/AlphaSign" text="here" />
             .
           </StyledTextContainer>
           <br />
           <StyledTextContainer>
-            <StyledH1>
-              Our Team
-            </StyledH1>
+            Check out our source code&nbsp;
+            <Keyword
+              url="https://github.com/yappeizhen/AlphaSign"
+              text="here"
+            />
+            .
+          </StyledTextContainer>
+          <br />
+          <StyledTextContainer>
+            <StyledH1>Our Team</StyledH1>
             <StyledCardContainer>
               <ProfileCard
                 imgSrc={peizhenImg}
                 name="Yap Pei Zhen"
-                major="Economics"
+                major="Information Systems & Economics"
                 university="NUS"
                 github="https://github.com/yappeizhen"
                 linkedin="https://www.linkedin.com/in/peizhen/"
