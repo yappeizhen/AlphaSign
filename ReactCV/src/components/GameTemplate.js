@@ -35,6 +35,9 @@ const StyledAppContainer = styled.div`
   font-family: poppins;
   align-items: center;
   gap: 12px;
+  @media only screen and (max-width: 680px) {
+    padding-top: 40px;
+  }
 `;
 const StyledAppBar = styled.div`
   display: flex;
