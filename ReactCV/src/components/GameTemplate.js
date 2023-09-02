@@ -171,13 +171,13 @@ const StyledCanvas = styled.canvas`
 const StyledWebcam = styled(Webcam)`
   text-align: center;
   z-index: 9;
-  width: 85%;
+  max-width: 85%;
   height: 100%;
   border-radius: 40px;
   border: 16px solid rgb(40, 44, 52);
   box-shadow: 8px 8px 2px 4px rgb(40, 44, 52, 0.5);
   @media only screen and (max-width: 680px) {
-    width: 100%;
+    max-width: 100%;
     border: 8px solid rgb(40, 44, 52);
     box-shadow: 8px 8px 2px 4px rgb(40, 44, 52, 0.5);
   }
