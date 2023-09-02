@@ -261,6 +261,9 @@ const StyledTargetWord = styled.p`
     font-size: 40px;
   }
 `;
+const StyledLetterDisplay = styled.span`
+  color: ${(props) => (props.isEmphasized ? "black" : "rgba(0, 0, 0, 0.5)")};
+`;
 const StyledBoyImg = styled.img`
   margin-top: 40px;
   width: 35%;
@@ -388,12 +391,9 @@ function GameTemplate({
   }, [chooseRandomWord]);
   const onNextLetter = useCallback(() => {
     setIsLetterCorrect(false);
-    const doneIndex = doneLetterIndexRef.current + 1;
-    doneLetterIndexRef.current = doneIndex;
-    setDoneLetterIndex(doneIndex);
     if (
       // If user has completed the whole word
-      doneIndex + 1 ===
+      doneLetterIndexRef.current + 1 ===
       wordBank[currentWordBankIndexRef.current].word.length
     ) {
       scoreRef.current += 1;
@@ -492,6 +492,9 @@ function GameTemplate({
             );
             if (result) {
               setIsLetterCorrect(true); // mark letter as correct
+              const doneIndex = doneLetterIndexRef.current + 1;
+              doneLetterIndexRef.current = doneIndex;
+              setDoneLetterIndex(doneIndex);
               setTimeout(() => {
                 onNextLetter();
               }, 1000);
@@ -607,7 +610,18 @@ function GameTemplate({
                     />
                   )}
                   <StyledTargetWord>
-                    {wordBank[currentWordBankIndex]?.word}
+                    {wordBank[currentWordBankIndex]?.word
+                      .split("")
+                      .map((letter, idx) => {
+                        return (
+                          <StyledLetterDisplay
+                            key={idx}
+                            isEmphasized={doneLetterIndex >= idx}
+                          >
+                            {letter}
+                          </StyledLetterDisplay>
+                        );
+                      })}
                   </StyledTargetWord>
                 </StyledWordContainer>
                 <StyledResponseButtonGroup>
