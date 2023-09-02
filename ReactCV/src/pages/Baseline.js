@@ -3,7 +3,7 @@ import "../App.css";
 // Import dependencies
 import React from "react";
 import GameTemplate from "../components/GameTemplate";
-import { wordBank } from "../constants/wordBank";
+import { letterBank } from "../constants/wordBank";
 
 function Baseline() {
   return (
@@ -13,7 +13,7 @@ function Baseline() {
       description={
         "AlphaSign is a Sign Language Alphabet game based on an AI object detection model. This model was trained on 4 classes, 'A', 'B', 'C', and 'D' to minimise training loss."
       }
-      wordBank={wordBank.slice(0, 4)}
+      wordBank={letterBank.slice(0, 4)}
       modelUrl={
         "https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_ABCD_best/model.json"
       }
