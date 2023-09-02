@@ -1,0 +1,30 @@
+{
+    "name": "alphasign",
+    "version": "0.1.0",
+    "private": true,
+    "homepage": "https://yappeizhen.github.io/AlphaSign/",
+    "scripts": {
+      "start": "npm run --prefix ReactCV start",
+      "build": "npm run --prefix ReactCV build",
+      "test": "npm run --prefix ReactCV test",
+      "eject": "npm run --prefix ReactCV eject",
+      "predeploy": "npm run --prefix ReactCV build",
+      "deploy": "npm run --prefix ReactCV deploy"
+    },
+    "eslintConfig": {
+      "extends": "react-app"
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    }
+  }
+  
