@@ -15,6 +15,7 @@ const StyledAppBar = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  height: 40px;
   padding-top: 20px;
   padding-bottom: 16px;
   @media only screen and (max-width: 768px) {
