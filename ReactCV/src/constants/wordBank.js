@@ -33,6 +33,7 @@ export const letterBank = [
   { word: "G", img: imgG },
   { word: "H", img: imgH },
   { word: "I", img: imgI },
+  { word: "J" },
   { word: "K", img: imgK },
   { word: "L", img: imgL },
   { word: "M", img: imgM },
@@ -48,6 +49,7 @@ export const letterBank = [
   { word: "W", img: imgW },
   { word: "X", img: imgX },
   { word: "Y", img: imgY },
+  { word: "Z" },
 ];
 
 export const wordBank = [
