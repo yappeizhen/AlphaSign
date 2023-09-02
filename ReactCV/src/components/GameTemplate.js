@@ -27,7 +27,7 @@ const StyledWrapper = styled.div`
   padding: 20px 0;
 `;
 const StyledAppContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,12 +35,6 @@ const StyledAppContainer = styled.div`
   font-family: poppins;
   align-items: center;
   gap: 12px;
-  @media only screen and (max-width: 768px) {
-    height: auto;
-  }
-  @media only screen and (max-width: 680px) {
-    padding-top: 40px;
-  }
 `;
 const StyledAppBar = styled.div`
   display: flex;
