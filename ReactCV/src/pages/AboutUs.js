@@ -8,15 +8,12 @@ import peizhenImg from "../../src/assets/images/team/peizhen.jpeg";
 import zhiliImg from "../../src/assets/images/team/zhili.jpeg";
 import Keyword from "../components/Keyword";
 import ProfileCard from "../components/ProfileCard";
-
-// 2. TODO - Import drawing utility here
-// e.g. import { drawRect } from "./utilities";
+import backgroundImg from "../assets/images/clouds_background.jpeg";
 
 // Styled Components
-
 const StyledWrapper = styled.div`
   color: rgb(40, 44, 52);
-  background-color: rgb(230, 255, 251);
+  background-image: url(${backgroundImg});
   background-size: cover;
   height: auto;
 `;
@@ -50,7 +47,10 @@ const StyledTextContainer = styled.div`
   }
 `;
 const StyledBodyWrapper = styled.div`
-  padding-top: 120px;
+  margin: 100px;
+  padding: 80px;
+  border-radius: 5%;
+  background-color: rgba(255, 255, 255, 0.8);
 `;
 const StyledCardContainer = styled.div`
   height: 100%;

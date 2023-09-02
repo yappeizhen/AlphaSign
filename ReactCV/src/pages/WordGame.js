@@ -5,13 +5,13 @@ import React from "react";
 import GameTemplate from "../components/GameTemplate";
 import { wordBank } from "../constants/wordBank";
 
-function AllClasses() {
+function WordGame() {
   return (
     <GameTemplate
-      id="extended"
-      title="Extended Model"
+      id="wordgame"
+      title="Word Game"
       description={
-        "This model was trained on 24 alphabets for a more holistic representation of a sign language alphabet game. The letters 'J' and 'Z' were excluded as they are dynamic signs that involve motion."
+        "This is a simple game developed based on the AlphaSign extended model"
       }
       wordBank={wordBank}
       modelUrl={
@@ -22,4 +22,4 @@ function AllClasses() {
   );
 }
 
-export default AllClasses;
+export default WordGame;

@@ -4,7 +4,7 @@ import "../App.css";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import styled from "styled-components";
-
+import backgroundImg from "../assets/images/clouds_background.jpeg";
 import { Modal } from "@material-ui/core";
 import { CircularProgress, Slider, Switch } from "@mui/material";
 import * as tf from "@tensorflow/tfjs";
@@ -21,7 +21,7 @@ import { drawRect } from "../utilities";
 // Styled Components
 const StyledWrapper = styled.div`
   color: rgb(40, 44, 52);
-  background-image: url(${(props) => props.backgroundImg});
+  background-image: url(${backgroundImg});
   background-size: cover;
   height: auto;
 `;
@@ -343,10 +343,8 @@ function GameTemplate({
   title,
   description,
   isBaseline,
-  backgroundImg,
   wordBank,
   modelUrl,
-  colorTheme,
 }) {
   const localStorageKey = `${index}ScoreSheet`;
   const [isStarted, setIsStarted] = useState(false);
@@ -568,16 +566,11 @@ function GameTemplate({
             <div style={{ width: "100%", fontWeight: "600" }}>
               Your Score: {score}
             </div>
-            <TextBubble
-              backgroundColor={
-                colorTheme ? undefined : "rgb(81, 161, 186, 0.5)"
-              }
-            >
+            <TextBubble backgroundColor={"rgb(81, 161, 186, 0.5)"}>
               <StyledBubbleWrapper prestart={true} hidden={isStarted}>
                 <StyledH2>Ready to start?</StyledH2>
                 <CircularProgress
                   style={{ display: `${isLoading ? "inline" : "none"}` }}
-                  color={colorTheme}
                 />
                 <div style={{ display: `${!isLoading ? "inline" : "none"}` }}>
                   <DSButton onClick={onStart} text="Let's Go!" />
@@ -612,7 +605,6 @@ function GameTemplate({
                   <Switch
                     checked={showAnswer}
                     onChange={() => setShowAnswer(!showAnswer)}
-                    color={colorTheme}
                   />
                 </StyledSwitchGroup>
                 <button className="study-button" onClick={handleModalOpen}>
@@ -650,7 +642,6 @@ function GameTemplate({
                 max={1}
                 step={0.05}
                 style={{ width: "70%", margin: 0 }}
-                color={colorTheme}
               />
             </StyledSliderContainer>
             <StyledCamWrapper>
