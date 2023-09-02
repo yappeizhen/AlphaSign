@@ -27,9 +27,11 @@ const StyledWrapper = styled.div`
   padding: 20px 0;
 `;
 const StyledAppContainer = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: poppins;
   align-items: center;
   gap: 12px;
@@ -69,7 +71,6 @@ const StyledContentBody = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 100%;
   width: 100%;
   @media only screen and (max-width: 768px) {
     flex-direction: column-reverse;
