@@ -24,7 +24,7 @@ const StyledWrapper = styled.div`
   background-image: url(${backgroundImg});
   background-size: cover;
   height: auto;
-  padding: 2% 0;
+  padding: 20px 0;
 `;
 const StyledAppContainer = styled.div`
   min-height: 100vh;
@@ -32,10 +32,8 @@ const StyledAppContainer = styled.div`
   flex-direction: column;
   font-family: poppins;
   align-items: center;
-  justify-content: space-evenly;
-
+  gap: 12px;
   @media only screen and (max-width: 768px) {
-    justify-content: space-evenly;
     height: auto;
   }
   @media only screen and (max-width: 680px) {
@@ -69,7 +67,7 @@ const StyledH2 = styled.h2`
 const StyledContentBody = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
@@ -81,15 +79,13 @@ const StyledContentBody = styled.div`
 const StyledLeftPanel = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 30%;
   @media only screen and (max-width: 768px) {
     width: 70%;
     margin-top: 32px;
     height: auto;
-    justify-content: center;
-    align-items: center;
   }
 `;
 const StyledRightPanel = styled.div`
@@ -198,7 +194,7 @@ const StyledAslModal = styled(Modal)`
 const StyledDescription = styled.div`
   text-align: center;
   margin: 4px;
-  max-width: 50%;
+  max-width: 50rem;
   font-size: 14px;
   @media only screen and (max-width: 768px) {
     font-size: 10px;
@@ -211,7 +207,6 @@ const StyledResponseButtonGroup = styled.div`
   height: auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   gap: 12px;
   @media only screen and (max-width: 768px) {
     margin-top: 12px;
@@ -351,7 +346,7 @@ function GameTemplate({
   isBaseline,
   wordBank,
   modelUrl,
-  allowAnswer,
+  isWordMode,
 }) {
   const localStorageKey = `${index}ScoreSheet`;
   const [isStarted, setIsStarted] = useState(false);
@@ -392,6 +387,12 @@ function GameTemplate({
     setCurrentWordBankIndex(newWord);
     currentWordBankIndexRef.current = newWord;
   }, [chooseRandomWord]);
+
+  const onNextQuestion = () => {
+    setIsLetterCorrect(false);
+    handleChooseWord();
+  };
+
   const onNextLetter = useCallback(() => {
     setIsLetterCorrect(false);
     if (
@@ -614,12 +615,12 @@ function GameTemplate({
                   )}
                   <StyledTargetWord>
                     {wordBank[currentWordBankIndex]?.word
-                      .split("")
+                      ?.split("")
                       .map((letter, idx) => {
                         return (
                           <StyledLetterDisplay
                             key={idx}
-                            isEmphasized={doneLetterIndex >= idx}
+                            isEmphasized={!isWordMode || doneLetterIndex >= idx}
                           >
                             {letter}
                           </StyledLetterDisplay>
@@ -629,14 +630,14 @@ function GameTemplate({
                 </StyledWordContainer>
                 <StyledResponseButtonGroup>
                   <DSButton onClick={onExit} text="Exit" />
-                  <DSButton onClick={onNextLetter} text="Next Question!" />
+                  <DSButton onClick={onNextQuestion} text="Next Question!" />
                 </StyledResponseButtonGroup>
               </StyledBubbleWrapper>
             </TextBubble>
             <StyledBoyContainer>
               <StyledBoyImg alt="Boy raising hand" src={boyImg}></StyledBoyImg>
               <StyledTogglePanel>
-                <StyledSwitchGroup isHidden={!allowAnswer}>
+                <StyledSwitchGroup isHidden={isWordMode}>
                   <StyledSwitchLabel>Show answers:</StyledSwitchLabel>
                   <Switch
                     checked={showAnswer}

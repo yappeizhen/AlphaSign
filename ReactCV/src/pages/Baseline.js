@@ -18,7 +18,6 @@ function Baseline() {
         "https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_ABCD_best/model.json"
       }
       isBaseline={true}
-      allowAnswer
     />
   );
 }

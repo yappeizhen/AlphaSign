@@ -21,7 +21,6 @@ function AllClasses() {
         "https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_all_classes_v2/model.json"
       }
       colorTheme={"secondary"}
-      allowAnswer
     />
   );
 }
