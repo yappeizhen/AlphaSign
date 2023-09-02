@@ -421,11 +421,6 @@ function GameTemplate({
     }
   }, [localStorageKey]);
 
-  // Init first word
-  useEffect(() => {
-    handleChooseWord();
-  }, [handleChooseWord]);
-
   useEffect(() => {
     const jsonScoresheet = localStorage.getItem(localStorageKey);
     if (jsonScoresheet) {
@@ -569,9 +564,7 @@ function GameTemplate({
     return () => clearTimeout(timer);
   }, [countdown]);
   const onStart = () => {
-    const newWord = chooseRandomWord();
-    setCurrentWordBankIndex(newWord);
-    currentWordBankIndexRef.current = newWord;
+    handleChooseWord();
     setCountdown(3);
     setIsStarted(true);
   };
