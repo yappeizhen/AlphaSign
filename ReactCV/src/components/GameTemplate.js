@@ -391,8 +391,15 @@ function GameTemplate({
     const doneIndex = doneLetterIndexRef.current + 1;
     doneLetterIndexRef.current = doneIndex;
     setDoneLetterIndex(doneIndex);
-    if (doneIndex + 1 === wordBank[currentWordBankIndexRef.current].word.length)
+    if (
+      // If user has completed the whole word
+      doneIndex + 1 ===
+      wordBank[currentWordBankIndexRef.current].word.length
+    ) {
+      scoreRef.current += 1;
+      setScore(scoreRef.current);
       handleChooseWord(); // if user has completed whole word, choose next word
+    }
   }, [handleChooseWord, wordBank]);
 
   const updateScoreSheet = useCallback(() => {
@@ -485,8 +492,6 @@ function GameTemplate({
             );
             if (result) {
               setIsLetterCorrect(true); // mark letter as correct
-              setScore(scoreRef.current + 1);
-              scoreRef.current = scoreRef.current + 1;
               setTimeout(() => {
                 onNextLetter();
               }, 1000);
