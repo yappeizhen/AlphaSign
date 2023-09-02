@@ -325,10 +325,24 @@ const StyledSliderLabel = styled.p`
   }
 `;
 
+const MODEL_INDEXES = {
+  baseline: {
+    boxes: 7,
+    classes: 4,
+    scores: 6,
+  },
+  extended: {
+    boxes: 0,
+    classes: 2,
+    scores: 4,
+  },
+};
+
 function GameTemplate({
   index,
   title,
   description,
+  isBaseline,
   backgroundImg,
   wordBank,
   modelUrl,
@@ -435,41 +449,12 @@ function GameTemplate({
           setIsLoading(false);
         }
 
-        // mobilenetv2 fpnlite 320x320
-        //const boxes = await obj[7].array()  // bounding boxes array size 4 contain +ve values 0 to 1
-        //const classes = await obj[3].array() // integers class indexes
-        //const scores = await obj[5].array() // value from 0 to 1 descending order
-
-        // mobilenetv1 320x320
-        //const boxes = await obj[6].array()
-        //const classes = await obj[1].array()
-        //const scores = await obj[3].array()
-
-        // best model mobilenetv2 ABCD
-        const boxes = await obj[7].array();
-        const classes = await obj[4].array();
-        const scores = await obj[6].array();
-
-        /*
-      // Testing
-      const zero = await obj[0].array()
-      const one = await obj[1].array()
-      const two = await obj[2].array()
-      const three = await obj[3].array()
-      const four = await obj[4].array()
-      const five = await obj[5].array()
-      const six = await obj[6].array()
-      const seven = await obj[7].array()
- 
-      console.log('zero:'+zero[0])
-      console.log('one:'+one[0])
-      console.log('two:'+two[0])
-      console.log('three:'+three[0])
-      console.log('four:'+four[0])
-      console.log('five:'+five[0])
-      console.log('six:'+six[0])
-      console.log('seven:'+seven[0])
-      */
+        const modelIndexes = isBaseline
+          ? MODEL_INDEXES.baseline
+          : MODEL_INDEXES.extended;
+        const boxes = await obj[modelIndexes.boxes].array();
+        const classes = await obj[modelIndexes.classes].array();
+        const scores = await obj[modelIndexes.scores].array();
 
         // Draw mesh
         if (canvasRef.current) {
@@ -505,7 +490,7 @@ function GameTemplate({
         tf.dispose(obj);
       }
     },
-    [onNextQuestion, wordBank]
+    [onNextQuestion, wordBank, isBaseline]
   );
 
   const runCoco = useCallback(async () => {
