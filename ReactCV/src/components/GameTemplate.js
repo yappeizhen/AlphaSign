@@ -281,6 +281,7 @@ const StyledSwitchGroup = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  visibility: ${(props) => (props.isHidden ? "hidden" : "visible")};
 `;
 const StyledSwitchLabel = styled.p`
   font-size: 14px;
@@ -350,6 +351,7 @@ function GameTemplate({
   isBaseline,
   wordBank,
   modelUrl,
+  allowAnswer,
 }) {
   const localStorageKey = `${index}ScoreSheet`;
   const [isStarted, setIsStarted] = useState(false);
@@ -634,7 +636,7 @@ function GameTemplate({
             <StyledBoyContainer>
               <StyledBoyImg alt="Boy raising hand" src={boyImg}></StyledBoyImg>
               <StyledTogglePanel>
-                <StyledSwitchGroup>
+                <StyledSwitchGroup isHidden={!allowAnswer}>
                   <StyledSwitchLabel>Show answers:</StyledSwitchLabel>
                   <Switch
                     checked={showAnswer}
