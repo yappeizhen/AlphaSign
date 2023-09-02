@@ -5,8 +5,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import styled from "styled-components";
 
-import { Modal } from '@material-ui/core';
-import { CircularProgress, Slider, Switch } from "@mui/material"
+import { Modal } from "@material-ui/core";
+import { CircularProgress, Slider, Switch } from "@mui/material";
 import * as tf from "@tensorflow/tfjs";
 
 import aslImg from "../../src/assets/images/ASL_Alphabet.png";
@@ -55,7 +55,7 @@ const StyledAppBar = styled.div`
   margin-bottom: 8px;
 `;
 const StyledIntroContainer = styled.div`
-  display: flex; 
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -128,7 +128,7 @@ const StyledLoadingText = styled.p`
   }
 `;
 const StyledCamLoadingScreen = styled.div`
-  display: ${props => props.hidden ? "none" : "flex"};
+  display: ${(props) => (props.hidden ? "none" : "flex")};
   position: absolute;
   text-align: center;
   z-index: 12;
@@ -145,7 +145,7 @@ const StyledCamLoadingScreen = styled.div`
   }
 `;
 const StyledSuccessScreen = styled.div`
-  display: ${props => props.hidden ? "none" : "flex"};
+  display: ${(props) => (props.hidden ? "none" : "flex")};
   position: absolute;
   text-align: center;
   z-index: 12;
@@ -173,7 +173,7 @@ const StyledCanvas = styled.canvas`
   z-index: 10;
   width: 85%;
   height: calc(100% - 24px);
-  border-radius: 24px;  
+  border-radius: 24px;
   @media only screen and (max-width: 768px) {
     width: 100%;
     height: calc(100% - 16px);
@@ -212,7 +212,7 @@ const StyledDescription = styled.div`
   @media only screen and (max-width: 768px) {
     font-size: 10px;
     padding: 0;
-    max-width: 70%
+    max-width: 70%;
   }
 `;
 const StyledResponseButtonGroup = styled.div`
@@ -226,10 +226,10 @@ const StyledResponseButtonGroup = styled.div`
   }
 `;
 const StyledBubbleWrapper = styled.div`
-  display: ${props => props.hidden ? "none" : "flex"};
+  display: ${(props) => (props.hidden ? "none" : "flex")};
   height: 100%;
   flex-direction: column;
-  justify-content: ${props => props.prestart ? "center" : "space-evenly"};
+  justify-content: ${(props) => (props.prestart ? "center" : "space-evenly")};
   align-items: center;
 `;
 const StyledStudyIcon = styled.img`
@@ -253,7 +253,7 @@ const StyledWordContainer = styled.div`
 `;
 const StyledWordImg = styled.img`
   max-height: 100px;
-  display: ${props => props.hidden ? "none" : "inline"}
+  display: ${(props) => (props.hidden ? "none" : "inline")};
 `;
 const StyledTargetWord = styled.p`
   font-weight: 600;
@@ -299,7 +299,7 @@ const StyledBoyContainer = styled.div`
 `;
 const StyledCountdown = styled.p`
   font-size: 40px;
-  display: ${props => props.hidden ? "none" : "flex"};
+  display: ${(props) => (props.hidden ? "none" : "flex")};
   @media only screen and (max-width: 768px) {
     font-size: 32px;
   }
@@ -310,7 +310,7 @@ const StyledTable = styled.table`
   min-width: 200px;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   table-layout: fixed;
 `;
 const StyledSliderContainer = styled.div`
@@ -328,8 +328,6 @@ const StyledSliderLabel = styled.p`
     font-size: 10px;
   }
 `;
-
-
 
 function AllClasses() {
   const [isStarted, setIsStarted] = useState(false);
@@ -351,16 +349,15 @@ function AllClasses() {
   const scoreSheetRef = useRef([]);
   const thresholdRef = useRef(0.7);
 
-
   const chooseRandomAlphabet = useCallback(() => {
     const i = Math.floor(Math.random() * 23);
     return i;
-  }, [])
+  }, []);
   const [currentWord, setCurrentWord] = useState(null);
 
   // Helper functions
   const handleChooseAlphabet = useCallback(() => {
-    let newWord = chooseRandomAlphabet()
+    let newWord = chooseRandomAlphabet();
     while (newWord === currentWordRef.current) {
       newWord = chooseRandomAlphabet();
     }
@@ -392,71 +389,63 @@ function AllClasses() {
     }
     return () => {
       updateScoreSheet();
-    }
-  }, [updateScoreSheet])
+    };
+  }, [updateScoreSheet]);
 
-  var previousFrameTime = 0;
   // Main function
-  const detect = useCallback(async (net) => {
-    // Check data is available
-    if (
-      typeof webcamRef.current !== "undefined" &&
-      webcamRef.current !== null &&
-      webcamRef.current.video.readyState === 4
-    ) {
-      // Get Video Properties
-      const video = webcamRef.current.video;
-      const videoWidth = webcamRef.current.video.videoWidth;
-      const videoHeight = webcamRef.current.video.videoHeight;
+  const detect = useCallback(
+    async (net) => {
+      // Check data is available
+      if (
+        typeof webcamRef.current !== "undefined" &&
+        webcamRef.current !== null &&
+        webcamRef.current.video.readyState === 4
+      ) {
+        // Get Video Properties
+        const video = webcamRef.current.video;
+        const videoWidth = webcamRef.current.video.videoWidth;
+        const videoHeight = webcamRef.current.video.videoHeight;
 
-      // Set video width
-      webcamRef.current.video.width = videoWidth;
-      webcamRef.current.video.height = videoHeight;
+        // Set video width
+        webcamRef.current.video.width = videoWidth;
+        webcamRef.current.video.height = videoHeight;
 
-      // Set canvas height and width
-      canvasRef.current.width = videoWidth;
-      canvasRef.current.height = videoHeight;
+        // Set canvas height and width
+        canvasRef.current.width = videoWidth;
+        canvasRef.current.height = videoHeight;
 
-      // get FPS of video frames processed per second
-      var d= new Date();
-      var time = d.getTime();
-      //console.log(time,previousFrameTime)
-      var FPS = Math.floor(1000/(time - previousFrameTime));
-      previousFrameTime = time;
+        const ctx = canvasRef.current.getContext("2d");
+        ctx.font = "20px normal bold courier";
+        ctx.clearRect(0, 0, canvasRef.width, canvasRef.height);
 
-      const ctx = canvasRef.current.getContext("2d");
-      ctx.font = '20px normal bold courier';
-      ctx.clearRect(0,0,canvasRef.width,canvasRef.height);
-      ctx.fillText('FPS = '+FPS.toString(),10,30);
+        // 4. TODO - Make Detections
+        const img = tf.browser.fromPixels(video);
+        const resized = tf.image.resizeBilinear(img, [640, 480]);
+        const casted = resized.cast("int32");
+        const expanded = casted.expandDims(0);
+        const obj = await net.executeAsync(expanded);
+        // console.log(obj)
 
-      // 4. TODO - Make Detections
-      const img = tf.browser.fromPixels(video)
-      const resized = tf.image.resizeBilinear(img, [640, 480])
-      const casted = resized.cast('int32')
-      const expanded = casted.expandDims(0)
-      const obj = await net.executeAsync(expanded)
-      // console.log(obj)
+        if (obj) {
+          setIsLoading(false);
+        }
 
-      if (obj) {
-        setIsLoading(false);
-      }
+        // mobilenetv1 320x320 All Classes (Poor Performance Model)
+        //const boxes = await obj[6].array()
+        //const classes = await obj[1].array()
+        //const scores = await obj[3].array()
 
-      // mobilenetv1 320x320 All Classes (Poor Performance Model)
-      //const boxes = await obj[6].array()
-      //const classes = await obj[1].array()
-      //const scores = await obj[3].array()
+        // mobilenetv2 320x320 All Classes 11k Epochs
+        //const boxes = await obj[3].array()
+        //const classes = await obj[4].array()
+        //const scores = await obj[1].array()
 
-      // mobilenetv2 320x320 All Classes 11k Epochs
-      //const boxes = await obj[3].array()
-      //const classes = await obj[4].array()
-      //const scores = await obj[1].array()
+        // mobilenetv2 320x320 All Classes 16k Epochs v2
+        const boxes = await obj[0].array();
+        const classes = await obj[2].array();
+        const scores = await obj[4].array();
 
-      // mobilenetv2 320x320 All Classes 16k Epochs v2
-      const boxes = await obj[0].array()
-      const classes = await obj[2].array()
-      const scores = await obj[4].array()
-
-      /*
+        /*
       //Testing
       const zero = await obj[0].array()
       const one = await obj[1].array()
@@ -477,76 +466,88 @@ function AllClasses() {
       console.log('seven:'+seven[0])
       */
 
-      // Draw mesh
-      if (canvasRef.current) {
-        const ctx = canvasRef.current.getContext("2d");
+        // Draw mesh
+        if (canvasRef.current) {
+          const ctx = canvasRef.current.getContext("2d");
 
-        // 5. TODO - Update drawing utility
-        // drawSomething(obj, ctx)  
-        requestAnimationFrame(() => {
-          const result = drawRect(boxes[0], classes[0], scores[0], thresholdRef.current, videoWidth, videoHeight, ctx, wordBank[currentWordRef.current]?.word);
-          if (result) {
-            setIsCorrect(true);
-            setScore(scoreRef.current + 1);
-            scoreRef.current = scoreRef.current + 1;
-            setTimeout(() => {
-              onNextQuestion();
-            }, 1000);
-          }
-        });
+          // 5. TODO - Update drawing utility
+          // drawSomething(obj, ctx)
+          requestAnimationFrame(() => {
+            const result = drawRect(
+              boxes[0],
+              classes[0],
+              scores[0],
+              thresholdRef.current,
+              videoWidth,
+              videoHeight,
+              ctx,
+              wordBank[currentWordRef.current]?.word
+            );
+            if (result) {
+              setIsCorrect(true);
+              setScore(scoreRef.current + 1);
+              scoreRef.current = scoreRef.current + 1;
+              setTimeout(() => {
+                onNextQuestion();
+              }, 1000);
+            }
+          });
+        }
+        tf.dispose(img);
+        tf.dispose(resized);
+        tf.dispose(casted);
+        tf.dispose(expanded);
+        tf.dispose(obj);
       }
-      tf.dispose(img)
-      tf.dispose(resized)
-      tf.dispose(casted)
-      tf.dispose(expanded)
-      tf.dispose(obj)
-    }
-  }, [onNextQuestion]);
-  const runCoco = useCallback(
-    async () => {
-      // 3. TODO - Load network 
-      //tf.setBackend('wasm');
-      tf.setBackend('webgl');
-      console.log('Backend : ', tf.getBackend());
-      console.log('Loading Model')
-      // e.g. const net = await cocossd.load();
-      // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
-      // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
-      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
-      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/model/model.json')
+    },
+    [onNextQuestion]
+  );
+  const runCoco = useCallback(async () => {
+    // 3. TODO - Load network
+    //tf.setBackend('wasm');
+    tf.setBackend("webgl");
+    console.log("Backend : ", tf.getBackend());
+    console.log("Loading Model");
+    // e.g. const net = await cocossd.load();
+    // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
+    // const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json')
+    //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_efficientnet_512/model.json')
+    //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/model/model.json')
 
-      //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_all_classes/model.json')
-      
-      const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_all_classes_v2/model.json')
-      modelRef.current = net;
-      console.log('Loaded Model')
+    //const net = await tf.loadGraphModel('https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_all_classes/model.json')
 
-      //  Loop and detect hands
-      intervalIdRef.current = setInterval(() => {
-        detect(net);
-        console.log(`# of tensors: ${tf.memory().numTensors}`);
-      }, 1000);
-    }, [detect]);
+    const net = await tf.loadGraphModel(
+      "https://raw.githubusercontent.com/yappeizhen/AlphaSign/master/ReactCV/src/tfjs_model_mobilenetv2_fpnlite_all_classes_v2/model.json"
+    );
+    modelRef.current = net;
+    console.log("Loaded Model");
+
+    //  Loop and detect hands
+    intervalIdRef.current = setInterval(() => {
+      detect(net);
+      console.log(`# of tensors: ${tf.memory().numTensors}`);
+    }, 1000);
+  }, [detect]);
 
   useEffect(() => {
     runCoco();
     return () => {
-      clearInterval(intervalIdRef.current)
+      clearInterval(intervalIdRef.current);
       console.log("Cleaning");
       if (modelRef.current) {
-        console.log("Cleaning")
+        console.log("Cleaning");
         modelRef.current.dispose();
       }
-    }
+    };
   }, [runCoco]);
 
   // Render Methods
   const handleModalOpen = () => {
     setIsModalOpen(true);
-  }
+  };
   const handleModalClose = () => {
     setIsModalOpen(false);
-  }
+  };
 
   useEffect(() => {
     let timer;
@@ -559,12 +560,12 @@ function AllClasses() {
     return () => clearTimeout(timer);
   }, [countdown]);
   const onStart = () => {
-    const newWord = chooseRandomAlphabet()
+    const newWord = chooseRandomAlphabet();
     setCurrentWord(newWord);
     currentWordRef.current = newWord;
     setCountdown(3);
     setIsStarted(true);
-  }
+  };
   const onExit = () => {
     updateScoreSheet();
     setIsStarted(false);
@@ -572,7 +573,7 @@ function AllClasses() {
     currentWordRef.current = null;
     setScore(0);
     scoreRef.current = 0;
-  }
+  };
 
   return (
     <StyledWrapper>
@@ -581,18 +582,25 @@ function AllClasses() {
           <StyledIntroContainer>
             <StyledH1>Extended Model</StyledH1>
             <StyledDescription>
-              This model was trained on 24 alphabets for a more holistic representation of a sign language alphabet game.
-              The letters 'J' and 'Z' were excluded as they are dynamic signs that involve motion.
+              This model was trained on 24 alphabets for a more holistic
+              representation of a sign language alphabet game. The letters 'J'
+              and 'Z' were excluded as they are dynamic signs that involve
+              motion.
             </StyledDescription>
           </StyledIntroContainer>
         </StyledAppBar>
         <StyledContentBody>
           <StyledLeftPanel>
-            <div style={{ width: "100%", fontWeight: "600" }}>Your Score: {score}</div>
+            <div style={{ width: "100%", fontWeight: "600" }}>
+              Your Score: {score}
+            </div>
             <TextBubble>
               <StyledBubbleWrapper prestart={true} hidden={isStarted}>
                 <StyledH2>Ready to start?</StyledH2>
-                <CircularProgress style={{ display: `${isLoading ? "inline" : "none"}` }} color="secondary" />
+                <CircularProgress
+                  style={{ display: `${isLoading ? "inline" : "none"}` }}
+                  color="secondary"
+                />
                 <div style={{ display: `${!isLoading ? "inline" : "none"}` }}>
                   <DSButton onClick={onStart} text="Let's Go!" />
                 </div>
@@ -603,8 +611,14 @@ function AllClasses() {
               <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
                 <StyledPrompt>Sign this alphabet:</StyledPrompt>
                 <StyledWordContainer>
-                  <StyledWordImg hidden={!showAnswer} src={wordBank[currentWord]?.img} alt="Target sign language" />
-                  <StyledTargetWord>{wordBank[currentWord]?.word}</StyledTargetWord>
+                  <StyledWordImg
+                    hidden={!showAnswer}
+                    src={wordBank[currentWord]?.img}
+                    alt="Target sign language"
+                  />
+                  <StyledTargetWord>
+                    {wordBank[currentWord]?.word}
+                  </StyledTargetWord>
                 </StyledWordContainer>
                 <StyledResponseButtonGroup>
                   <DSButton onClick={onExit} text="Exit" />
@@ -624,8 +638,13 @@ function AllClasses() {
                   />
                 </StyledSwitchGroup>
                 <button className="study-button" onClick={handleModalOpen}>
-                  <StyledStudyIcon src={studyIcon} alt="Sign language alphabet" />
-                  <span className="tooltiptext">American sign language alphabet guide</span>
+                  <StyledStudyIcon
+                    src={studyIcon}
+                    alt="Sign language alphabet"
+                  />
+                  <span className="tooltiptext">
+                    American sign language alphabet guide
+                  </span>
                 </button>
               </StyledTogglePanel>
               <StyledAslModal
@@ -642,15 +661,11 @@ function AllClasses() {
             <StyledSliderContainer>
               <StyledSliderLabel>Detection Threshold </StyledSliderLabel>
               <Slider
-
-                
-
                 size="small"
                 value={threshold}
                 onChange={(e) => {
-                  setThreshold(e.target.value)
+                  setThreshold(e.target.value);
                   thresholdRef.current = e.target.value;
-
                 }}
                 valueLabelDisplay="auto"
                 min={0}
@@ -667,46 +682,62 @@ function AllClasses() {
               <StyledSuccessScreen hidden={!isCorrect}>
                 <StyledTickIcon src={tick} alt="Check mark" />
               </StyledSuccessScreen>
-              <StyledWebcam
-                ref={webcamRef}
-                muted={true}
-                audio={false}
-              />
-              <StyledCanvas
-                ref={canvasRef}
-              />
+              <StyledWebcam ref={webcamRef} muted={true} audio={false} />
+              <StyledCanvas ref={canvasRef} />
             </StyledCamWrapper>
           </StyledRightPanel>
         </StyledContentBody>
       </StyledAppContainer>
       <StyledAppContainer>
         <StyledH1>Your Scores</StyledH1>
-        {(!scoreSheet || scoreSheet.length === 0) &&
+        {(!scoreSheet || scoreSheet.length === 0) && (
           <div>Play the game and accumulate scores!</div>
-        }
-        {(scoreSheet && scoreSheet.length > 0) && <StyledTable>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody style={{ maxHeight: "200px", overflowY: "auto" }}>
-            {scoreSheet && scoreSheet
-              .sort((a, b) => new Date(b.date) - new Date(a.date))
-              .map((item => {
-                return (
-                  <tr key={item.date} style={{ height: "24px" }}>
-                    <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{new Date(item.date).toLocaleDateString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
-                    <td style={{ textAlign: "center", paddingLeft: "16px", paddingRight: "16px" }}>{item.score}</td>
-                  </tr>
-                )
-              }))}
-          </tbody>
-        </StyledTable>}
-      </StyledAppContainer >
+        )}
+        {scoreSheet && scoreSheet.length > 0 && (
+          <StyledTable>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody style={{ maxHeight: "200px", overflowY: "auto" }}>
+              {scoreSheet &&
+                scoreSheet
+                  .sort((a, b) => new Date(b.date) - new Date(a.date))
+                  .map((item) => {
+                    return (
+                      <tr key={item.date} style={{ height: "24px" }}>
+                        <td
+                          style={{
+                            textAlign: "center",
+                            paddingLeft: "16px",
+                            paddingRight: "16px",
+                          }}
+                        >
+                          {new Date(item.date).toLocaleDateString("en-US", {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </td>
+                        <td
+                          style={{
+                            textAlign: "center",
+                            paddingLeft: "16px",
+                            paddingRight: "16px",
+                          }}
+                        >
+                          {item.score}
+                        </td>
+                      </tr>
+                    );
+                  })}
+            </tbody>
+          </StyledTable>
+        )}
+      </StyledAppContainer>
       <Footer />
-    </StyledWrapper >
+    </StyledWrapper>
   );
 }
 
