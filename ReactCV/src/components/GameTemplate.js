@@ -584,7 +584,7 @@ function GameTemplate({
         </StyledAppBar>
         <StyledContentBody>
           <StyledLeftPanel>
-            <div style={{ width: "100%", fontWeight: "600" }}>
+            <div style={{ width: "100%", fontWeight: "600", fontSize: "20px" }}>
               Your Score: {score}
             </div>
             <TextBubble backgroundColor={"rgb(81, 161, 186, 0.5)"}>
