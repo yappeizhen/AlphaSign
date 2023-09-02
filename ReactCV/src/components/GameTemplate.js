@@ -352,8 +352,9 @@ function GameTemplate({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [isCorrect, setIsCorrect] = useState(false);
-  const [currentWord, setCurrentWord] = useState(null);
+  const [isLetterCorrect, setIsLetterCorrect] = useState(false);
+  const [doneLetterIndex, setDoneLetterIndex] = useState(-1);
+  const [currentWordBankIndex, setCurrentWordBankIndex] = useState(null);
   const [showAnswer, setShowAnswer] = useState(true);
   const [scoreSheet, setScoreSheet] = useState([]);
   const [score, setScore] = useState(0);
@@ -361,31 +362,38 @@ function GameTemplate({
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  const currentWordRef = useRef(null);
+  const currentWordBankIndexRef = useRef(null);
+  const doneLetterIndexRef = useRef(-1);
   const intervalIdRef = useRef(null);
   const modelRef = useRef(null);
   const scoreRef = useRef(0);
   const scoreSheetRef = useRef([]);
   const thresholdRef = useRef(0.7);
 
-  const chooseRandomAlphabet = useCallback(() => {
+  const chooseRandomWord = useCallback(() => {
     const i = Math.floor(Math.random() * wordBank.length);
     return i;
   }, [wordBank]);
 
   // Helper functions
-  const handleChooseAlphabet = useCallback(() => {
-    let newWord = chooseRandomAlphabet();
-    while (newWord === currentWordRef.current) {
-      newWord = chooseRandomAlphabet();
+  const handleChooseWord = useCallback(() => {
+    doneLetterIndexRef.current = -1;
+    setDoneLetterIndex(-1);
+    let newWord = chooseRandomWord();
+    while (newWord === currentWordBankIndexRef.current) {
+      newWord = chooseRandomWord();
     }
-    setCurrentWord(newWord);
-    currentWordRef.current = newWord;
-  }, [chooseRandomAlphabet]);
-  const onNextQuestion = useCallback(() => {
-    setIsCorrect(false);
-    handleChooseAlphabet();
-  }, [handleChooseAlphabet]);
+    setCurrentWordBankIndex(newWord);
+    currentWordBankIndexRef.current = newWord;
+  }, [chooseRandomWord]);
+  const onNextLetter = useCallback(() => {
+    setIsLetterCorrect(false);
+    const doneIndex = doneLetterIndexRef.current + 1;
+    doneLetterIndexRef.current = doneIndex;
+    setDoneLetterIndex(doneIndex);
+    if (doneIndex + 1 === wordBank[currentWordBankIndexRef.current].word.length)
+      handleChooseWord(); // if user has completed whole word, choose next word
+  }, [handleChooseWord]);
   const updateScoreSheet = useCallback(() => {
     if (scoreRef.current > 0) {
       const today = new Date();
@@ -470,14 +478,14 @@ function GameTemplate({
               videoWidth,
               videoHeight,
               ctx,
-              wordBank[currentWordRef.current]?.word
+              wordBank[currentWordBankIndexRef.current]?.word
             );
             if (result) {
-              setIsCorrect(true);
+              setIsLetterCorrect(true); // mark letter as correct
               setScore(scoreRef.current + 1);
               scoreRef.current = scoreRef.current + 1;
               setTimeout(() => {
-                onNextQuestion();
+                onNextLetter();
               }, 1000);
             }
           });
@@ -489,7 +497,7 @@ function GameTemplate({
         tf.dispose(obj);
       }
     },
-    [onNextQuestion, wordBank, isBaseline]
+    [onNextLetter, wordBank, isBaseline]
   );
 
   const runCoco = useCallback(async () => {
@@ -538,17 +546,17 @@ function GameTemplate({
     return () => clearTimeout(timer);
   }, [countdown]);
   const onStart = () => {
-    const newWord = chooseRandomAlphabet();
-    setCurrentWord(newWord);
-    currentWordRef.current = newWord;
+    const newWord = chooseRandomWord();
+    setCurrentWordBankIndex(newWord);
+    currentWordBankIndexRef.current = newWord;
     setCountdown(3);
     setIsStarted(true);
   };
   const onExit = () => {
     updateScoreSheet();
     setIsStarted(false);
-    setCurrentWord(null);
-    currentWordRef.current = null;
+    setCurrentWordBankIndex(null);
+    currentWordBankIndexRef.current = null;
     setScore(0);
     scoreRef.current = 0;
   };
@@ -583,20 +591,20 @@ function GameTemplate({
               <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
                 <StyledPrompt>Sign this:</StyledPrompt>
                 <StyledWordContainer>
-                  {wordBank[currentWord]?.img && (
+                  {wordBank[currentWordBankIndex]?.img && (
                     <StyledWordImg
                       hidden={!showAnswer}
-                      src={wordBank[currentWord].img}
+                      src={wordBank[currentWordBankIndex].img}
                       alt="Target sign language"
                     />
                   )}
                   <StyledTargetWord>
-                    {wordBank[currentWord]?.word}
+                    {wordBank[currentWordBankIndex]?.word}
                   </StyledTargetWord>
                 </StyledWordContainer>
                 <StyledResponseButtonGroup>
                   <DSButton onClick={onExit} text="Exit" />
-                  <DSButton onClick={onNextQuestion} text="Next Question!" />
+                  <DSButton onClick={onNextLetter} text="Next Question!" />
                 </StyledResponseButtonGroup>
               </StyledBubbleWrapper>
             </TextBubble>
@@ -651,7 +659,7 @@ function GameTemplate({
               <StyledCamLoadingScreen hidden={!isLoading}>
                 <StyledLoadingText>Loading Model...</StyledLoadingText>
               </StyledCamLoadingScreen>
-              <StyledSuccessScreen hidden={!isCorrect}>
+              <StyledSuccessScreen hidden={!isLetterCorrect}>
                 <StyledTickIcon src={tick} alt="Check mark" />
               </StyledSuccessScreen>
               <StyledWebcam ref={webcamRef} muted={true} audio={false} />
