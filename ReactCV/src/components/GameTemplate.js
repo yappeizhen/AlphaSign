@@ -211,6 +211,7 @@ const StyledResponseButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  gap: 12px;
   @media only screen and (max-width: 768px) {
     margin-top: 12px;
   }
@@ -580,13 +581,15 @@ function GameTemplate({
                 <StyledCountdown>{countdown}</StyledCountdown>
               </StyledBubbleWrapper>
               <StyledBubbleWrapper hidden={!isStarted || countdown > 0}>
-                <StyledPrompt>Sign this alphabet:</StyledPrompt>
+                <StyledPrompt>Sign this:</StyledPrompt>
                 <StyledWordContainer>
-                  <StyledWordImg
-                    hidden={!showAnswer}
-                    src={wordBank[currentWord]?.img}
-                    alt="Target sign language"
-                  />
+                  {wordBank[currentWord]?.img && (
+                    <StyledWordImg
+                      hidden={!showAnswer}
+                      src={wordBank[currentWord].img}
+                      alt="Target sign language"
+                    />
+                  )}
                   <StyledTargetWord>
                     {wordBank[currentWord]?.word}
                   </StyledTargetWord>
