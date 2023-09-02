@@ -8,7 +8,7 @@ import peizhenImg from "../../src/assets/images/team/peizhen.jpeg";
 import zhiliImg from "../../src/assets/images/team/zhili.jpeg";
 import Keyword from "../components/Keyword";
 import ProfileCard from "../components/ProfileCard";
-import backgroundImg from "../assets/images/clouds_background.jpeg";
+import backgroundImg from "../assets/images/background.jpg";
 
 // Styled Components
 const StyledWrapper = styled.div`
@@ -50,7 +50,7 @@ const StyledBodyWrapper = styled.div`
   margin: 100px;
   padding: 80px;
   border-radius: 5%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: white;
 `;
 const StyledCardContainer = styled.div`
   height: 100%;

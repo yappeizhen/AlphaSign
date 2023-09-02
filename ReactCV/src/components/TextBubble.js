@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Bubble = styled.div`
   position: relative;
-  background: ${(prop) => prop.backgroundColor};
+  background: rgba(124, 185, 231, 0.7);
   border-radius: 0.4em;
   width: 100%;
   height: 240px;
@@ -20,7 +20,7 @@ const Bubble = styled.div`
     width: 0;
     height: 0;
     border: 32px solid transparent;
-    border-top-color: ${(props) => props.backgroundColor};
+    border-top-color: rgba(124, 185, 231, 0.7);
     border-bottom: 0;
     border-right: 0;
     margin-left: 16px;
@@ -32,8 +32,8 @@ const Bubble = styled.div`
     padding: 20px;
   }
 `;
-function TextBubble({ children, backgroundColor = "rgb(196, 180, 328, 0.5)" }) {
-  return <Bubble backgroundColor={backgroundColor}>{children}</Bubble>;
+function TextBubble({ children }) {
+  return <Bubble>{children}</Bubble>;
 }
 
 export default TextBubble;

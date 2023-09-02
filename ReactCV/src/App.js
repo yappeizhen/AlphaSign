@@ -19,7 +19,7 @@ function App() {
         <Route exact path={NAV_ITEMS.FOUR_CLASSES.to} component={Baseline} />
         <Route exact path={NAV_ITEMS.ALL_CLASSES.to} component={AllClasses} />
         <Route exact path={NAV_ITEMS.WORD_GAME.to} component={WordGame} />
-        <Route render={() => <Redirect to={NAV_ITEMS.FOUR_CLASSES.to} />} />
+        <Route render={() => <Redirect to={NAV_ITEMS.WORD_GAME.to} />} />
       </Switch>
     </>
   );

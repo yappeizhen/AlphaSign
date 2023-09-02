@@ -1,9 +1,9 @@
 const baseUrl = "/AlphaSign";
 
 export const NAV_ITEMS = {
-  ABOUT_US: {
-    to: `${baseUrl}/about-us`,
-    text: "About Us",
+  WORD_GAME: {
+    to: `${baseUrl}/wordgame`,
+    text: "Word Game",
   },
   FOUR_CLASSES: {
     to: `${baseUrl}/baseline`,
@@ -13,8 +13,8 @@ export const NAV_ITEMS = {
     to: `${baseUrl}/extended`,
     text: "Extended Model",
   },
-  WORD_GAME: {
-    to: `${baseUrl}/wordgame`,
-    text: "Word Game",
+  ABOUT_US: {
+    to: `${baseUrl}/about-us`,
+    text: "About Us",
   },
 };

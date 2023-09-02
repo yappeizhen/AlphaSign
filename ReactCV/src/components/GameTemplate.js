@@ -4,7 +4,7 @@ import "../App.css";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import styled from "styled-components";
-import backgroundImg from "../assets/images/clouds_background.jpeg";
+import backgroundImg from "../assets/images/background.jpg";
 import { Modal } from "@material-ui/core";
 import { CircularProgress, Slider, Switch } from "@mui/material";
 import * as tf from "@tensorflow/tfjs";
@@ -24,7 +24,7 @@ const StyledWrapper = styled.div`
   background-image: url(${backgroundImg});
   background-size: cover;
   height: auto;
-  padding: 20px 0;
+  padding: 20px 0 0 0;
 `;
 const StyledAppContainer = styled.div`
   min-height: 100vh;
@@ -203,6 +203,8 @@ const StyledDescription = styled.div`
 const StyledResponseButtonGroup = styled.div`
   width: 100%;
   height: auto;
+  justify-content: center;
+  align-items: center;
   display: flex;
   flex-direction: row;
   gap: 12px;
@@ -213,6 +215,8 @@ const StyledResponseButtonGroup = styled.div`
 const StyledBubbleWrapper = styled.div`
   display: ${(props) => (props.hidden ? "none" : "flex")};
   height: 100%;
+  width: 100%;
+  padding: 12px;
   flex-direction: column;
   justify-content: ${(props) => (props.prestart ? "center" : "space-evenly")};
   align-items: center;
@@ -241,6 +245,7 @@ const StyledWordContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 const StyledWordImg = styled.img`
   max-height: 100px;
@@ -588,7 +593,7 @@ function GameTemplate({
             <div style={{ width: "100%", fontWeight: "600", fontSize: "20px" }}>
               Your Score: {score}
             </div>
-            <TextBubble backgroundColor={"rgb(81, 161, 186, 0.5)"}>
+            <TextBubble>
               <StyledBubbleWrapper prestart={true} hidden={isStarted}>
                 <StyledH2>Ready to start?</StyledH2>
                 <CircularProgress

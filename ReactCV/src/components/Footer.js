@@ -10,7 +10,9 @@ const StyledContainer = styled.div`
   font-family: "Poppins";
   padding: 12px 0;
   width: 100%;
-  background-color: rgb(240, 248, 255, 0.5);
+  background-color: rgb(240, 248, 255, 0.7);
+  bottom: 0;
+  margin: 0;
 `;
 const StyledLogo = styled.img`
   width: 160px;
