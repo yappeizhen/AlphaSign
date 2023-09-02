@@ -24,6 +24,7 @@ const StyledWrapper = styled.div`
   background-image: url(${backgroundImg});
   background-size: cover;
   height: auto;
+  padding: 2% 0;
 `;
 const StyledAppContainer = styled.div`
   min-height: 100vh;
