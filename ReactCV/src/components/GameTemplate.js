@@ -421,6 +421,11 @@ function GameTemplate({
     }
   }, [localStorageKey]);
 
+  // Init first word
+  useEffect(() => {
+    handleChooseWord();
+  }, [handleChooseWord]);
+
   useEffect(() => {
     const jsonScoresheet = localStorage.getItem(localStorageKey);
     if (jsonScoresheet) {
