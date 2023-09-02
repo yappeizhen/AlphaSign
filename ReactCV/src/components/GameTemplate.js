@@ -393,7 +393,8 @@ function GameTemplate({
     setDoneLetterIndex(doneIndex);
     if (doneIndex + 1 === wordBank[currentWordBankIndexRef.current].word.length)
       handleChooseWord(); // if user has completed whole word, choose next word
-  }, [handleChooseWord]);
+  }, [handleChooseWord, wordBank]);
+
   const updateScoreSheet = useCallback(() => {
     if (scoreRef.current > 0) {
       const today = new Date();
@@ -466,7 +467,9 @@ function GameTemplate({
         // Draw mesh
         if (canvasRef.current) {
           const ctx = canvasRef.current.getContext("2d");
-
+          const curWord = wordBank[currentWordBankIndexRef.current]?.word;
+          const curLetterIndex = doneLetterIndexRef.current + 1;
+          const curLetter = curWord?.charAt(curLetterIndex).toUpperCase();
           // 5. TODO - Update drawing utility
           // drawSomething(obj, ctx)
           requestAnimationFrame(() => {
@@ -478,7 +481,7 @@ function GameTemplate({
               videoWidth,
               videoHeight,
               ctx,
-              wordBank[currentWordBankIndexRef.current]?.word
+              curLetter
             );
             if (result) {
               setIsLetterCorrect(true); // mark letter as correct
